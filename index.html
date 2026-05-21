@@ -146,6 +146,43 @@
       white-space: nowrap;
     }
 
+    .draft-pill {
+      border-color: rgba(217,119,6,.35);
+      background: var(--warning-soft);
+      color: #b7791f;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .draft-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 0 0 24px;
+      padding: 12px 16px;
+      border: 1px solid rgba(217,119,6,.35);
+      border-left: 4px solid var(--warning);
+      border-radius: var(--radius);
+      background: var(--warning-soft);
+      color: #854d0e;
+      box-shadow: var(--shadow);
+    }
+
+    .draft-banner strong {
+      display: block;
+      color: #854d0e;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .draft-banner span {
+      color: #6f4b12;
+      font-size: 13px;
+    }
+
     .hero {
       min-height: 310px;
       display: grid;
@@ -616,6 +653,11 @@
         justify-content: flex-start;
       }
 
+      .draft-banner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
       h1 {
         font-size: 36px;
         line-height: 1.08;
@@ -685,11 +727,17 @@
         </div>
       </div>
       <div class="pill-row" aria-label="guide scope">
+        <span class="pill draft-pill">Draft</span>
         <span class="pill">Access Network Providers</span>
         <span class="pill">Passpoint / Hotspot 2.0</span>
         <span class="pill">OpenRoaming ready</span>
       </div>
     </div>
+
+    <aside class="draft-banner" aria-label="draft notice">
+      <strong>Draft for review</strong>
+      <span>This quick-start learning map is a working draft and should not be treated as final WBA guidance or a normative standards reference.</span>
+    </aside>
 
     <section class="hero" id="overview">
       <div class="hero-copy">
