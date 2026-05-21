@@ -8,6 +8,7 @@ This package converts `PQSG - Structure and flow 20260505.docx` into a polished 
 - `figma-plugin/manifest.json` - local Figma development plugin manifest.
 - `figma-plugin/code.js` - generator that creates the desktop and mobile Figma frames.
 - Published site assets include four existing diagram SVGs under `assets/diagrams/`.
+- The top navigation uses the WBA logo extracted from `WBA_Whitepaper_Template_Latest_V1.0.0.docx` and bundled under `assets/logos/`.
 
 ## Figma Import
 

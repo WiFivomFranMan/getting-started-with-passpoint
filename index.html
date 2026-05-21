@@ -105,6 +105,13 @@
       border-radius: 0 0 22px 22px;
     }
 
+    .wba-logo {
+      display: block;
+      width: 172px;
+      height: auto;
+      flex: 0 0 auto;
+    }
+
     .brand strong {
       display: block;
       font-size: 15px;
@@ -596,6 +603,15 @@
         flex-direction: column;
       }
 
+      .brand {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .wba-logo {
+        width: 150px;
+      }
+
       .pill-row {
         justify-content: flex-start;
       }
@@ -662,7 +678,7 @@
   <main class="shell">
     <div class="topbar">
       <div class="brand">
-        <div class="mark" aria-hidden="true"></div>
+        <img class="wba-logo" src="assets/logos/wba-logo-white.png" alt="Wireless Broadband Alliance">
         <div>
           <strong>Passpoint Quick Start Guide</strong>
           <span>ANP learning map and expandable reference</span>
