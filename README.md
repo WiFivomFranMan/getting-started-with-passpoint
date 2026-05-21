@@ -7,6 +7,7 @@ This package converts `PQSG - Structure and flow 20260505.docx` into a polished 
 - `passpoint-quick-start-prototype.html` - reviewable accordion prototype with expandable sections, modern infographics, and standards/resource links.
 - `figma-plugin/manifest.json` - local Figma development plugin manifest.
 - `figma-plugin/code.js` - generator that creates the desktop and mobile Figma frames.
+- Published site assets include four existing diagram SVGs under `assets/diagrams/`.
 
 ## Figma Import
 
