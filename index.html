@@ -1311,13 +1311,38 @@
     renderSections();
     renderResources();
 
+    function publishEmbedHeight() {
+      const height = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight
+      );
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage({
+          type: "passpoint-guide-height",
+          height
+        }, "*");
+      }
+    }
+
     document.getElementById("expandAll").addEventListener("click", () => {
       document.querySelectorAll(".guide-section").forEach(section => section.open = true);
+      window.setTimeout(publishEmbedHeight, 60);
     });
 
     document.getElementById("collapseAll").addEventListener("click", () => {
       document.querySelectorAll(".guide-section").forEach(section => section.open = false);
+      window.setTimeout(publishEmbedHeight, 60);
     });
+
+    document.querySelectorAll(".guide-section").forEach(section => {
+      section.addEventListener("toggle", () => {
+        window.setTimeout(publishEmbedHeight, 60);
+      });
+    });
+
+    window.addEventListener("load", publishEmbedHeight);
+    window.addEventListener("resize", publishEmbedHeight);
+    window.setTimeout(publishEmbedHeight, 250);
   </script>
 </body>
 </html>
