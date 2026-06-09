@@ -517,6 +517,86 @@
       margin-top: 16px;
     }
 
+    .faq-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 260px;
+      gap: 22px;
+      padding-top: 22px;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .faq-item {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .faq-item[open] {
+      border-color: rgba(11, 116, 177, .42);
+      box-shadow: 0 10px 22px rgba(10, 42, 55, .08);
+    }
+
+    .faq-item summary {
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr) 24px;
+      gap: 10px;
+      align-items: center;
+      padding: 13px 14px;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-q {
+      display: grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 4px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-weight: 850;
+    }
+
+    .faq-question {
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .faq-toggle {
+      color: var(--primary);
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .faq-toggle:before {
+      content: "+";
+    }
+
+    .faq-item[open] .faq-toggle:before {
+      content: "-";
+    }
+
+    .faq-answer {
+      border-top: 1px solid var(--line);
+      padding: 13px 14px 14px 58px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .faq-support-grid {
+      display: grid;
+      gap: 22px;
+    }
+
     .link-list {
       display: grid;
       gap: 8px;
@@ -607,6 +687,7 @@
       .layout,
       .guide-section summary,
       .details-grid,
+      .faq-layout,
       .resources,
       .diagram-strip {
         grid-template-columns: 1fr;
@@ -991,15 +1072,51 @@
         visual: "faq",
         summary: "Most Passpoint support questions come from a mismatch between user expectations and how the technology is supposed to work: the device should join based on a trusted profile, not because someone taps a visible SSID. ANPs should prepare simple answers and a short first-check workflow for support teams.",
         meaning: [
-          "Q: I clicked the Passpoint network and it did not work. A: In many deployments, the user is not supposed to click it. Passpoint is profile-driven: the device compares its installed profile to the network's advertised identifiers, then joins automatically when there is a match.",
-          "Q: Is Passpoint secure? A: It is designed to be more secure than open guest Wi-Fi because it uses WPA-Enterprise with 802.1X/EAP authentication and encrypted client-to-AP traffic. The security outcome still depends on correct certificate, EAP, AAA, and policy configuration.",
-          "Q: Why did my carrier auto-join me to Wi-Fi? A: Carriers and partners can provision managed Passpoint profiles through a SIM, carrier bundle, app, MDM, or OS-supported profile flow. The device may then join approved partner networks automatically when policy, signal, and matching rules line up.",
-          "Q: Why can't I forget or remove this network? A: Some networks are managed by a carrier, MDM system, app, or device policy. The removal path may be the profile, carrier setting, app, or device management system rather than the visible Wi-Fi network row.",
-          "Q: Do I need a username or password? A: Sometimes. Passpoint can use username/password, certificate, SIM-based, or app-provisioned credentials. The visible network may not prompt for credentials because the credential is already inside the installed profile.",
-          "Q: Is Passpoint the same as OpenRoaming? A: No. Passpoint is the Wi-Fi discovery and secure association technology. OpenRoaming is a WBA federation framework built on Passpoint plus federation policy, PKI, RCOIs, RadSec, and roaming relationships.",
-          "Q: Why does it work on one phone but not another? A: Device OS version, carrier policy, installed profiles, EAP method support, certificate trust, ANQP matching, and roaming priority can all change the result.",
-          "Q: Can the ANP or carrier see my traffic? A: Passpoint encrypts the Wi-Fi link, but it is not end-to-end application encryption. Operators can still see operational metadata and may see traffic destinations unless the application, VPN, or higher-layer protocol encrypts them.",
-          "Q: Does Passpoint replace captive portals? A: For the Passpoint experience, yes. The goal is automatic discovery and authentication without a splash page. A venue may still keep a separate guest SSID or portal for users without a Passpoint profile."
+          "Users often see a Passpoint-capable network in the Wi-Fi list and assume it should behave like a normal guest SSID. That is the wrong mental model.",
+          "The right mental model is profile-first: the device needs an installed credential and matching rules before the automatic join experience can work.",
+          "Support teams should answer the simple user question first, then verify profile, matching, EAP, certificate, and AAA behavior only when the basic expectation is clear."
+        ],
+        faqItems: [
+          {
+            question: "I clicked the Passpoint network and it did not work. Why?",
+            answer: "In many deployments, the user is not supposed to click it. Passpoint is profile-driven: the device compares its installed profile to the network's advertised identifiers, then joins automatically when there is a match."
+          },
+          {
+            question: "Is Passpoint secure?",
+            answer: "It is designed to be more secure than open guest Wi-Fi because it uses WPA-Enterprise with 802.1X/EAP authentication and encrypted client-to-AP traffic. The security outcome still depends on correct certificate, EAP, AAA, and policy configuration."
+          },
+          {
+            question: "Why did my carrier auto-join me to Wi-Fi?",
+            answer: "Carriers and partners can provision managed Passpoint profiles through a SIM, carrier bundle, app, MDM, or OS-supported profile flow. The device may then join approved partner networks automatically when policy, signal, and matching rules line up."
+          },
+          {
+            question: "Why can't I forget or remove this network?",
+            answer: "Some networks are managed by a carrier, MDM system, app, or device policy. The removal path may be the profile, carrier setting, app, or device management system rather than the visible Wi-Fi network row."
+          },
+          {
+            question: "Do I need a username or password?",
+            answer: "Sometimes. Passpoint can use username/password, certificate, SIM-based, or app-provisioned credentials. The visible network may not prompt for credentials because the credential is already inside the installed profile."
+          },
+          {
+            question: "Is Passpoint the same as OpenRoaming?",
+            answer: "No. Passpoint is the Wi-Fi discovery and secure association technology. OpenRoaming is a WBA federation framework built on Passpoint plus federation policy, PKI, RCOIs, RadSec, and roaming relationships."
+          },
+          {
+            question: "Why does it work on one phone but not another?",
+            answer: "Device OS version, carrier policy, installed profiles, EAP method support, certificate trust, ANQP matching, and roaming priority can all change the result."
+          },
+          {
+            question: "Why did my device choose Wi-Fi instead of cellular?",
+            answer: "The device may prefer a trusted Passpoint network when the profile, carrier policy, network quality, and OS roaming logic make Wi-Fi the better path. The exact decision is controlled by the device OS, profile, and carrier or enterprise policy."
+          },
+          {
+            question: "Can the ANP or carrier see my traffic?",
+            answer: "Passpoint encrypts the Wi-Fi link, but it is not end-to-end application encryption. Operators can still see operational metadata and may see traffic destinations unless the application, VPN, or higher-layer protocol encrypts them."
+          },
+          {
+            question: "Does Passpoint replace captive portals?",
+            answer: "For the Passpoint experience, yes. The goal is automatic discovery and authentication without a splash page. A venue may still keep a separate guest SSID or portal for users without a Passpoint profile."
+          }
         ],
         decisions: [
           "Do not tell users to manually select a Passpoint SSID as the primary workflow. First ask whether a profile or carrier credential is installed and whether auto-join is enabled.",
@@ -1322,6 +1439,59 @@
       </svg>`;
     }
 
+    function detailsHtml(section) {
+      if (section.faqItems) {
+        return `
+          <div class="faq-layout">
+            <div>
+              <h3>Common Questions</h3>
+              <div class="faq-list">
+                ${section.faqItems.map(item => `
+                  <details class="faq-item">
+                    <summary>
+                      <span class="faq-q">Q</span>
+                      <span class="faq-question">${escapeHtml(item.question)}</span>
+                      <span class="faq-toggle" aria-hidden="true"></span>
+                    </summary>
+                    <div class="faq-answer">${escapeHtml(item.answer)}</div>
+                  </details>
+                `).join("")}
+              </div>
+            </div>
+            <div class="faq-support-grid">
+              <div>
+                <h3>ANP Checkpoints</h3>
+                <ul>${section.decisions.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+                <div class="detail-note">${escapeHtml(section.note)}</div>
+              </div>
+              <div>
+                <h3>Go Deeper</h3>
+                <div class="link-list">${section.links.map(linkHtml).join("")}</div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      return `
+        <div class="details-grid">
+          <div>
+            <h3>Completed Thought</h3>
+            <ul>${section.meaning.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+          </div>
+          <div>
+            <h3>ANP Checkpoints</h3>
+            <ul>${section.decisions.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+            <div class="detail-note">${escapeHtml(section.note)}</div>
+          </div>
+          <div>
+            <h3>Go Deeper</h3>
+            <div class="link-list">${section.links.map(linkHtml).join("")}</div>
+          </div>
+        </div>
+      `;
+    }
+
     function renderSections() {
       const nav = document.getElementById("rail");
       const stack = document.getElementById("sections");
@@ -1343,21 +1513,7 @@
               <div class="visual">${visualSvg(section.visual, color)}</div>
             </summary>
             <div class="details-panel">
-              <div class="details-grid">
-                <div>
-                  <h3>Completed Thought</h3>
-                  <ul>${section.meaning.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
-                </div>
-                <div>
-                  <h3>ANP Checkpoints</h3>
-                  <ul>${section.decisions.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
-                  <div class="detail-note">${escapeHtml(section.note)}</div>
-                </div>
-                <div>
-                  <h3>Go Deeper</h3>
-                  <div class="link-list">${section.links.map(linkHtml).join("")}</div>
-                </div>
-              </div>
+              ${detailsHtml(section)}
             </div>
           </details>
         `;
@@ -1401,7 +1557,7 @@
       window.setTimeout(publishEmbedHeight, 60);
     });
 
-    document.querySelectorAll(".guide-section").forEach(section => {
+    document.querySelectorAll(".guide-section, .faq-item").forEach(section => {
       section.addEventListener("toggle", () => {
         window.setTimeout(publishEmbedHeight, 60);
       });
