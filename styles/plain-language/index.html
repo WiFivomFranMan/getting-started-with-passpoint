@@ -1,0 +1,1617 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Passpoint Quick Start Guide - Plain-Language Learner</title>
+  <style>
+    :root {
+      --paper: #f2f2f2;
+      --panel: #ffffff;
+      --ink: #333333;
+      --muted: #747474;
+      --soft-muted: #aaa9a9;
+      --line: #e0dede;
+      --field-line: #d2d2d2;
+      --primary: #0b74b1;
+      --primary-dark: #085d8e;
+      --primary-soft: #e8f4fb;
+      --action: #25d66c;
+      --action-dark: #1aad55;
+      --action-soft: #e8faf1;
+      --warning: #d97706;
+      --warning-soft: #fffbeb;
+      --danger: #e53e3e;
+      --danger-soft: #fff5f5;
+      --openroaming: #5b21b6;
+      --openroaming-soft: #ede9fe;
+      --shadow: 0 1px 3px rgba(0,0,0,.10);
+      --shadow-sm: 0 2px 6px rgba(0,0,0,.10);
+      --radius: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.45;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .shell {
+      width: min(1180px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 28px 0 56px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+      background: var(--primary);
+      color: white;
+      padding: 14px 18px;
+      border-radius: var(--radius);
+      box-shadow: 0 2px 4px rgba(0,0,0,.20);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .mark {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius);
+      background:
+        radial-gradient(circle at 32px 10px, var(--action) 0 4px, transparent 5px),
+        #ffffff;
+      box-shadow: var(--shadow-sm);
+      flex: 0 0 auto;
+      position: relative;
+    }
+
+    .mark:after {
+      content: "";
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      height: 9px;
+      border: 3px solid var(--primary);
+      border-top: 0;
+      border-radius: 0 0 22px 22px;
+    }
+
+    .wba-logo {
+      display: block;
+      width: 172px;
+      height: auto;
+      flex: 0 0 auto;
+    }
+
+    .brand strong {
+      display: block;
+      font-size: 15px;
+      letter-spacing: 0;
+    }
+
+    .brand span {
+      color: rgba(255,255,255,.82);
+      font-size: 13px;
+    }
+
+    .topbar .pill {
+      border-color: rgba(255,255,255,.28);
+      background: rgba(255,255,255,.16);
+      color: white;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    .pill {
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: var(--panel);
+      color: var(--muted);
+      padding: 4px 10px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .draft-pill {
+      border-color: rgba(217,119,6,.35);
+      background: var(--warning-soft);
+      color: #b7791f;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .draft-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 0 0 24px;
+      padding: 12px 16px;
+      border: 1px solid rgba(217,119,6,.35);
+      border-left: 4px solid var(--warning);
+      border-radius: var(--radius);
+      background: var(--warning-soft);
+      color: #854d0e;
+      box-shadow: var(--shadow);
+    }
+
+    .draft-banner strong {
+      display: block;
+      color: #854d0e;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .draft-banner span {
+      color: #6f4b12;
+      font-size: 13px;
+    }
+
+    .hero {
+      min-height: 310px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(320px, .98fr);
+      gap: 28px;
+      align-items: stretch;
+      margin-bottom: 28px;
+    }
+
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 22px 0;
+    }
+
+    .kicker {
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 720px;
+      font-size: clamp(32px, 4vw, 46px);
+      line-height: 1.08;
+      letter-spacing: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .lead {
+      margin: 20px 0 0;
+      max-width: 630px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 26px;
+    }
+
+    .button {
+      appearance: none;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      background: var(--action);
+      color: white;
+      padding: 11px 14px;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      cursor: pointer;
+      min-height: 44px;
+    }
+
+    .button:hover {
+      background: var(--action-dark);
+    }
+
+    .button.secondary {
+      background: var(--line);
+      border-color: var(--line);
+      color: var(--ink);
+    }
+
+    .button.secondary:hover {
+      background: var(--field-line);
+    }
+
+    .map-panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 18px;
+      overflow: hidden;
+      min-width: 0;
+    }
+
+    .map-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 14px;
+      font-weight: 820;
+    }
+
+    .signal-card {
+      display: grid;
+      gap: 10px;
+    }
+
+    .signal-row {
+      display: grid;
+      grid-template-columns: 84px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      min-height: 54px;
+      min-width: 0;
+    }
+
+    .signal-label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 760;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+    }
+
+    .signal-track {
+      position: relative;
+      height: 44px;
+      border-radius: var(--radius);
+      background: #edf3f3;
+      border: 1px solid var(--line);
+      overflow: hidden;
+      min-width: 0;
+    }
+
+    .signal-track span {
+      position: absolute;
+      inset: 0 auto 0 0;
+      display: flex;
+      align-items: center;
+      padding-left: 12px;
+      padding-right: 10px;
+      color: white;
+      font-size: 13px;
+      font-weight: 760;
+      border-radius: var(--radius);
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .signal-track.discovery span { width: 72%; background: var(--primary); }
+    .signal-track.identity span { width: 60%; background: var(--action-dark); }
+    .signal-track.security span { width: 84%; background: var(--primary-dark); }
+    .signal-track.operations span { width: 66%; background: var(--warning); }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 250px minmax(0, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .rail {
+      position: sticky;
+      top: 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      padding: 12px;
+    }
+
+    .rail a {
+      display: block;
+      color: var(--ink);
+      border-radius: 6px;
+      padding: 9px 10px;
+      font-size: 13px;
+      font-weight: 720;
+    }
+
+    .rail a:hover {
+      background: var(--primary-soft);
+      text-decoration: none;
+    }
+
+    .section-stack {
+      display: grid;
+      gap: 16px;
+    }
+
+    .guide-section {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .guide-section[open] {
+      border-color: rgba(11, 116, 177, .35);
+    }
+
+    .guide-section summary {
+      list-style: none;
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 280px;
+      gap: 18px;
+      align-items: center;
+      padding: 22px;
+    }
+
+    .guide-section summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .section-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 760;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .section-num {
+      min-width: 32px;
+      height: 32px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 4px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 0 0 8px;
+      font-size: 28px;
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .summary-text {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 680px;
+    }
+
+    .chevron {
+      margin-top: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    .chevron:before {
+      content: "+";
+      display: grid;
+      place-items: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1px solid currentColor;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    details[open] .chevron:before {
+      content: "-";
+    }
+
+    .visual {
+      min-height: 178px;
+      border-radius: var(--radius);
+      background: var(--primary-soft);
+      border: 1px solid var(--line);
+      overflow: hidden;
+    }
+
+    .visual svg {
+      display: block;
+      width: 100%;
+      height: 178px;
+    }
+
+    .details-panel {
+      border-top: 1px solid var(--line);
+      padding: 0 22px 24px;
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 240px;
+      gap: 22px;
+      padding-top: 22px;
+    }
+
+    h3 {
+      margin: 0 0 10px;
+      font-size: 15px;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+
+    ul {
+      margin: 0;
+      padding: 0 0 0 18px;
+      color: var(--ink);
+    }
+
+    li + li {
+      margin-top: 8px;
+    }
+
+    .detail-note {
+      border-left: 4px solid var(--warning);
+      background: var(--warning-soft);
+      padding: 12px 13px;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      color: #4d3b1c;
+      font-size: 14px;
+      margin-top: 16px;
+    }
+
+    .faq-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 260px;
+      gap: 22px;
+      padding-top: 22px;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .faq-item {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .faq-item[open] {
+      border-color: rgba(11, 116, 177, .42);
+      box-shadow: 0 10px 22px rgba(10, 42, 55, .08);
+    }
+
+    .faq-item summary {
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr) 24px;
+      gap: 10px;
+      align-items: center;
+      padding: 13px 14px;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-q {
+      display: grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 4px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-weight: 850;
+    }
+
+    .faq-question {
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .faq-toggle {
+      color: var(--primary);
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .faq-toggle:before {
+      content: "+";
+    }
+
+    .faq-item[open] .faq-toggle:before {
+      content: "-";
+    }
+
+    .faq-answer {
+      border-top: 1px solid var(--line);
+      padding: 13px 14px 14px 58px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .faq-support-grid {
+      display: grid;
+      gap: 22px;
+    }
+
+    .link-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .link-list a {
+      display: block;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--panel);
+      padding: 9px 10px;
+      font-size: 13px;
+      font-weight: 720;
+    }
+
+    .resource-band {
+      margin-top: 28px;
+      padding: 24px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: #ffffff;
+      box-shadow: var(--shadow);
+    }
+
+    .resource-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .resource-head h2 {
+      margin: 0;
+    }
+
+    .resources {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .resource {
+      min-height: 124px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 14px;
+      background: var(--panel);
+    }
+
+    .resource strong {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .resource p {
+      margin: 0 0 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .diagram-strip {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .diagram-link {
+      min-height: 92px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 12px;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow);
+    }
+
+    .diagram-link span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .layout,
+      .guide-section summary,
+      .details-grid,
+      .faq-layout,
+      .resources,
+      .diagram-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .rail {
+        position: static;
+      }
+
+      .hero {
+        min-height: 0;
+      }
+    }
+
+    @media (max-width: 640px) {
+      body {
+        overflow-x: hidden;
+      }
+
+      .shell {
+        width: 100%;
+        max-width: 390px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 18px;
+      }
+
+      .topbar,
+      .resource-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .brand {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .wba-logo {
+        width: 150px;
+      }
+
+      .pill-row {
+        justify-content: flex-start;
+      }
+
+      .draft-banner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      h1 {
+        font-size: 36px;
+        line-height: 1.08;
+        max-width: 350px;
+      }
+
+      .lead {
+        font-size: 16px;
+        max-width: 350px;
+      }
+
+      .guide-section summary,
+      .details-panel,
+      .resource-band {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .signal-row {
+        grid-template-columns: 78px minmax(0, 1fr);
+        gap: 8px;
+      }
+
+      .signal-track span {
+        width: 100% !important;
+      }
+
+      .map-title .pill {
+        display: none;
+      }
+
+      h2 {
+        font-size: 23px;
+      }
+    }
+
+    @media (max-width: 430px) {
+      h1 {
+        font-size: 36px;
+        line-height: 1.08;
+        max-width: 330px;
+      }
+
+      .map-panel {
+        padding: 16px;
+      }
+
+      .signal-row {
+        grid-template-columns: 78px minmax(0, 1fr);
+        gap: 8px;
+      }
+
+      .signal-track span {
+        font-size: 12px;
+      }
+    }
+  
+    .style-review-link {
+      display: inline-flex;
+      margin-top: 14px;
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <div class="topbar">
+      <div class="brand">
+        <img class="wba-logo" src="../../assets/logos/wba-logo-white.png" alt="Wireless Broadband Alliance">
+        <div>
+          <strong>Passpoint Quick Start Guide</strong>
+          <span>Plain-Language Learner review version</span>
+        </div>
+      </div>
+      <div class="pill-row" aria-label="guide scope">
+        <span class="pill draft-pill">Draft</span>
+        <span class="pill">Plain Language</span>
+        <span class="pill">Access Network Providers</span>
+        <span class="pill">Passpoint / Hotspot 2.0</span>
+        <span class="pill">OpenRoaming ready</span>
+      </div>
+    </div>
+
+    <aside class="draft-banner" aria-label="draft notice">
+      <strong>Draft for review</strong>
+      <span>This quick-start learning map is a working draft and should not be treated as final WBA guidance or a normative standards reference.</span>
+    </aside>
+
+    <section class="hero" id="overview">
+      <div class="hero-copy">
+        <div class="kicker">Writing style review</div>
+        <h1>Passpoint in plain English.</h1>
+        <p class="lead">A simple starting point for ANPs: what Passpoint does, why devices join automatically, which network details matter, and where to go when the team needs the exact standard or configuration detail.</p>
+        <a class="style-review-link" href="../">View all writing style versions</a>
+        <div class="hero-actions">
+          <button class="button" id="expandAll" type="button">Expand All</button>
+          <button class="button secondary" id="collapseAll" type="button">Collapse All</button>
+        </div>
+      </div>
+      <aside class="map-panel" aria-label="Passpoint capability map">
+        <div class="map-title">
+          <span>ANP readiness map</span>
+          <span class="pill">Primer view</span>
+        </div>
+        <div class="signal-card">
+          <div class="signal-row">
+            <div class="signal-label">Discovery</div>
+            <div class="signal-track discovery"><span>Beacon + ANQP</span></div>
+          </div>
+          <div class="signal-row">
+            <div class="signal-label">Identity</div>
+            <div class="signal-track identity"><span>Domain, realm, RCOI, PLMN</span></div>
+          </div>
+          <div class="signal-row">
+            <div class="signal-label">Security</div>
+            <div class="signal-track security"><span>802.1X, EAP, WPA Enterprise</span></div>
+          </div>
+          <div class="signal-row">
+            <div class="signal-label">Ops</div>
+            <div class="signal-track operations"><span>RadSec, accounting, location</span></div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <div class="layout">
+      <nav class="rail" id="rail" aria-label="sections"></nav>
+      <section class="section-stack" id="sections"></section>
+    </div>
+
+    <section class="resource-band" id="resources">
+      <div class="resource-head">
+        <div>
+          <div class="kicker">Standards and deep dives</div>
+          <h2>Reference shelf</h2>
+        </div>
+        <span class="pill">Use the current standard/spec for normative decisions</span>
+      </div>
+      <div class="resources" id="resourceCards"></div>
+    </section>
+
+    <section class="diagram-strip" aria-label="existing diagram assets">
+      <a class="diagram-link" href="../../assets/diagrams/Evolution_WISPr_to_Passpoint.drawio.svg">
+        <strong>Evolution visual</strong><span>Existing SVG diagram</span>
+      </a>
+      <a class="diagram-link" href="../../assets/diagrams/Passpoint_Connection_Process.drawio.svg">
+        <strong>Connection process</strong><span>Existing SVG diagram</span>
+      </a>
+      <a class="diagram-link" href="../../assets/diagrams/Network_Identifiers_Overview.drawio.svg">
+        <strong>Identifier map</strong><span>Existing SVG diagram</span>
+      </a>
+      <a class="diagram-link" href="../../assets/diagrams/Security_RADIUS_RADSEC.drawio.svg">
+        <strong>RADIUS and RadSec</strong><span>Existing SVG diagram</span>
+      </a>
+    </section>
+  </main>
+
+  <script>
+    const sections = [
+          {
+                "id": "executive-summary",
+                "title": "Executive Summary",
+                "theme": "teal",
+                "visual": "value",
+                "summary": "Passpoint helps a device join a trusted Wi-Fi network automatically. The ANP's job is to advertise the right network information, use strong enterprise authentication, and send the login request to the right identity system.",
+                "meaning": [
+                      "Passpoint is the Wi-Fi Alliance name for Hotspot 2.0 features that help devices find, choose, and join trusted Wi-Fi networks.",
+                      "The user should not have to open a splash page or type the same password again and again.",
+                      "The ANP controls the network information, security settings, AAA routing, accounting records, and support data that make the experience work."
+                ],
+                "decisions": [
+                      "Start by deciding who the service is for: subscribers, roaming partners, enterprise users, venue guests, or carrier offload.",
+                      "Make sure the network identifiers match the profiles and credentials users will have on their devices.",
+                      "Use this guide for orientation, then use Wi-Fi Alliance, IEEE, IETF, WBA, and vendor documents for exact rules."
+                ],
+                "note": "Most problems show up later because something was wrong before the device joined: the profile, network identifiers, or AAA route did not line up.",
+                "links": [
+                      "Wi-Fi Alliance Passpoint",
+                      "WBA OpenRoaming",
+                      "IEEE 802.11u"
+                ]
+          },
+          {
+                "id": "evolution",
+                "title": "Evolution: From WISPr to Passpoint",
+                "theme": "amber",
+                "visual": "timeline",
+                "summary": "Older hotspot systems often depended on a web page. Passpoint moves the decision into Wi-Fi discovery and enterprise authentication, which makes the experience more automatic and more reliable.",
+                "meaning": [
+                      "WISPr and captive portal flows asked the browser to handle the sign-in step.",
+                      "Hotspot 2.0 added ways for a device to ask the network for details before it joins.",
+                      "Passpoint combines that discovery with WPA-Enterprise and EAP so the device can join a trusted network without a web login."
+                ],
+                "decisions": [
+                      "Do not design Passpoint like a nicer splash page. It is a profile and authentication workflow.",
+                      "Plan the identity path first, then configure the AP and ANQP values to match it.",
+                      "Keep a normal guest SSID only when you need one for users who do not have a Passpoint profile."
+                ],
+                "note": "Simple rule: captive portals ask the user to prove something after connecting; Passpoint lets the device prove it belongs before the normal session starts.",
+                "links": [
+                      "Wi-Fi Alliance Passpoint R3",
+                      "IEEE 802.11u"
+                ]
+          },
+          {
+                "id": "standards",
+                "title": "Standards Overview: R1, R2, R3",
+                "theme": "violet",
+                "visual": "releases",
+                "summary": "Passpoint has evolved over multiple releases. R1 covers the core join process, R2 adds sign-up and profile update ideas, and R3 adds richer network information and newer security options.",
+                "meaning": [
+                      "R1 is the basic foundation: discovery, network selection, and WPA2-Enterprise authentication.",
+                      "R2 introduced Online Sign-Up and ways to update or fix subscription profiles.",
+                      "R3 added more operator and venue information and support for stronger WPA3-Enterprise options."
+                ],
+                "decisions": [
+                      "Confirm what your APs, controllers, identity systems, and target client devices support.",
+                      "Use practical profile delivery methods such as MDM, carrier bundles, apps, or OS profile install when they are more reliable than OSU.",
+                      "Separate certification release language from the names vendors use in their configuration screens."
+                ],
+                "note": "For many ANPs, the real question is not whether every OSU setting is enabled. It is how the right profile gets onto the device and stays current.",
+                "links": [
+                      "Wi-Fi Alliance Passpoint R3",
+                      "WBA OpenRoaming Resources"
+                ]
+          },
+          {
+                "id": "connection-process",
+                "title": "The Passpoint Connection Process",
+                "theme": "blue",
+                "visual": "flow",
+                "summary": "A Passpoint connection happens in steps. The network advertises a hint, the device asks for more information, the profile is checked, and then enterprise Wi-Fi authentication completes the join.",
+                "meaning": [
+                      "The beacon can show that the network supports Hotspot 2.0 and may include a small amount of roaming information.",
+                      "The device uses ANQP to ask for details such as domains, realms, roaming consortium IDs, venue information, and WAN hints.",
+                      "If the profile matches and the signal is usable, the device starts WPA-Enterprise and EAP authentication."
+                ],
+                "decisions": [
+                      "Keep the beacon information short and put the full detail in ANQP.",
+                      "Test ANQP responses before launch so missing metadata is not mistaken for a client bug.",
+                      "Make sure the EAP methods and RADIUS settings match what the network advertises."
+                ],
+                "note": "Troubleshooting is easier when the team checks each step separately: beacon, ANQP, profile match, EAP, RADIUS, and accounting.",
+                "links": [
+                      "IEEE 802.11u",
+                      "Wi-Fi Alliance Passpoint"
+                ]
+          },
+          {
+                "id": "identifiers",
+                "title": "Network Configuration: Identifiers and ANQP",
+                "theme": "green",
+                "visual": "identifiers",
+                "summary": "Passpoint matching depends on several identifiers. Domain names, NAI realms, RCOIs, and PLMN values each tell the device something different.",
+                "meaning": [
+                      "The domain name usually identifies the operator or home service provider.",
+                      "The NAI realm tells the device which authentication realms and EAP methods are supported.",
+                      "RCOI and PLMN values help with roaming federation and carrier offload use cases."
+                ],
+                "decisions": [
+                      "Advertise home and roaming identifiers when both use cases apply.",
+                      "List the correct EAP method for each realm so the match does not fail later.",
+                      "Set venue, WAN, internet availability, and IP capability information accurately because some clients use those hints."
+                ],
+                "note": "Think of ANQP as a promise. If the network says it supports something, the AAA path and policy need to support it too.",
+                "links": [
+                      "IEEE OUI Search",
+                      "RFC 7542 NAI",
+                      "WBA OpenRoaming Config"
+                ]
+          },
+          {
+                "id": "client-profiles",
+                "title": "Client Behavior and Profiles",
+                "theme": "teal",
+                "visual": "profile",
+                "summary": "A device needs a Passpoint profile before the automatic experience works. The profile tells the device what to match and which credential to use.",
+                "meaning": [
+                      "Profiles can come from a carrier, MDM, app, web download, OS install flow, or device management system.",
+                      "A profile can include domains, realms, RCOIs, PLMN values, EAP methods, certificates, SIM credential use, names, and priority hints.",
+                      "Different operating systems may handle priority, roaming, display names, and managed networks differently."
+                ],
+                "decisions": [
+                      "Document how each device type receives and updates the profile.",
+                      "Test home matches, roaming matches, and no-match cases so support knows what users will see.",
+                      "Do not make manual network selection the main workflow. The value is automatic joining after profile install."
+                ],
+                "note": "A good network configuration cannot help a device that never received the right profile.",
+                "links": [
+                      "WBA OpenRoaming Profile Sign Up",
+                      "WBA OpenRoaming Resources"
+                ]
+          },
+          {
+                "id": "wireless-security",
+                "title": "Wireless Security and Authentication",
+                "theme": "red",
+                "visual": "security",
+                "summary": "Passpoint should be treated like enterprise Wi-Fi. It should use strong authentication, encrypted Wi-Fi access, and deliberate roaming and management-frame settings.",
+                "meaning": [
+                      "The common baseline is WPA2-Enterprise with AES/CCMP and 802.1X/EAP.",
+                      "WPA3-Enterprise and Protected Management Frames may be needed depending on bands, client support, and policy.",
+                      "Fast roaming can reduce repeated full authentications as users move between APs."
+                ],
+                "decisions": [
+                      "Choose EAP methods based on the credential type: certificate, username/password, or SIM-based identity.",
+                      "Protect AAA systems from bad-credential loops and repeated failed authentication attempts.",
+                      "Review client isolation and local forwarding policy instead of assuming encryption solves every exposure."
+                ],
+                "note": "Passpoint can be easy for the user and still secure, but only if the enterprise Wi-Fi controls are configured correctly.",
+                "links": [
+                      "Wi-Fi Alliance Passpoint R3",
+                      "RFC 7542 NAI"
+                ]
+          },
+          {
+                "id": "aaa-radsec",
+                "title": "RADIUS, RadSec, Accounting, and Location",
+                "theme": "blue",
+                "visual": "aaa",
+                "summary": "AAA is the back-end service path for Passpoint. It handles authentication, routing, accounting, and the operational data needed to support the service.",
+                "meaning": [
+                      "RADIUS over UDP should not cross untrusted networks without protection.",
+                      "RadSec uses TLS to protect RADIUS traffic and is common for roaming and OpenRoaming connections.",
+                      "Accounting, NAS identifiers, Called-Station-ID, and location attributes help teams trace and support sessions."
+                ],
+                "decisions": [
+                      "Use RadSec or another protected path when RADIUS leaves a trusted network.",
+                      "Align DNS, PKI, certificates, and trust anchors before relying on dynamic peer discovery.",
+                      "Standardize accounting and location values so support can trace users, venues, APs, and roaming paths."
+                ],
+                "note": "If the user can connect but the operator cannot explain where the session went, how it was routed, or how long it lasted, the service is not ready to scale.",
+                "links": [
+                      "RFC 6614 RadSec",
+                      "RFC 7585 DPD",
+                      "RFC 5580 Location"
+                ]
+          },
+          {
+                "id": "deployment-patterns",
+                "title": "Best-in-Class Deployment Patterns",
+                "theme": "green",
+                "visual": "deployment",
+                "summary": "A good Passpoint deployment starts with a clear use case. Then the ANP chooses the smallest complete set of features needed for automatic, secure, supportable service.",
+                "meaning": [
+                      "Plain 802.1X can be fine for managed enterprise users, but it does not provide the same discovery and roaming metadata.",
+                      "Passpoint without useful ANQP misses much of the value.",
+                      "OpenRoaming adds federation policy, common RCOIs, PKI expectations, and scalable roaming relationships."
+                ],
+                "decisions": [
+                      "Choose the target model: enterprise onboarding, carrier offload, venue roaming, OpenRoaming, or partner roaming.",
+                      "Build a launch checklist that covers identifiers, ANQP, profiles, security, AAA, RadSec, accounting, location, monitoring, and rollback.",
+                      "Test with each target OS and credential type before calling the service ready."
+                ],
+                "note": "The best first launch is narrow enough to test and complete enough that every required field has an owner.",
+                "links": [
+                      "WBA OpenRoaming How It Works",
+                      "WBA OpenRoaming Intro Guide",
+                      "WBA OpenRoaming Config"
+                ]
+          },
+          {
+                "id": "faq",
+                "title": "FAQ: What Users and Support Teams Ask",
+                "theme": "blue",
+                "visual": "faq",
+                "summary": "Most Passpoint support questions come from the same misunderstanding: users expect to click a network, but Passpoint is supposed to work from a trusted profile.",
+                "meaning": [
+                      "A visible Passpoint network is not always meant to be clicked like a normal guest SSID.",
+                      "The device needs a profile and credential that match the network before automatic join can work.",
+                      "Support should explain the expected behavior first, then check the technical chain."
+                ],
+                "faqItems": [
+                      {
+                            "question": "I clicked the Passpoint network and it did not work. Why?",
+                            "answer": "Usually, you are not supposed to click it. The device needs a matching Passpoint profile and credential, then it joins automatically."
+                      },
+                      {
+                            "question": "Is Passpoint secure?",
+                            "answer": "It is designed to be more secure than open guest Wi-Fi because it uses enterprise authentication and encrypted Wi-Fi access. The setup still has to be configured correctly."
+                      },
+                      {
+                            "question": "Why did my carrier auto-join me to Wi-Fi?",
+                            "answer": "Your carrier or partner may have installed a Passpoint profile. If the network matches that profile, the device can join automatically."
+                      },
+                      {
+                            "question": "Why can't I forget or remove this network?",
+                            "answer": "It may be managed by a carrier, app, or MDM policy. The removal path may be the profile or management system, not the visible Wi-Fi row."
+                      },
+                      {
+                            "question": "Do I need a username or password?",
+                            "answer": "Sometimes. Some profiles use username and password, some use certificates, and some use SIM-based credentials."
+                      },
+                      {
+                            "question": "Is Passpoint the same as OpenRoaming?",
+                            "answer": "No. Passpoint is the Wi-Fi technology. OpenRoaming is a WBA federation model that uses Passpoint with additional policy and trust rules."
+                      },
+                      {
+                            "question": "Why does it work on one phone but not another?",
+                            "answer": "Profiles, OS version, carrier policy, EAP support, certificates, and roaming priority can all differ by device."
+                      },
+                      {
+                            "question": "Why did my device choose Wi-Fi instead of cellular?",
+                            "answer": "The device may prefer a trusted Wi-Fi network when the profile, policy, and network quality make Wi-Fi the better path."
+                      },
+                      {
+                            "question": "Can the ANP or carrier see my traffic?",
+                            "answer": "Passpoint protects the Wi-Fi link. It does not replace HTTPS, VPNs, or other application-layer privacy protections."
+                      },
+                      {
+                            "question": "Does Passpoint replace captive portals?",
+                            "answer": "For the Passpoint experience, yes. A venue may still run a separate guest SSID for users without profiles."
+                      }
+                ],
+                "decisions": [
+                      "Ask whether the profile is installed before troubleshooting the AP.",
+                      "Check profile, ANQP, identifier match, EAP method, certificates, and AAA routing in order.",
+                      "Document who owns profile updates and removal for carrier, MDM, app, or OpenRoaming deployments."
+                ],
+                "note": "Short support answer: Passpoint is meant to be automatic when the device has the right profile.",
+                "links": [
+                      "WBA OpenRoaming FAQ",
+                      "Apple Auto-Join Behavior",
+                      "Apple HotSpot 2.0 Settings",
+                      "Android Passpoint",
+                      "ChromeOS Passpoint Profiles",
+                      "Microsoft Passpoint"
+                ]
+          },
+          {
+                "id": "resources-detail",
+                "title": "Resources and Next Reading",
+                "theme": "violet",
+                "visual": "resources",
+                "summary": "This guide should stay short and point readers to the right source documents for exact rules and implementation details.",
+                "meaning": [
+                      "Use Wi-Fi Alliance resources for Passpoint positioning and certification context.",
+                      "Use IEEE and IETF documents for the underlying protocol details.",
+                      "Use WBA and OpenRoaming resources for federation, onboarding, PKI, and operational guidance."
+                ],
+                "decisions": [
+                      "Group links by task so readers can find the right reference quickly.",
+                      "Keep vendor-specific configuration guides as implementation appendices.",
+                      "Review links before publication because some documents may require login or membership access."
+                ],
+                "note": "The resource shelf keeps the guide readable while still giving technical readers a path to the full details.",
+                "links": [
+                      "Wi-Fi Alliance Passpoint",
+                      "WBA OpenRoaming Resources",
+                      "IEEE OUI Search",
+                      "RFC 7542 NAI"
+                ]
+          }
+    ];
+
+    const resourceLinks = {
+      "Wi-Fi Alliance Passpoint": {
+        url: "https://www.wi-fi.org/discover-wi-fi/passpoint",
+        text: "Passpoint overview and certification context."
+      },
+      "Wi-Fi Alliance Passpoint R3": {
+        url: "https://www.globenewswire.com/news-release/2019/04/16/1804672/0/en/New-features-added-to-Wi-Fi-CERTIFIED-Passpoint.html",
+        text: "Wi-Fi Alliance announcement of newer Passpoint capabilities."
+      },
+      "WBA OpenRoaming": {
+        url: "https://wballiance.com/openroaming/",
+        text: "OpenRoaming federation overview."
+      },
+      "WBA OpenRoaming How It Works": {
+        url: "https://wballiance.com/openroaming/how-it-works/",
+        text: "WBA explanation of federation roles and onboarding steps."
+      },
+      "WBA OpenRoaming Resources": {
+        url: "https://wballiance.com/openroaming/resources/",
+        text: "WBA resource center for OpenRoaming documents."
+      },
+      "WBA OpenRoaming Intro Guide": {
+        url: "https://wballiance.com/resource/wba-openroaming-introduction-guide/",
+        text: "WBA OpenRoaming introduction guide."
+      },
+      "WBA OpenRoaming Config": {
+        url: "https://github.com/wireless-broadband-alliance/openroaming-config",
+        text: "WBA OpenRoaming configuration reference repository."
+      },
+      "WBA OpenRoaming FAQ": {
+        url: "https://wballiance.com/openroaming/faq/",
+        text: "WBA OpenRoaming FAQ for federation roles, Passpoint relationship, and common participation questions."
+      },
+      "Apple Auto-Join Behavior": {
+        url: "https://support.apple.com/en-us/102169",
+        text: "Apple guidance on how devices choose known, managed, public, and Passpoint networks for auto-join."
+      },
+      "Apple HotSpot 2.0 Settings": {
+        url: "https://support.apple.com/en-ie/guide/deployment/depea26c29b9/web",
+        text: "Apple device-management settings for HotSpot 2.0 profiles, identifiers, roaming partners, and auto-join."
+      },
+      "Android Passpoint": {
+        url: "https://source.android.com/docs/core/connect/wifi-passpoint",
+        text: "Android Passpoint implementation notes, profile behavior, and matching considerations."
+      },
+      "ChromeOS Passpoint Profiles": {
+        url: "https://support.google.com/chromebook/answer/13657835?hl=en-GB",
+        text: "ChromeOS user help for Passpoint profiles, automatic connection, and subscription removal."
+      },
+      "Microsoft Passpoint": {
+        url: "https://learn.microsoft.com/en-us/windows-hardware/drivers/mobilebroadband/passpoint",
+        text: "Microsoft documentation for Windows Passpoint support, security, provisioning, and release behavior."
+      },
+      "WBA OpenRoaming Profile Sign Up": {
+        url: "https://wballiance.com/openroaming/profile-signup/",
+        text: "Profile install examples and end-user setup references."
+      },
+      "IEEE 802.11u": {
+        url: "https://standards.ieee.org/ieee/802.11u/3694",
+        text: "IEEE 802.11u interworking amendment page."
+      },
+      "IEEE OUI Search": {
+        url: "https://standards-oui.ieee.org/",
+        text: "IEEE registry search for OUIs and organization identifiers."
+      },
+      "RFC 7542 NAI": {
+        url: "https://www.rfc-editor.org/rfc/rfc7542.html",
+        text: "Network Access Identifier standard, obsoleting RFC 4282."
+      },
+      "RFC 6614 RadSec": {
+        url: "https://www.rfc-editor.org/rfc/rfc6614.html",
+        text: "RADIUS over TLS."
+      },
+      "RFC 7585 DPD": {
+        url: "https://datatracker.ietf.org/doc/html/rfc7585",
+        text: "Dynamic Peer Discovery for RADIUS/TLS and RADIUS/DTLS."
+      },
+      "RFC 5580 Location": {
+        url: "https://www.rfc-editor.org/rfc/rfc5580.html",
+        text: "RADIUS and Diameter location attributes."
+      }
+    };
+
+    const resourceGroups = [
+      ["Learn Passpoint", ["Wi-Fi Alliance Passpoint", "Wi-Fi Alliance Passpoint R3", "IEEE 802.11u"]],
+      ["Build for OpenRoaming", ["WBA OpenRoaming", "WBA OpenRoaming How It Works", "WBA OpenRoaming Intro Guide"]],
+      ["Configure identifiers", ["IEEE OUI Search", "RFC 7542 NAI", "WBA OpenRoaming Config"]],
+      ["Secure AAA", ["RFC 6614 RadSec", "RFC 7585 DPD", "RFC 5580 Location"]],
+      ["Answer FAQs", ["WBA OpenRoaming FAQ", "Apple Auto-Join Behavior", "Android Passpoint", "Microsoft Passpoint"]],
+      ["Provision profiles", ["WBA OpenRoaming Profile Sign Up", "WBA OpenRoaming Resources"]],
+      ["Keep current", ["WBA OpenRoaming Resources", "Wi-Fi Alliance Passpoint", "WBA OpenRoaming Config"]]
+    ];
+
+    const themeColor = {
+      teal: "#0b74b1",
+      green: "#1aad55",
+      amber: "#d97706",
+      blue: "#085d8e",
+      red: "#e53e3e",
+      violet: "#5b21b6"
+    };
+
+    const themeSoftColor = {
+      teal: "#e8f4fb",
+      green: "#e8faf1",
+      amber: "#fffbeb",
+      blue: "#e8f4fb",
+      red: "#fff5f5",
+      violet: "#ede9fe"
+    };
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;");
+    }
+
+    function linkHtml(name) {
+      const link = resourceLinks[name];
+      if (!link) return "";
+      return `<a href="${link.url}" target="_blank" rel="noreferrer">${escapeHtml(name)}</a>`;
+    }
+
+    function visualSvg(type, color) {
+      const dark = color;
+      const pale = themeSoftColor[Object.keys(themeColor).find(key => themeColor[key] === color)] || "#e8f4fb";
+      const ink = "#14211f";
+      const muted = "#60706d";
+      const common = `font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif; letter-spacing: 0;`;
+      const label = (x, y, text, size = 12, fill = ink, weight = 760) => `<text x="${x}" y="${y}" font-size="${size}" font-weight="${weight}" fill="${fill}" style="${common}">${text}</text>`;
+      if (type === "timeline") {
+        return `<svg viewBox="0 0 280 178" role="img" aria-label="WISPr to Passpoint timeline">
+          <rect width="280" height="178" fill="${pale}"/>
+          <line x1="42" y1="92" x2="238" y2="92" stroke="${dark}" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="52" cy="92" r="18" fill="#fff" stroke="${dark}" stroke-width="3"/>
+          <circle cx="140" cy="92" r="18" fill="#fff" stroke="${dark}" stroke-width="3"/>
+          <circle cx="228" cy="92" r="18" fill="#fff" stroke="${dark}" stroke-width="3"/>
+          ${label(35, 57, "WISPr", 13)}
+          ${label(112, 57, "802.11u", 13)}
+          ${label(200, 57, "Passpoint", 13)}
+          ${label(25, 132, "Portal", 11, muted, 650)}
+          ${label(104, 132, "ANQP", 11, muted, 650)}
+          ${label(189, 132, "Auto join", 11, muted, 650)}
+        </svg>`;
+      }
+      if (type === "releases") {
+        return `<svg viewBox="0 0 280 178" role="img" aria-label="Passpoint releases">
+          <rect width="280" height="178" fill="${pale}"/>
+          <rect x="24" y="36" width="64" height="98" rx="8" fill="#fff" stroke="${dark}" stroke-width="2"/>
+          <rect x="108" y="22" width="64" height="112" rx="8" fill="#fff" stroke="${dark}" stroke-width="2"/>
+          <rect x="192" y="48" width="64" height="86" rx="8" fill="#fff" stroke="${dark}" stroke-width="2"/>
+          ${label(43, 68, "R1", 24, dark, 860)}
+          ${label(127, 56, "R2", 24, dark, 860)}
+          ${label(211, 80, "R3", 24, dark, 860)}
+          ${label(33, 104, "Core", 12, muted)}
+          ${label(118, 94, "OSU", 12, muted)}
+          ${label(203, 116, "Venue", 12, muted)}
+        </svg>`;
+      }
+      if (type === "flow") {
+        return `<svg viewBox="0 0 280 178" role="img" aria-label="Passpoint connection flow">
+          <rect width="280" height="178" fill="${pale}"/>
+          <rect x="18" y="55" width="66" height="60" rx="8" fill="#fff" stroke="${dark}" stroke-width="2"/>
+          <rect x="107" y="55" width="66" height="60" rx="8" fill="#fff" stroke="${dark}" stroke-width="2"/>
+          <rect x="196" y="55" width="66" height="60" rx="8" fill="#fff" stroke="${dark}" stroke-width="2"/>
+          <path d="M88 85h15M177 85h15" stroke="${dark}" stroke-width="3" stroke-linecap="round"/>
+          <path d="M99 78l8 7-8 7M188 78l8 7-8 7" fill="none" stroke="${dark}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          ${label(31, 82, "Beacon", 12)}
+          ${label(120, 82, "ANQP", 12)}
+          ${label(209, 82, "EAP", 12)}
+          ${label(28, 101, "hint", 11, muted)}
+          ${label(117, 101, "detail", 11, muted)}
+          ${label(205, 101, "secure", 11, muted)}
+        </svg>`;
+      }
+      if (type === "identifiers") {
+        return `<svg viewBox="0 0 280 178" role="img" aria-label="Identifier matching map">
+          <rect width="280" height="178" fill="${pale}"/>
+          <circle cx="140" cy="88" r="34" fill="#fff" stroke="${dark}" stroke-width="3"/>
+          ${label(119, 93, "ANQP", 15, dark, 860)}
+          <rect x="22" y="28" width="78" height="38" rx="8" fill="#fff" stroke="${dark}" stroke-width="2"/>
+          <rect x="180" y="28" width="78" height="38" rx="8" fill="#fff" stroke="${dark}" stroke-width="2"/>
+          <rect x="22" y="116" width="78" height="38" rx="8" fill="#fff" stroke="${dark}" stroke-width="2"/>
+          <rect x="180" y="116" width="78" height="38" rx="8" fill="#fff" stroke="${dark}" stroke-width="2"/>
+          <path d="M101 48l24 22M179 48l-24 22M101 136l24-25M179 136l-24-25" stroke="${dark}" stroke-width="2" stroke-linecap="round"/>
+          ${label(38, 52, "Domain", 12)}
+          ${label(201, 52, "Realm", 12)}
+          ${label(43, 140, "RCOI", 12)}
+          ${label(202, 140, "PLMN", 12)}
+        </svg>`;
+      }
+      if (type === "profile") {
+        return `<svg viewBox="0 0 280 178" role="img" aria-label="Profile provisioning pipeline">
+          <rect width="280" height="178" fill="${pale}"/>
+          <rect x="24" y="37" width="68" height="104" rx="10" fill="#fff" stroke="${dark}" stroke-width="2"/>
+          <rect x="112" y="52" width="56" height="74" rx="8" fill="#fff" stroke="${dark}" stroke-width="2"/>
+          <rect x="188" y="37" width="68" height="104" rx="10" fill="#fff" stroke="${dark}" stroke-width="2"/>
+          <path d="M96 88h12M172 88h12" stroke="${dark}" stroke-width="3" stroke-linecap="round"/>
+          <path d="M104 82l7 6-7 6M180 82l7 6-7 6" fill="none" stroke="${dark}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          ${label(36, 74, "App", 12)}
+          ${label(31, 94, "MDM", 12)}
+          ${label(124, 91, "Profile", 12)}
+          ${label(204, 80, "OS", 12)}
+          ${label(199, 101, "match", 12)}
+        </svg>`;
+      }
+      if (type === "security") {
+        return `<svg viewBox="0 0 280 178" role="img" aria-label="Security stack">
+          <rect width="280" height="178" fill="${pale}"/>
+          <rect x="48" y="34" width="184" height="28" rx="8" fill="#fff" stroke="${dark}" stroke-width="2"/>
+          <rect x="48" y="74" width="184" height="28" rx="8" fill="#fff" stroke="${dark}" stroke-width="2"/>
+          <rect x="48" y="114" width="184" height="28" rx="8" fill="#fff" stroke="${dark}" stroke-width="2"/>
+          ${label(84, 53, "WPA Enterprise", 13)}
+          ${label(104, 93, "802.1X / EAP", 13)}
+          ${label(94, 133, "Dynamic keys", 13)}
+          <path d="M140 62v12M140 102v12" stroke="${dark}" stroke-width="3" stroke-linecap="round"/>
+        </svg>`;
+      }
+      if (type === "aaa") {
+        return `<svg viewBox="0 0 280 178" role="img" aria-label="AAA and RadSec routing">
+          <rect width="280" height="178" fill="${pale}"/>
+          <circle cx="54" cy="88" r="28" fill="#fff" stroke="${dark}" stroke-width="2"/>
+          <circle cx="140" cy="88" r="28" fill="#fff" stroke="${dark}" stroke-width="2"/>
+          <circle cx="226" cy="88" r="28" fill="#fff" stroke="${dark}" stroke-width="2"/>
+          <path d="M82 88h29M168 88h29" stroke="${dark}" stroke-width="3" stroke-linecap="round"/>
+          <path d="M106 81l8 7-8 7M192 81l8 7-8 7" fill="none" stroke="${dark}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          ${label(41, 92, "AP", 13)}
+          ${label(117, 92, "RadSec", 13)}
+          ${label(212, 92, "IdP", 13)}
+          ${label(78, 132, "TLS protected AAA path", 12, muted)}
+        </svg>`;
+      }
+      if (type === "deployment") {
+        return `<svg viewBox="0 0 280 178" role="img" aria-label="Deployment checklist">
+          <rect width="280" height="178" fill="${pale}"/>
+          <rect x="37" y="28" width="206" height="122" rx="8" fill="#fff" stroke="${dark}" stroke-width="2"/>
+          <path d="M65 62l9 9 19-23M65 94l9 9 19-23M65 126l9 9 19-23" fill="none" stroke="${dark}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          ${label(110, 65, "Use case", 13)}
+          ${label(110, 98, "ANQP + AAA", 13)}
+          ${label(110, 131, "Test + monitor", 13)}
+        </svg>`;
+      }
+      if (type === "faq") {
+        return `<svg viewBox="0 0 280 178" role="img" aria-label="Passpoint FAQ support flow">
+          <rect width="280" height="178" fill="${pale}"/>
+          <rect x="28" y="34" width="96" height="54" rx="10" fill="#fff" stroke="${dark}" stroke-width="2"/>
+          <rect x="156" y="70" width="96" height="62" rx="10" fill="#fff" stroke="${dark}" stroke-width="2"/>
+          <path d="M58 88l-14 20 30-20M222 132l16 18-34-18" fill="#fff" stroke="${dark}" stroke-width="2" stroke-linejoin="round"/>
+          ${label(51, 58, "User", 13)}
+          ${label(47, 77, "question", 12, muted)}
+          ${label(183, 96, "ANP", 13)}
+          ${label(172, 115, "answer", 12, muted)}
+          <circle cx="140" cy="88" r="18" fill="#fff" stroke="${dark}" stroke-width="3"/>
+          ${label(134, 95, "?", 24, dark, 860)}
+          <path d="M124 74l-16-8M158 99l18 8" stroke="${dark}" stroke-width="3" stroke-linecap="round"/>
+        </svg>`;
+      }
+      if (type === "resources") {
+        return `<svg viewBox="0 0 280 178" role="img" aria-label="Resource shelf">
+          <rect width="280" height="178" fill="${pale}"/>
+          <rect x="44" y="38" width="192" height="96" rx="8" fill="#fff" stroke="${dark}" stroke-width="2"/>
+          <line x1="70" y1="38" x2="70" y2="134" stroke="${dark}" stroke-width="2"/>
+          <line x1="112" y1="38" x2="112" y2="134" stroke="${dark}" stroke-width="2"/>
+          <line x1="154" y1="38" x2="154" y2="134" stroke="${dark}" stroke-width="2"/>
+          <line x1="196" y1="38" x2="196" y2="134" stroke="${dark}" stroke-width="2"/>
+          ${label(52, 155, "IEEE", 11, muted)}
+          ${label(100, 155, "WFA", 11, muted)}
+          ${label(142, 155, "IETF", 11, muted)}
+          ${label(185, 155, "WBA", 11, muted)}
+        </svg>`;
+      }
+      return `<svg viewBox="0 0 280 178" role="img" aria-label="Passpoint value map">
+        <rect width="280" height="178" fill="${pale}"/>
+        <circle cx="140" cy="86" r="42" fill="#fff" stroke="${dark}" stroke-width="3"/>
+        ${label(108, 90, "Passpoint", 15, dark, 860)}
+        <circle cx="52" cy="54" r="18" fill="#fff" stroke="${dark}" stroke-width="2"/>
+        <circle cx="228" cy="54" r="18" fill="#fff" stroke="${dark}" stroke-width="2"/>
+        <circle cx="52" cy="125" r="18" fill="#fff" stroke="${dark}" stroke-width="2"/>
+        <circle cx="228" cy="125" r="18" fill="#fff" stroke="${dark}" stroke-width="2"/>
+        <path d="M70 62l32 14M210 62l-32 14M70 117l32-16M210 117l-32-16" stroke="${dark}" stroke-width="2" stroke-linecap="round"/>
+        ${label(28, 30, "Auto", 11, muted)}
+        ${label(202, 30, "Secure", 11, muted)}
+        ${label(24, 154, "Roam", 11, muted)}
+        ${label(202, 154, "Scale", 11, muted)}
+      </svg>`;
+    }
+
+    function detailsHtml(section) {
+      if (section.faqItems) {
+        return `
+          <div class="faq-layout">
+            <div>
+              <h3>Common Questions</h3>
+              <div class="faq-list">
+                ${section.faqItems.map(item => `
+                  <details class="faq-item">
+                    <summary>
+                      <span class="faq-q">Q</span>
+                      <span class="faq-question">${escapeHtml(item.question)}</span>
+                      <span class="faq-toggle" aria-hidden="true"></span>
+                    </summary>
+                    <div class="faq-answer">${escapeHtml(item.answer)}</div>
+                  </details>
+                `).join("")}
+              </div>
+            </div>
+            <div class="faq-support-grid">
+              <div>
+                <h3>ANP Checkpoints</h3>
+                <ul>${section.decisions.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+                <div class="detail-note">${escapeHtml(section.note)}</div>
+              </div>
+              <div>
+                <h3>Go Deeper</h3>
+                <div class="link-list">${section.links.map(linkHtml).join("")}</div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      return `
+        <div class="details-grid">
+          <div>
+            <h3>Completed Thought</h3>
+            <ul>${section.meaning.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+          </div>
+          <div>
+            <h3>ANP Checkpoints</h3>
+            <ul>${section.decisions.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+            <div class="detail-note">${escapeHtml(section.note)}</div>
+          </div>
+          <div>
+            <h3>Go Deeper</h3>
+            <div class="link-list">${section.links.map(linkHtml).join("")}</div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderSections() {
+      const nav = document.getElementById("rail");
+      const stack = document.getElementById("sections");
+      nav.innerHTML = sections.map((section, index) =>
+        `<a href="#${section.id}">${String(index + 1).padStart(2, "0")} ${escapeHtml(section.title)}</a>`
+      ).join("");
+
+      stack.innerHTML = sections.map((section, index) => {
+        const color = themeColor[section.theme] || themeColor.teal;
+        return `
+          <details class="guide-section" id="${section.id}" ${index < 2 ? "open" : ""}>
+            <summary>
+              <div>
+                <div class="section-eyebrow"><span class="section-num">${String(index + 1).padStart(2, "0")}</span><span>Primer section</span></div>
+                <h2>${escapeHtml(section.title)}</h2>
+                <p class="summary-text">${escapeHtml(section.summary)}</p>
+                <span class="chevron">Details</span>
+              </div>
+              <div class="visual">${visualSvg(section.visual, color)}</div>
+            </summary>
+            <div class="details-panel">
+              ${detailsHtml(section)}
+            </div>
+          </details>
+        `;
+      }).join("");
+    }
+
+    function renderResources() {
+      const cards = document.getElementById("resourceCards");
+      cards.innerHTML = resourceGroups.map(([title, names]) => `
+        <article class="resource">
+          <strong>${escapeHtml(title)}</strong>
+          <p>${names.map(name => escapeHtml(resourceLinks[name].text)).join(" ")}</p>
+          <div class="link-list">${names.map(linkHtml).join("")}</div>
+        </article>
+      `).join("");
+    }
+
+    renderSections();
+    renderResources();
+
+    function publishEmbedHeight() {
+      const height = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight
+      );
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage({
+          type: "passpoint-guide-height",
+          height
+        }, "*");
+      }
+    }
+
+    document.getElementById("expandAll").addEventListener("click", () => {
+      document.querySelectorAll(".guide-section").forEach(section => section.open = true);
+      window.setTimeout(publishEmbedHeight, 60);
+    });
+
+    document.getElementById("collapseAll").addEventListener("click", () => {
+      document.querySelectorAll(".guide-section").forEach(section => section.open = false);
+      window.setTimeout(publishEmbedHeight, 60);
+    });
+
+    document.querySelectorAll(".guide-section, .faq-item").forEach(section => {
+      section.addEventListener("toggle", () => {
+        window.setTimeout(publishEmbedHeight, 60);
+      });
+    });
+
+    window.addEventListener("load", publishEmbedHeight);
+    window.addEventListener("resize", publishEmbedHeight);
+    window.setTimeout(publishEmbedHeight, 250);
+  </script>
+</body>
+</html>
