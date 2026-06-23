@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hero panel concepts — Getting Started with Passpoint</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+.gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.card{display:flex;flex-direction:column;gap:8px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;box-shadow:var(--shadow);padding:18px;color:inherit}
+.card:hover{border-color:var(--primary);text-decoration:none;transform:translateY(-1px);transition:.12s}
+.card .num{width:30px;height:30px;border-radius:7px;display:grid;place-items:center;background:var(--primary-soft);color:var(--primary);font-weight:850}
+.card h3{margin:6px 0 0;font-size:18px;color:var(--ink)}
+.card p{margin:0;color:var(--muted);font-size:13px}
+.card .tag{margin-top:auto;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--primary)}
+@media(max-width:720px){.gallery{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main class="shell">
+  <div class="topbar">
+    <div class="brand">
+      <img src="../assets/logos/wba-logo-white.png" alt="Wireless Broadband Alliance">
+      <div><strong>Getting Started with Passpoint</strong><span>Hero panel — concept review</span></div>
+    </div>
+    <span class="concept-pill">Draft mockups</span>
+  </div>
+
+  <div class="intro">
+    <h1>Five ideas for the hero panel</h1>
+    <p>Today the hero shows an "ANP readiness map" with bars filled to made-up levels — it looks like a score but doesn't measure anything. Below are five ways to make that space actually useful. Each one is clickable and interactive. Open them, try them, and tell us which direction(s) you like.</p>
+    <div class="why">Tip for reviewers: these are quick prototypes of just the panel, shown in a stand-in hero. Wording and exact items are placeholders we can tune.</div>
+  </div>
+
+  <section class="gallery">
+    <a class="card" href="1-readiness-check.html">
+      <span class="num">1</span>
+      <h3>Readiness self-check</h3>
+      <p>Tick real yes/no items and the bars fill for a live readiness score you can print or share. Makes the "readiness" name honest.</p>
+      <span class="tag">Interactive checklist · saves your answers</span>
+    </a>
+    <a class="card" href="2-animated-flow.html">
+      <span class="num">2</span>
+      <h3>Animated join sequence</h3>
+      <p>A looping micro-animation of how a device joins: Beacon → ANQP → Match → EAP → RadSec. Teaches the whole flow at a glance.</p>
+      <span class="tag">Eye-catching · explanatory</span>
+    </a>
+    <a class="card" href="3-use-case-router.html">
+      <span class="num">3</span>
+      <h3>"Where should you start?" router</h3>
+      <p>Pick your use case (carrier offload, venue, enterprise, OpenRoaming) and the panel highlights what matters and links you to the right sections.</p>
+      <span class="tag">Personalized on-ramp</span>
+    </a>
+    <a class="card" href="4-acronym-launchpad.html">
+      <span class="num">4</span>
+      <h3>Acronym launchpad + progress</h3>
+      <p>Every chip explains itself on hover and links to the glossary; bars fill as you explore the matching sections. Reuses what we just built.</p>
+      <span class="tag">Low effort · ties into glossary</span>
+    </a>
+    <a class="card" href="5-maturity-slider.html">
+      <span class="num">5</span>
+      <h3>Maturity slider</h3>
+      <p>Slide from R1 → R2 → R3 → OpenRoaming and each pillar shows what you need at that level. Great for "what do I add to level up?"</p>
+      <span class="tag">Interactive · shows the path</span>
+    </a>
+    <div class="card" style="border-style:dashed;cursor:default">
+      <span class="num" style="background:#eee;color:#888">?</span>
+      <h3>Something else?</h3>
+      <p>Mix two of these, or none of them. Feedback like "remove it entirely" is totally valid — the four areas are already covered by the guide sections.</p>
+      <span class="tag" style="color:var(--muted)">Open to ideas</span>
+    </div>
+  </section>
+
+  <p class="foot">Draft concepts for internal review · Getting Started with Passpoint</p>
+</main>
+</body>
+</html>

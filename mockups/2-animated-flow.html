@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Concept 2: Animated join sequence</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+.flow{position:relative;display:grid;gap:10px}
+.step{display:grid;grid-template-columns:40px minmax(0,1fr);gap:14px;align-items:center;padding:10px 10px;border-radius:var(--radius);border:1px solid var(--line);background:#fff;transition:.35s;opacity:.55}
+.step .dot{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-weight:850;color:#fff;background:#c7d0d4;transition:.35s;font-size:13px}
+.step .tt{font-weight:800;font-size:14px}
+.step .ss{color:var(--muted);font-size:12.5px}
+.step.active{opacity:1;border-color:rgba(11,116,177,.5);box-shadow:0 8px 20px rgba(10,42,55,.10);transform:translateX(2px)}
+.step.active .dot{background:var(--c)}
+.step.done .dot{background:var(--c)}
+.step.done{opacity:.9}
+.cap{margin-top:14px;padding:11px 13px;border-radius:var(--radius);background:var(--primary-soft);border:1px solid #cfe6f5;color:#0a3a52;font-size:13px;min-height:42px}
+.ctl{display:flex;gap:8px;margin-top:14px;align-items:center}
+.ctl .muted{color:var(--muted);font-size:12px}
+</style>
+</head>
+<body>
+<main class="shell">
+  <div class="topbar">
+    <div class="brand">
+      <img src="../assets/logos/wba-logo-white.png" alt="Wireless Broadband Alliance">
+      <div><strong>Getting Started with Passpoint</strong><span>Concept 2 of 5</span></div>
+    </div>
+    <span class="concept-pill">Animated join sequence</span>
+  </div>
+
+  <nav class="cnav">
+    <a href="index.html">← All concepts</a>
+    <a href="1-readiness-check.html">1 · Readiness check</a>
+    <span class="cur">2 · Animated flow</span>
+    <a href="3-use-case-router.html">3 · Use-case router</a>
+    <a href="4-acronym-launchpad.html">4 · Launchpad</a>
+    <a href="5-maturity-slider.html">5 · Maturity</a>
+  </nav>
+
+  <div class="intro">
+    <h1>2 · Animated join sequence</h1>
+    <p>Instead of meaningless bars, the panel plays the actual Passpoint join on a loop — so a first-time reader instantly sees the five things that happen before they're online.</p>
+  </div>
+
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="kicker">How Passpoint works</div>
+      <h2>The join happens before you ever see a login.</h2>
+      <p class="lead">Five steps, every time: the network hints, the device asks, the profile matches, the login runs, and the answer is routed safely. Watch it play out.</p>
+    </div>
+
+    <aside class="panel" aria-label="Passpoint join sequence">
+      <div class="panel-title"><span>How a device joins</span><span class="pill live">Live demo</span></div>
+      <div class="flow" id="flow"></div>
+      <div class="cap" id="cap"></div>
+      <div class="ctl">
+        <button class="btn sec" id="toggle">Pause</button>
+        <span class="muted" id="hint">Plays automatically · click a step to inspect it</span>
+      </div>
+    </aside>
+  </section>
+
+  <div class="note"><strong>Reviewer note:</strong> in the real guide each step would link to its section (e.g. "ANQP" → Identifiers and ANQP). Icons, timing, and copy are all adjustable.</div>
+  <p class="foot">Draft concept for internal review · Getting Started with Passpoint</p>
+</main>
+
+<script>
+const STEPS = [
+  { t:"Beacon", s:"AP hints it supports Passpoint", c:"var(--primary)",
+    cap:"<b>Beacon.</b> The access point broadcasts that it speaks Hotspot 2.0 / Passpoint, plus a few roaming hints — before any device connects." },
+  { t:"ANQP", s:"Device asks for the details", c:"var(--action-dark)",
+    cap:"<b>ANQP.</b> The device quietly asks the network questions — domains, realms, RCOIs, venue info — to decide whether it belongs here. Still no connection yet." },
+  { t:"Match", s:"Profile matches the network", c:"var(--openroaming)",
+    cap:"<b>Match.</b> The device compares the answers to its installed Passpoint profile. If they line up, it decides to join — automatically, no tapping." },
+  { t:"EAP", s:"Secure 802.1X login runs", c:"var(--primary-dark)",
+    cap:"<b>EAP.</b> The device authenticates with WPA-Enterprise (802.1X/EAP) using the credential in its profile — certificate, password, or SIM." },
+  { t:"RadSec", s:"Auth routed safely to the IdP", c:"var(--warning)",
+    cap:"<b>RadSec.</b> The login is carried over TLS to the right identity provider, accounting starts, and the user is online — securely and seamlessly." },
+];
+const flow = document.getElementById("flow");
+flow.innerHTML = STEPS.map((s,i)=>`
+  <div class="step" data-i="${i}" style="--c:${s.c}">
+    <div class="dot">${i+1}</div>
+    <div><div class="tt">${s.t}</div><div class="ss">${s.s}</div></div>
+  </div>`).join("");
+const els = [...flow.querySelectorAll(".step")];
+const cap = document.getElementById("cap");
+let cur = -1, timer = null, playing = true;
+function show(i){
+  cur = i;
+  els.forEach((el,j)=>{ el.classList.toggle("active",j===i); el.classList.toggle("done",j<i); });
+  cap.innerHTML = STEPS[i].cap;
+}
+function next(){ show((cur+1)%STEPS.length); }
+function play(){ playing=true; document.getElementById("toggle").textContent="Pause"; clearInterval(timer); timer=setInterval(next,1700); }
+function pause(){ playing=false; document.getElementById("toggle").textContent="Play"; clearInterval(timer); }
+document.getElementById("toggle").addEventListener("click",()=>playing?pause():play());
+els.forEach(el=>el.addEventListener("click",()=>{ pause(); show(+el.dataset.i); }));
+show(0); play();
+</script>
+</body>
+</html>

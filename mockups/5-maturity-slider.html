@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Concept 5: Maturity slider</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+.slider{margin:6px 0 4px}
+.slider input{width:100%;accent-color:var(--primary)}
+.ticks{display:flex;justify-content:space-between;margin-top:2px}
+.ticks span{font-size:11px;font-weight:800;color:var(--muted);cursor:pointer;flex:1;text-align:center}
+.ticks span.on{color:var(--primary)}
+.lvldesc{margin:12px 0 6px;padding:10px 12px;border-radius:var(--radius);background:var(--primary-soft);border:1px solid #cfe6f5;color:#0a3a52;font-size:13px;min-height:40px}
+.prow{display:grid;grid-template-columns:88px minmax(0,1fr);gap:12px;align-items:center;padding:9px 0;border-top:1px solid var(--line)}
+.prow .pl{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.prow .body{min-width:0}
+.prow .track{height:8px;border-radius:5px;background:#edf3f3;border:1px solid var(--line);overflow:hidden;margin-bottom:6px}
+.prow .track>i{display:block;height:100%;width:0;transition:width .35s}
+.prow .txt{font-size:13px;color:var(--ink)}
+.prow .add{color:var(--action-dark);font-weight:700}
+</style>
+</head>
+<body>
+<main class="shell">
+  <div class="topbar">
+    <div class="brand">
+      <img src="../assets/logos/wba-logo-white.png" alt="Wireless Broadband Alliance">
+      <div><strong>Getting Started with Passpoint</strong><span>Concept 5 of 5</span></div>
+    </div>
+    <span class="concept-pill">Maturity slider</span>
+  </div>
+
+  <nav class="cnav">
+    <a href="index.html">← All concepts</a>
+    <a href="1-readiness-check.html">1 · Readiness check</a>
+    <a href="2-animated-flow.html">2 · Animated flow</a>
+    <a href="3-use-case-router.html">3 · Use-case router</a>
+    <a href="4-acronym-launchpad.html">4 · Launchpad</a>
+    <span class="cur">5 · Maturity</span>
+  </nav>
+
+  <div class="intro">
+    <h1>5 · Maturity slider</h1>
+    <p>Slide from a basic R1 deployment up to full OpenRoaming and watch each of the four areas gain what that level requires. A clear answer to "what do I add to level up?"</p>
+  </div>
+
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="kicker">Plan your build</div>
+      <h2>From a first launch to full federation.</h2>
+      <p class="lead">Each Passpoint release and OpenRoaming adds capability. Drag the slider to see what changes across Discovery, Identity, Security, and Ops.</p>
+    </div>
+
+    <aside class="panel" aria-label="Passpoint maturity">
+      <div class="panel-title"><span>Passpoint maturity</span><span class="pill" id="lvlName">R1 · Core</span></div>
+      <div class="slider">
+        <input type="range" id="rng" min="0" max="3" step="1" value="0" aria-label="Maturity level">
+        <div class="ticks" id="ticks">
+          <span data-i="0">R1</span><span data-i="1">R2</span><span data-i="2">R3</span><span data-i="3">OpenRoaming</span>
+        </div>
+      </div>
+      <div class="lvldesc" id="desc"></div>
+      <div id="pillars"></div>
+    </aside>
+  </section>
+
+  <div class="note"><strong>Reviewer note:</strong> level names, the per-area capabilities, and what counts as "added" at each step are all editable — this is a first pass at the progression.</div>
+  <p class="foot">Draft concept for internal review · Getting Started with Passpoint</p>
+</main>
+
+<script>
+const PILLARS=[
+  {key:"discovery",label:"Discovery",color:"var(--primary)"},
+  {key:"identity",label:"Identity",color:"var(--action-dark)"},
+  {key:"security",label:"Security",color:"var(--primary-dark)"},
+  {key:"ops",label:"Ops",color:"var(--warning)"},
+];
+const LEVELS=[
+  { name:"R1 · Core", desc:"The foundation: pre-association discovery, network selection, and WPA2-Enterprise authentication.",
+    p:{discovery:"Beacon + basic ANQP",identity:"Domain + NAI realm",security:"WPA2-Enterprise (802.1X/EAP)",ops:"RADIUS + basic accounting"} },
+  { name:"R2 · Sign-up", desc:"Adds Online Sign-Up (OSU) and the ability to provision or repair a subscription profile.",
+    p:{discovery:"Online Sign-Up advertising",identity:"Subscription update / remediation",security:"WPA2-Enterprise",ops:"Profile remediation paths"} },
+  { name:"R3 · Venue & Operator", desc:"Richer venue and operator information, terms & conditions, and stronger WPA3-Enterprise options.",
+    p:{discovery:"Venue & operator info, T&Cs",identity:"RCOI / roaming identifiers",security:"WPA3-Enterprise + PMF",ops:"Richer accounting & location"} },
+  { name:"OpenRoaming", desc:"Federation: common RCOIs, shared PKI trust, RadSec, and dynamic peer discovery for scalable roaming.",
+    p:{discovery:"Federation RCOIs advertised",identity:"OpenRoaming RCOIs",security:"Federation PKI trust",ops:"RadSec + Dynamic Peer Discovery"} },
+];
+document.getElementById("pillars").innerHTML = PILLARS.map(p=>`
+  <div class="prow">
+    <span class="pl">${p.label}</span>
+    <div class="body">
+      <div class="track"><i data-fill="${p.key}" style="background:${p.color}"></i></div>
+      <div class="txt" data-txt="${p.key}"></div>
+    </div>
+  </div>`).join("");
+
+const rng=document.getElementById("rng");
+function apply(i){
+  i=+i;
+  const L=LEVELS[i];
+  document.getElementById("lvlName").textContent=L.name;
+  document.getElementById("desc").textContent=L.desc;
+  PILLARS.forEach(p=>{
+    document.querySelector(`[data-fill="${p.key}"]`).style.width=((i+1)/4*100)+"%";
+    const prev = i>0 ? LEVELS[i-1].p[p.key] : null;
+    const now = L.p[p.key];
+    const el = document.querySelector(`[data-txt="${p.key}"]`);
+    el.innerHTML = (prev && prev!==now) ? `<span class="add">+ ${now}</span>` : now;
+  });
+  document.querySelectorAll("#ticks span").forEach(s=>s.classList.toggle("on",+s.dataset.i===i));
+}
+rng.addEventListener("input",()=>apply(rng.value));
+document.querySelectorAll("#ticks span").forEach(s=>s.addEventListener("click",()=>{rng.value=s.dataset.i;apply(s.dataset.i);}));
+apply(0);
+</script>
+</body>
+</html>

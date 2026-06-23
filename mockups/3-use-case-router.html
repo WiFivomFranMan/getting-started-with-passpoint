@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Concept 3: Use-case router</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+.uc{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.uc button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 13px;font:inherit;font-size:12.5px;font-weight:700;color:var(--muted);cursor:pointer}
+.uc button.on{background:var(--primary);border-color:var(--primary);color:#fff}
+.prow{display:grid;grid-template-columns:88px minmax(0,1fr) 64px;gap:12px;align-items:center;padding:9px 0;border-top:1px solid var(--line)}
+.prow .pl{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.prow .track{height:16px;border-radius:6px;background:#edf3f3;border:1px solid var(--line);overflow:hidden}
+.prow .track>i{display:block;height:100%;width:0;transition:width .35s}
+.prow .lv{font-size:11px;font-weight:800;text-align:right;text-transform:uppercase;letter-spacing:.04em}
+.start{margin-top:16px}
+.start h4{margin:0 0 8px;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--primary)}
+.start .links{display:grid;gap:7px}
+.start a{display:block;border:1px solid var(--line);border-radius:6px;padding:9px 11px;font-size:13px;font-weight:700;background:#fff}
+</style>
+</head>
+<body>
+<main class="shell">
+  <div class="topbar">
+    <div class="brand">
+      <img src="../assets/logos/wba-logo-white.png" alt="Wireless Broadband Alliance">
+      <div><strong>Getting Started with Passpoint</strong><span>Concept 3 of 5</span></div>
+    </div>
+    <span class="concept-pill">Use-case router</span>
+  </div>
+
+  <nav class="cnav">
+    <a href="index.html">← All concepts</a>
+    <a href="1-readiness-check.html">1 · Readiness check</a>
+    <a href="2-animated-flow.html">2 · Animated flow</a>
+    <span class="cur">3 · Use-case router</span>
+    <a href="4-acronym-launchpad.html">4 · Launchpad</a>
+    <a href="5-maturity-slider.html">5 · Maturity</a>
+  </nav>
+
+  <div class="intro">
+    <h1>3 · "Where should you start?" router</h1>
+    <p>Different ANPs care about different things. Pick a use case and the panel re-weights the four areas and points you straight to the sections that matter most for you.</p>
+  </div>
+
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="kicker">Find your path</div>
+      <h2>Tell us your use case. We'll point you to the right parts.</h2>
+      <p class="lead">Carrier offload, a roaming venue, an enterprise rollout, or OpenRoaming — each puts the emphasis somewhere different. Pick one on the right.</p>
+    </div>
+
+    <aside class="panel" aria-label="Use-case router">
+      <div class="panel-title"><span>Where should you start?</span><span class="pill" id="ucName">Pick a use case</span></div>
+      <div class="uc" id="uc"></div>
+      <div id="pillars"></div>
+      <div class="start">
+        <h4>Start here</h4>
+        <div class="links" id="startLinks"></div>
+      </div>
+    </aside>
+  </section>
+
+  <div class="note"><strong>Reviewer note:</strong> the "Start here" links jump into the real guide and auto-open that section. Use cases, weightings, and recommended sections are all editable.</div>
+  <p class="foot">Draft concept for internal review · Getting Started with Passpoint</p>
+</main>
+
+<script>
+const PILLARS = [
+  {key:"discovery",label:"Discovery",color:"var(--primary)"},
+  {key:"identity",label:"Identity",color:"var(--action-dark)"},
+  {key:"security",label:"Security",color:"var(--primary-dark)"},
+  {key:"ops",label:"Ops",color:"var(--warning)"},
+];
+const LV = { high:{w:"100%",t:"High",c:"var(--action-dark)"}, med:{w:"60%",t:"Medium",c:"var(--warning)"}, low:{w:"28%",t:"Low",c:"var(--muted)"} };
+const CASES = {
+  "Carrier offload": { w:{discovery:"med",identity:"high",security:"med",ops:"high"},
+    links:[["Identifiers and ANQP","identifiers"],["RADIUS, RadSec, Accounting","aaa-radsec"],["Client Behavior and Profiles","client-profiles"]] },
+  "Roaming venue": { w:{discovery:"high",identity:"high",security:"med",ops:"med"},
+    links:[["The Passpoint Connection Process","connection-process"],["Identifiers and ANQP","identifiers"],["Deployment Patterns","deployment-patterns"]] },
+  "Enterprise onboarding": { w:{discovery:"med",identity:"med",security:"high",ops:"med"},
+    links:[["Wireless Security and Authentication","wireless-security"],["Client Behavior and Profiles","client-profiles"],["Standards Overview","standards"]] },
+  "OpenRoaming": { w:{discovery:"med",identity:"high",security:"med",ops:"high"},
+    links:[["Deployment Patterns","deployment-patterns"],["RADIUS, RadSec, Accounting","aaa-radsec"],["Resources and Next Reading","resources-detail"]] },
+};
+const ucHost = document.getElementById("uc");
+ucHost.innerHTML = Object.keys(CASES).map((n,i)=>`<button data-n="${n}" class="${i===0?'on':''}">${n}</button>`).join("");
+document.getElementById("pillars").innerHTML = PILLARS.map(p=>`
+  <div class="prow">
+    <span class="pl">${p.label}</span>
+    <span class="track"><i data-fill="${p.key}" style="background:${p.color}"></i></span>
+    <span class="lv" data-lv="${p.key}"></span>
+  </div>`).join("");
+
+function select(name){
+  document.querySelectorAll(".uc button").forEach(b=>b.classList.toggle("on",b.dataset.n===name));
+  document.getElementById("ucName").textContent = name;
+  const cfg = CASES[name];
+  PILLARS.forEach(p=>{
+    const lv = LV[cfg.w[p.key]];
+    document.querySelector(`[data-fill="${p.key}"]`).style.width = lv.w;
+    const el = document.querySelector(`[data-lv="${p.key}"]`);
+    el.textContent = lv.t; el.style.color = lv.c;
+  });
+  document.getElementById("startLinks").innerHTML = cfg.links
+    .map(([t,id])=>`<a href="../#${id}">${t} →</a>`).join("");
+}
+ucHost.querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>select(b.dataset.n)));
+select(Object.keys(CASES)[0]);
+</script>
+</body>
+</html>

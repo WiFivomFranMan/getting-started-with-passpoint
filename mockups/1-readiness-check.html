@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Concept 1: Readiness self-check</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+.overall{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+.overall .big{font-size:30px;font-weight:850;color:var(--primary);font-variant-numeric:tabular-nums}
+.overall .bar{flex:1;height:10px;border-radius:6px;background:#edf3f3;border:1px solid var(--line);overflow:hidden}
+.overall .bar>i{display:block;height:100%;width:0;background:var(--action);transition:width .3s}
+.pillar{border-top:1px solid var(--line)}
+.pillar>summary{display:grid;grid-template-columns:96px minmax(0,1fr) 46px;gap:12px;align-items:center;padding:11px 2px;cursor:pointer;list-style:none}
+.pillar>summary::-webkit-details-marker{display:none}
+.pillar .pl{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.pillar .track{height:18px;border-radius:6px;background:#edf3f3;border:1px solid var(--line);overflow:hidden}
+.pillar .track>i{display:block;height:100%;width:0;transition:width .3s}
+.pillar .cnt{font-size:12px;font-weight:800;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
+.checks{padding:2px 2px 12px 108px;display:grid;gap:8px}
+.checks label{display:flex;gap:9px;align-items:flex-start;font-size:13px;color:var(--ink);cursor:pointer}
+.checks input{margin-top:2px}
+@media(max-width:560px){.checks{padding-left:6px}.pillar>summary{grid-template-columns:84px minmax(0,1fr) 40px}}
+</style>
+</head>
+<body>
+<main class="shell">
+  <div class="topbar">
+    <div class="brand">
+      <img src="../assets/logos/wba-logo-white.png" alt="Wireless Broadband Alliance">
+      <div><strong>Getting Started with Passpoint</strong><span>Concept 1 of 5</span></div>
+    </div>
+    <span class="concept-pill">Readiness self-check</span>
+  </div>
+
+  <nav class="cnav">
+    <a href="index.html">← All concepts</a>
+    <span class="cur">1 · Readiness check</span>
+    <a href="2-animated-flow.html">2 · Animated flow</a>
+    <a href="3-use-case-router.html">3 · Use-case router</a>
+    <a href="4-acronym-launchpad.html">4 · Launchpad</a>
+    <a href="5-maturity-slider.html">5 · Maturity</a>
+  </nav>
+
+  <div class="intro">
+    <h1>1 · Readiness self-check</h1>
+    <p>The bars aren't decoration anymore — tick the items that are true for your deployment and the panel computes a live readiness score. It saves in your browser, so your progress is still here next visit.</p>
+  </div>
+
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="kicker">Quick self-assessment</div>
+      <h2>How ready is your Passpoint network?</h2>
+      <p class="lead">Run down the four areas an ANP has to get right. Expand each pillar, check what's done, and watch your readiness score climb.</p>
+    </div>
+
+    <aside class="panel" aria-label="ANP readiness check">
+      <div class="panel-title"><span>ANP readiness check</span><span class="pill live" id="score">0% ready</span></div>
+      <div class="overall"><span class="big" id="bigScore">0%</span><div class="bar"><i id="overallFill"></i></div></div>
+      <div id="pillars" style="margin-top:8px"></div>
+      <div style="display:flex;gap:8px;margin-top:16px">
+        <button class="btn" id="print">Print / share</button>
+        <button class="btn sec" id="reset">Reset</button>
+      </div>
+    </aside>
+  </section>
+
+  <div class="note"><strong>Reviewer note:</strong> the checklist items below are first-draft examples pulled from the guide — easy to reword, add, or trim. Three per pillar keeps it quick.</div>
+  <p class="foot">Draft concept for internal review · Getting Started with Passpoint</p>
+</main>
+
+<script>
+const PILLARS = [
+  { key:"discovery", label:"Discovery", color:"var(--primary)", items:[
+    "AP beacon advertises Hotspot 2.0 / Passpoint",
+    "ANQP returns domains, realms, RCOIs, and venue info",
+    "ANQP responses validated with a real test client" ]},
+  { key:"identity", label:"Identity", color:"var(--action-dark)", items:[
+    "Home identifiers (domain / realm) published",
+    "Roaming identifiers (RCOI / PLMN) published where needed",
+    "Each realm lists the correct EAP method" ]},
+  { key:"security", label:"Security", color:"var(--primary-dark)", items:[
+    "WPA2/WPA3-Enterprise with 802.1X/EAP enforced",
+    "Protected Management Frames enabled where required",
+    "Bad-credential throttling / client protection in place" ]},
+  { key:"ops", label:"Ops", color:"var(--warning)", items:[
+    "RadSec (or protected tunnel) for RADIUS off-network",
+    "Accounting and session attributes standardized",
+    "NAS-ID / Called-Station-ID / location formatted consistently" ]},
+];
+const KEY = "gswp-readiness-v1";
+let state = {};
+try { state = JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e){ state = {}; }
+
+const host = document.getElementById("pillars");
+host.innerHTML = PILLARS.map((p, pi) => `
+  <details class="pillar" ${pi<1?"open":""}>
+    <summary>
+      <span class="pl">${p.label}</span>
+      <span class="track"><i data-fill="${p.key}" style="background:${p.color}"></i></span>
+      <span class="cnt" data-cnt="${p.key}">0/${p.items.length}</span>
+    </summary>
+    <div class="checks">
+      ${p.items.map((it,ii)=>`<label><input type="checkbox" data-k="${p.key}" data-i="${ii}"> <span>${it}</span></label>`).join("")}
+    </div>
+  </details>`).join("");
+
+function totalItems(){ return PILLARS.reduce((n,p)=>n+p.items.length,0); }
+function render(){
+  let done = 0;
+  PILLARS.forEach(p=>{
+    const checked = p.items.filter((_,ii)=>state[p.key+"-"+ii]).length;
+    done += checked;
+    document.querySelector(`[data-fill="${p.key}"]`).style.width = (checked/p.items.length*100)+"%";
+    document.querySelector(`[data-cnt="${p.key}"]`).textContent = checked+"/"+p.items.length;
+  });
+  const pct = Math.round(done/totalItems()*100);
+  document.getElementById("overallFill").style.width = pct+"%";
+  document.getElementById("bigScore").textContent = pct+"%";
+  document.getElementById("score").textContent = pct+"% ready";
+}
+document.querySelectorAll('input[type=checkbox]').forEach(cb=>{
+  const id = cb.dataset.k+"-"+cb.dataset.i;
+  cb.checked = !!state[id];
+  cb.addEventListener("change",()=>{ state[id]=cb.checked; localStorage.setItem(KEY,JSON.stringify(state)); render(); });
+});
+document.getElementById("reset").addEventListener("click",()=>{
+  state={}; localStorage.removeItem(KEY);
+  document.querySelectorAll('input[type=checkbox]').forEach(cb=>cb.checked=false); render();
+});
+document.getElementById("print").addEventListener("click",()=>window.print());
+render();
+</script>
+</body>
+</html>

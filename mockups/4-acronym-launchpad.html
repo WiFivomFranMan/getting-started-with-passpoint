@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Concept 4: Acronym launchpad</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+.area{padding:11px 0;border-top:1px solid var(--line)}
+.area .head{display:grid;grid-template-columns:88px minmax(0,1fr) auto;gap:12px;align-items:center}
+.area .pl{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.area .track{height:14px;border-radius:6px;background:#edf3f3;border:1px solid var(--line);overflow:hidden}
+.area .track>i{display:block;height:100%;width:0;transition:width .35s}
+.area .mark{border:1px solid var(--line);background:#fff;border-radius:999px;font:inherit;font-size:11px;font-weight:700;color:var(--muted);padding:4px 9px;cursor:pointer;white-space:nowrap}
+.area .mark.on{background:var(--action-soft);border-color:rgba(37,214,108,.45);color:var(--action-dark)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:9px 0 2px 100px}
+.chip{border:1px dotted var(--primary);border-radius:5px;background:var(--primary-soft);color:var(--primary-dark);padding:3px 9px;font-size:12px;font-weight:700;cursor:help}
+.chip:hover{background:#d6ecf8;text-decoration:none}
+@media(max-width:560px){.chips{margin-left:0}.area .head{grid-template-columns:72px minmax(0,1fr) auto}}
+</style>
+</head>
+<body>
+<main class="shell">
+  <div class="topbar">
+    <div class="brand">
+      <img src="../assets/logos/wba-logo-white.png" alt="Wireless Broadband Alliance">
+      <div><strong>Getting Started with Passpoint</strong><span>Concept 4 of 5</span></div>
+    </div>
+    <span class="concept-pill">Acronym launchpad</span>
+  </div>
+
+  <nav class="cnav">
+    <a href="index.html">← All concepts</a>
+    <a href="1-readiness-check.html">1 · Readiness check</a>
+    <a href="2-animated-flow.html">2 · Animated flow</a>
+    <a href="3-use-case-router.html">3 · Use-case router</a>
+    <span class="cur">4 · Launchpad</span>
+    <a href="5-maturity-slider.html">5 · Maturity</a>
+  </nav>
+
+  <div class="intro">
+    <h1>4 · Acronym launchpad + progress</h1>
+    <p>Keeps the four-area layout, but every chip now explains itself on hover and links to the glossary (reusing the system we just built). The bars fill for real as you explore each area's section — here you can fake that with "Mark explored."</p>
+  </div>
+
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="kicker">Your map through the guide</div>
+      <h2>Hover anything you don't recognize.</h2>
+      <p class="lead">Every acronym in the panel is defined on hover and one click from the glossary. As you work through the guide, each area fills in.</p>
+    </div>
+
+    <aside class="panel" aria-label="ANP map">
+      <div class="panel-title"><span>ANP map</span><span class="pill live" id="prog">0 / 4 explored</span></div>
+      <div id="areas"></div>
+    </aside>
+  </section>
+
+  <div class="note"><strong>Reviewer note:</strong> hover a chip to see its definition; in the real guide a click jumps to that glossary entry. Bars would auto-fill from real reading progress — the "Mark explored" buttons just simulate that here.</div>
+  <p class="foot">Draft concept for internal review · Getting Started with Passpoint</p>
+</main>
+
+<script>
+const AREAS = [
+  { key:"discovery", label:"Discovery", color:"var(--primary)", chips:[
+    ["Beacon","The AP broadcast that signals Passpoint support"],["ANQP","Access Network Query Protocol — pre-join Q&A"],["GAS","Generic Advertisement Service — carries ANQP"] ]},
+  { key:"identity", label:"Identity", color:"var(--action-dark)", chips:[
+    ["Domain","Identifies the operator / home provider"],["Realm","NAI realm — routes the login to the right IdP"],["RCOI","Roaming Consortium Organization Identifier"],["PLMN","Public Land Mobile Network — carrier offload"] ]},
+  { key:"security", label:"Security", color:"var(--primary-dark)", chips:[
+    ["802.1X","Port-based network access control"],["EAP","Extensible Authentication Protocol"],["WPA-Enterprise","Per-user enterprise Wi-Fi security"],["PMF","Protected Management Frames"] ]},
+  { key:"ops", label:"Ops", color:"var(--warning)", chips:[
+    ["RadSec","RADIUS over TLS (secure transport)"],["Accounting","Session records for support and billing"],["Location","RFC 5580 location attributes"],["DPD","Dynamic Peer Discovery for roaming"] ]},
+];
+const KEY="gswp-explore-v1";
+let state={}; try{state=JSON.parse(localStorage.getItem(KEY))||{}}catch(e){state={}}
+const host=document.getElementById("areas");
+host.innerHTML = AREAS.map(a=>`
+  <div class="area">
+    <div class="head">
+      <span class="pl">${a.label}</span>
+      <span class="track"><i data-fill="${a.key}" style="background:${a.color}"></i></span>
+      <button class="mark" data-k="${a.key}">Mark explored</button>
+    </div>
+    <div class="chips">
+      ${a.chips.map(([c,t])=>`<a class="chip" href="../#glossary" title="${t}">${c}</a>`).join("")}
+    </div>
+  </div>`).join("");
+function render(){
+  let n=0;
+  AREAS.forEach(a=>{
+    const on=!!state[a.key]; if(on)n++;
+    document.querySelector(`[data-fill="${a.key}"]`).style.width=on?"100%":"0";
+    const btn=document.querySelector(`.mark[data-k="${a.key}"]`);
+    btn.classList.toggle("on",on); btn.textContent=on?"✓ Explored":"Mark explored";
+  });
+  document.getElementById("prog").textContent=n+" / 4 explored";
+}
+document.querySelectorAll(".mark").forEach(b=>b.addEventListener("click",()=>{
+  const k=b.dataset.k; state[k]=!state[k]; localStorage.setItem(KEY,JSON.stringify(state)); render();
+}));
+render();
+</script>
+</body>
+</html>
