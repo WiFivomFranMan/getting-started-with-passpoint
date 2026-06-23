@@ -837,31 +837,82 @@
     .glossary-list {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0 26px;
+      gap: 8px 22px;
       margin: 0;
+      align-items: start;
     }
 
-    .glossary-row {
-      display: grid;
-      grid-template-columns: 96px minmax(0, 1fr);
-      gap: 12px;
+    .glossary-item {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .glossary-item[open] {
+      border-color: rgba(11, 116, 177, .42);
+    }
+
+    .glossary-item summary {
+      display: flex;
       align-items: baseline;
-      padding: 9px 0;
-      border-top: 1px solid var(--line);
+      gap: 10px;
+      padding: 9px 12px;
+      cursor: pointer;
+      list-style: none;
     }
 
-    .glossary-list dt {
+    .glossary-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .g-abbr {
       font-weight: 850;
       color: var(--primary);
       font-size: 13px;
-      letter-spacing: .01em;
+      flex: 0 0 auto;
+      min-width: 60px;
     }
 
-    .glossary-list dd {
-      margin: 0;
+    .g-term {
       color: var(--ink);
       font-size: 14px;
       line-height: 1.4;
+      flex: 1 1 auto;
+    }
+
+    .g-toggle {
+      flex: 0 0 auto;
+      color: var(--primary);
+      font-weight: 900;
+    }
+
+    .g-toggle:before {
+      content: "+";
+    }
+
+    .glossary-item[open] .g-toggle:before {
+      content: "\2013";
+    }
+
+    .g-desc {
+      border-top: 1px solid var(--line);
+      padding: 10px 12px 12px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .gloss {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px dotted var(--primary);
+      cursor: help;
+    }
+
+    .gloss:hover {
+      color: var(--primary);
+      border-bottom-style: solid;
     }
 
     @media (max-width: 760px) {
@@ -1265,66 +1316,65 @@
                 "theme": "violet",
                 "visual": "resources",
                 "summary": "Plain-language expansions of the acronyms used in this guide and in WBA OpenRoaming materials.",
-                "note": "Acronym list adapted from the WBA OpenRoaming Introduction Guide (APAC TG v1.0.0), expanded with additional terms used in this guide.",
                 "glossary": [
-                      { "abbr": "802.11u", "term": "IEEE amendment for pre-association network discovery (interworking)" },
-                      { "abbr": "802.1X", "term": "IEEE standard for port-based network access control (used by WPA-Enterprise)" },
-                      { "abbr": "AAA", "term": "Authentication, Authorization, and Accounting" },
-                      { "abbr": "AES", "term": "Advanced Encryption Standard" },
-                      { "abbr": "ANP", "term": "Access Network Provider" },
-                      { "abbr": "ANQP", "term": "Access Network Query Protocol" },
-                      { "abbr": "AP", "term": "Access Point" },
-                      { "abbr": "CA", "term": "Certificate Authority" },
-                      { "abbr": "CAG", "term": "Closed Access Group" },
-                      { "abbr": "CAN", "term": "Captive Network Assistant" },
-                      { "abbr": "CCMP", "term": "Counter Mode CBC-MAC Protocol (AES-based Wi-Fi encryption)" },
-                      { "abbr": "DNS", "term": "Domain Name System" },
-                      { "abbr": "DPD", "term": "Dynamic Peer Discovery" },
-                      { "abbr": "EAP", "term": "Extensible Authentication Protocol" },
-                      { "abbr": "FDO", "term": "FIDO Device Onboarding" },
-                      { "abbr": "FIDO", "term": "Fast Identity Online" },
-                      { "abbr": "FQDN", "term": "Fully Qualified Domain Name" },
-                      { "abbr": "GAS", "term": "Generic Advertisement Service" },
-                      { "abbr": "HS2.0", "term": "Hotspot 2.0 (the technology certified as Passpoint)" },
-                      { "abbr": "IDP", "term": "Identity Provider" },
-                      { "abbr": "IEEE", "term": "Institute of Electrical and Electronics Engineers" },
-                      { "abbr": "IETF", "term": "Internet Engineering Task Force" },
-                      { "abbr": "IMSI", "term": "International Mobile Subscriber Identity" },
-                      { "abbr": "IP", "term": "Internet Protocol" },
-                      { "abbr": "ISP", "term": "Internet Service Provider" },
-                      { "abbr": "MCC", "term": "Mobile Country Code" },
-                      { "abbr": "MDM", "term": "Mobile Device Management" },
-                      { "abbr": "MNC", "term": "Mobile Network Code" },
-                      { "abbr": "NAI", "term": "Network Access Identifier (NAI Realm)" },
-                      { "abbr": "NAS", "term": "Network Access Server" },
-                      { "abbr": "OEM", "term": "Original Equipment Manufacturer" },
-                      { "abbr": "OR", "term": "WBA OpenRoaming" },
-                      { "abbr": "OSU", "term": "Online Sign-Up" },
-                      { "abbr": "OUI", "term": "Organizationally Unique Identifier" },
-                      { "abbr": "PEAP", "term": "Protected Extensible Authentication Protocol" },
-                      { "abbr": "PKI", "term": "Public Key Infrastructure" },
-                      { "abbr": "PLMN", "term": "Public Land Mobile Network (PLMN ID)" },
-                      { "abbr": "PMF", "term": "Protected Management Frames" },
-                      { "abbr": "PSK", "term": "Pre-Shared Key" },
-                      { "abbr": "QoE", "term": "Quality of Experience" },
-                      { "abbr": "QoS", "term": "Quality of Service" },
-                      { "abbr": "RADIUS", "term": "Remote Authentication Dial-In User Service" },
-                      { "abbr": "RadSec", "term": "RADIUS over TLS (secure RADIUS transport)" },
-                      { "abbr": "RCOI", "term": "Roaming Consortium Organization Identifier" },
-                      { "abbr": "RFC", "term": "Request for Comments (IETF standards document)" },
-                      { "abbr": "SIM", "term": "Subscriber Identity Module" },
-                      { "abbr": "SSID", "term": "Service Set Identifier (the Wi-Fi network name)" },
-                      { "abbr": "TLS", "term": "Transport Layer Security" },
-                      { "abbr": "TTLS", "term": "Tunneled Transport Layer Security (EAP-TTLS)" },
-                      { "abbr": "UAM", "term": "Universal Access Method (captive-portal login)" },
-                      { "abbr": "URL", "term": "Uniform Resource Locator" },
-                      { "abbr": "VPN", "term": "Virtual Private Network" },
-                      { "abbr": "WBA", "term": "Wireless Broadband Alliance" },
-                      { "abbr": "WBAID", "term": "WBA Unique Organization Identifier" },
-                      { "abbr": "WISPr", "term": "Wireless Internet Service Provider roaming" },
-                      { "abbr": "WLC", "term": "Wireless LAN Controller" },
-                      { "abbr": "WPA / WPA2 / WPA3", "term": "Wi-Fi Protected Access security generations (Enterprise mode uses 802.1X/EAP)" },
-                      { "abbr": "WRIX", "term": "Wireless Roaming Intermediary eXchange" }
+                      { "abbr": "802.11u", "term": "IEEE amendment for pre-association network discovery (interworking)", "desc": "The IEEE Wi-Fi feature that lets a device ask a network for details before joining. It is what makes Passpoint's pre-join discovery possible." },
+                      { "abbr": "802.1X", "term": "IEEE standard for port-based network access control (used by WPA-Enterprise)", "desc": "The rule that a device must log in before it is allowed onto the network. This is the enterprise Wi-Fi login model Passpoint uses instead of a shared password." },
+                      { "abbr": "AAA", "term": "Authentication, Authorization, and Accounting", "desc": "The back-end service that checks who a user is, decides what they can access, and records the session for support and billing." },
+                      { "abbr": "AES", "term": "Advanced Encryption Standard", "desc": "Strong encryption that scrambles Wi-Fi traffic so others nearby cannot read it." },
+                      { "abbr": "ANP", "term": "Access Network Provider", "desc": "The operator running the Wi-Fi network and its access points. ANPs are the main audience for this guide." },
+                      { "abbr": "ANQP", "term": "Access Network Query Protocol", "desc": "The question-and-answer protocol a device uses to learn a network's details (realms, roaming partners, venue info) before it decides to join." },
+                      { "abbr": "AP", "term": "Access Point", "desc": "The Wi-Fi access point, the radio hardware a device actually connects to." },
+                      { "abbr": "CA", "term": "Certificate Authority", "desc": "A trusted authority that issues the digital certificates used to prove identities in Passpoint and OpenRoaming." },
+                      { "abbr": "CAG", "term": "Closed Access Group", "desc": "A way to limit a Passpoint network so only a specific, approved group of users can join." },
+                      { "abbr": "CAN", "term": "Captive Network Assistant", "desc": "The pop-up sign-in window a phone or laptop shows on open Wi-Fi. Passpoint avoids needing it." },
+                      { "abbr": "CCMP", "term": "Counter Mode CBC-MAC Protocol (AES-based Wi-Fi encryption)", "desc": "The AES-based method that does the actual encryption of Wi-Fi data." },
+                      { "abbr": "DNS", "term": "Domain Name System", "desc": "The internet's address book. Passpoint and roaming also use it to locate the right authentication servers." },
+                      { "abbr": "DPD", "term": "Dynamic Peer Discovery", "desc": "Lets authentication servers find each other automatically through DNS instead of manual setup, which makes large roaming federations practical." },
+                      { "abbr": "EAP", "term": "Extensible Authentication Protocol", "desc": "The framework that carries the real login exchange, whether that is a password, a certificate, or a SIM." },
+                      { "abbr": "FDO", "term": "FIDO Device Onboarding", "desc": "An automated, secure way to load a device's credentials at onboarding so it works out of the box." },
+                      { "abbr": "FIDO", "term": "Fast Identity Online", "desc": "An open standard for strong, passwordless sign-in." },
+                      { "abbr": "FQDN", "term": "Fully Qualified Domain Name", "desc": "A complete domain name such as wifi.example.com, used to identify a network or service." },
+                      { "abbr": "GAS", "term": "Generic Advertisement Service", "desc": "The delivery channel that carries ANQP questions and answers between a device and the network before joining." },
+                      { "abbr": "HS2.0", "term": "Hotspot 2.0 (the technology certified as Passpoint)", "desc": "Hotspot 2.0, the underlying technology that the Wi-Fi Alliance certifies and markets as Passpoint." },
+                      { "abbr": "IDP", "term": "Identity Provider", "desc": "The party that holds a user's credentials and vouches for who they are at login, such as a carrier or enterprise." },
+                      { "abbr": "IEEE", "term": "Institute of Electrical and Electronics Engineers", "desc": "The standards body behind Wi-Fi, including the 802.11 family of standards." },
+                      { "abbr": "IETF", "term": "Internet Engineering Task Force", "desc": "The standards body behind core internet protocols such as RADIUS and TLS." },
+                      { "abbr": "IMSI", "term": "International Mobile Subscriber Identity", "desc": "The unique identifier stored on a SIM that identifies a mobile subscriber." },
+                      { "abbr": "IP", "term": "Internet Protocol", "desc": "The addressing system that moves data across networks." },
+                      { "abbr": "ISP", "term": "Internet Service Provider", "desc": "A company that provides internet access." },
+                      { "abbr": "MCC", "term": "Mobile Country Code", "desc": "The part of a mobile network identifier that says which country the carrier is in." },
+                      { "abbr": "MDM", "term": "Mobile Device Management", "desc": "The software IT teams use to configure and manage devices, including installing Passpoint profiles." },
+                      { "abbr": "MNC", "term": "Mobile Network Code", "desc": "The part of a mobile network identifier that says which carrier it is." },
+                      { "abbr": "NAI", "term": "Network Access Identifier (NAI Realm)", "desc": "The user@realm format that tells the network which identity provider should handle a login." },
+                      { "abbr": "NAS", "term": "Network Access Server", "desc": "The network device (often the AP or controller) that passes login requests to the AAA system." },
+                      { "abbr": "OEM", "term": "Original Equipment Manufacturer", "desc": "The manufacturer that builds the device or hardware." },
+                      { "abbr": "OR", "term": "WBA OpenRoaming", "desc": "WBA OpenRoaming, a federation that lets devices roam onto partner Wi-Fi automatically and securely, built on Passpoint." },
+                      { "abbr": "OSU", "term": "Online Sign-Up", "desc": "An older Passpoint flow for signing up and getting a profile through the device on the spot. Many deployments now use simpler profile delivery instead." },
+                      { "abbr": "OUI", "term": "Organizationally Unique Identifier", "desc": "The IEEE-assigned prefix that identifies an organization. It appears inside identifiers such as RCOIs." },
+                      { "abbr": "PEAP", "term": "Protected Extensible Authentication Protocol", "desc": "A common login method that protects a username and password inside a secure tunnel." },
+                      { "abbr": "PKI", "term": "Public Key Infrastructure", "desc": "The system of certificates and trusted authorities that underpins secure identity and roaming trust." },
+                      { "abbr": "PLMN", "term": "Public Land Mobile Network (PLMN ID)", "desc": "Identifies a mobile carrier's network. Used for cellular-style Wi-Fi offload." },
+                      { "abbr": "PMF", "term": "Protected Management Frames", "desc": "Protects Wi-Fi management messages from spoofing and tampering. Required on newer bands like 6 GHz." },
+                      { "abbr": "PSK", "term": "Pre-Shared Key", "desc": "A single shared Wi-Fi password (the home or guest model). Passpoint replaces this with per-user logins." },
+                      { "abbr": "QoE", "term": "Quality of Experience", "desc": "How good the connection actually feels to the user." },
+                      { "abbr": "QoS", "term": "Quality of Service", "desc": "Network controls that prioritize traffic to keep performance acceptable." },
+                      { "abbr": "RADIUS", "term": "Remote Authentication Dial-In User Service", "desc": "The long-standing protocol that carries authentication and accounting between the network and the AAA system." },
+                      { "abbr": "RadSec", "term": "RADIUS over TLS (secure RADIUS transport)", "desc": "RADIUS wrapped in TLS encryption so it is safe to send across the internet, which is how roaming traffic is protected." },
+                      { "abbr": "RCOI", "term": "Roaming Consortium Organization Identifier", "desc": "An identifier a network advertises to say which roaming federation it belongs to, such as OpenRoaming." },
+                      { "abbr": "RFC", "term": "Request for Comments (IETF standards document)", "desc": "A published internet standards document from the IETF." },
+                      { "abbr": "SIM", "term": "Subscriber Identity Module", "desc": "The carrier credential in a phone, which can also authenticate it to Passpoint Wi-Fi." },
+                      { "abbr": "SSID", "term": "Service Set Identifier (the Wi-Fi network name)", "desc": "The Wi-Fi network name you see in the list of available networks." },
+                      { "abbr": "TLS", "term": "Transport Layer Security", "desc": "The encryption behind secure connections (the S in HTTPS). It also protects RADIUS as RadSec." },
+                      { "abbr": "TTLS", "term": "Tunneled Transport Layer Security (EAP-TTLS)", "desc": "A login method that tunnels a credential, such as a username and password, inside a secure TLS connection." },
+                      { "abbr": "UAM", "term": "Universal Access Method (captive-portal login)", "desc": "The older captive-portal login model that Passpoint is designed to replace with automatic, secure joining." },
+                      { "abbr": "URL", "term": "Uniform Resource Locator", "desc": "A web address." },
+                      { "abbr": "VPN", "term": "Virtual Private Network", "desc": "An encrypted tunnel for traffic. A reminder that Passpoint secures the Wi-Fi link, not your entire session end to end." },
+                      { "abbr": "WBA", "term": "Wireless Broadband Alliance", "desc": "The Wireless Broadband Alliance, the industry group behind OpenRoaming and guidance like this." },
+                      { "abbr": "WBAID", "term": "WBA Unique Organization Identifier", "desc": "A unique organization identifier the WBA assigns to participants." },
+                      { "abbr": "WISPr", "term": "Wireless Internet Service Provider roaming", "desc": "An early hotspot login method that predates Passpoint and relied on web portals." },
+                      { "abbr": "WLC", "term": "Wireless LAN Controller", "desc": "The controller that manages a fleet of access points from one place." },
+                      { "abbr": "WPA / WPA2 / WPA3", "term": "Wi-Fi Protected Access security generations (Enterprise mode uses 802.1X/EAP)", "desc": "Successive generations of Wi-Fi security. The Enterprise versions use per-user logins (802.1X/EAP) rather than a shared password." },
+                      { "abbr": "WRIX", "term": "Wireless Roaming Intermediary eXchange", "desc": "WBA specifications for exchanging roaming data and settlement between partners." }
                 ]
           }
     ];
@@ -1446,6 +1496,42 @@
         .replaceAll("<", "&lt;")
         .replaceAll(">", "&gt;")
         .replaceAll('"', "&quot;");
+    }
+
+    // Build a lookup of glossary abbreviations -> { term, glossary item id }.
+    let _glossMap = null;
+    let _glossRe = null;
+    function buildGlossary() {
+      _glossMap = {};
+      const sec = sections.find(s => s.glossary);
+      if (sec) {
+        sec.glossary.forEach((item, i) => {
+          item.abbr.split(/[\/,]/).forEach(tok => {
+            tok = tok.trim();
+            if (tok) _glossMap[tok] = { term: item.term, id: "gloss-" + i };
+          });
+        });
+      }
+      const keys = Object.keys(_glossMap).sort((a, b) => b.length - a.length);
+      const esc = s => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      _glossRe = keys.length
+        ? new RegExp("(^|[^A-Za-z0-9])(" + keys.map(esc).join("|") + ")(s|'s|’s)?(?![A-Za-z0-9])", "g")
+        : null;
+    }
+
+    // Escape text, then link the first occurrence (per `seen` set) of each known
+    // abbreviation to its glossary entry. Pass seen=null to disable linking.
+    function abbr(text, seen) {
+      const safe = escapeHtml(text);
+      if (!seen) return safe;
+      if (_glossMap === null) buildGlossary();
+      if (!_glossRe) return safe;
+      return safe.replace(_glossRe, (m, pre, key, suf) => {
+        const entry = _glossMap[key];
+        if (!entry || seen.has(key)) return m;
+        seen.add(key);
+        return `${pre}<a class="gloss" href="#${entry.id}" title="${escapeHtml(entry.term)}">${key}${suf || ""}</a>`;
+      });
     }
 
     function linkHtml(name) {
@@ -1618,19 +1704,22 @@
       </svg>`;
     }
 
-    function detailsHtml(section) {
+    function detailsHtml(section, seen) {
       if (section.glossary) {
         return `
           <div class="glossary-wrap">
-            <dl class="glossary-list">
-              ${section.glossary.map(item => `
-                <div class="glossary-row">
-                  <dt>${escapeHtml(item.abbr)}</dt>
-                  <dd>${escapeHtml(item.term)}</dd>
-                </div>
+            <div class="glossary-list">
+              ${section.glossary.map((item, i) => `
+                <details class="glossary-item" id="gloss-${i}">
+                  <summary>
+                    <span class="g-abbr">${escapeHtml(item.abbr)}</span>
+                    <span class="g-term">${escapeHtml(item.term)}</span>
+                    <span class="g-toggle" aria-hidden="true"></span>
+                  </summary>
+                  <div class="g-desc">${escapeHtml(item.desc || item.term)}</div>
+                </details>
               `).join("")}
-            </dl>
-            <div class="detail-note">${escapeHtml(section.note)}</div>
+            </div>
           </div>
         `;
       }
@@ -1644,10 +1733,10 @@
                   <details class="faq-item">
                     <summary>
                       <span class="faq-q">Q</span>
-                      <span class="faq-question">${escapeHtml(item.question)}</span>
+                      <span class="faq-question">${abbr(item.question, seen)}</span>
                       <span class="faq-toggle" aria-hidden="true"></span>
                     </summary>
-                    <div class="faq-answer">${escapeHtml(item.answer)}</div>
+                    <div class="faq-answer">${abbr(item.answer, seen)}</div>
                   </details>
                 `).join("")}
               </div>
@@ -1655,8 +1744,8 @@
             <div class="faq-support-grid">
               <div>
                 <h3>ANP Checklist</h3>
-                <ul>${section.decisions.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
-                <div class="detail-note">${escapeHtml(section.note)}</div>
+                <ul>${section.decisions.map(item => `<li>${abbr(item, seen)}</li>`).join("")}</ul>
+                <div class="detail-note">${abbr(section.note, seen)}</div>
               </div>
               <div>
                 <h3>Go Deeper</h3>
@@ -1671,12 +1760,12 @@
         <div class="details-grid">
           <div>
             <h3>Completed Thought</h3>
-            <ul>${section.meaning.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+            <ul>${section.meaning.map(item => `<li>${abbr(item, seen)}</li>`).join("")}</ul>
           </div>
           <div>
             <h3>ANP Checklist</h3>
-            <ul>${section.decisions.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
-            <div class="detail-note">${escapeHtml(section.note)}</div>
+            <ul>${section.decisions.map(item => `<li>${abbr(item, seen)}</li>`).join("")}</ul>
+            <div class="detail-note">${abbr(section.note, seen)}</div>
           </div>
           <div>
             <h3>Go Deeper</h3>
@@ -1695,19 +1784,20 @@
 
       stack.innerHTML = sections.map((section, index) => {
         const color = themeColor[section.theme] || themeColor.teal;
+        const seen = section.glossary ? null : new Set();
         return `
           <details class="guide-section" id="${section.id}" ${index < 2 ? "open" : ""}>
             <summary>
               <div>
                 <div class="section-eyebrow"><span class="section-num">${index + 1}</span><span>Primer section</span></div>
                 <h2>${escapeHtml(section.title)}</h2>
-                <p class="summary-text">${escapeHtml(section.summary)}</p>
+                <p class="summary-text">${abbr(section.summary, seen)}</p>
                 <span class="chevron">Details</span>
               </div>
               <div class="visual">${visualSvg(section.visual, color)}</div>
             </summary>
             <div class="details-panel">
-              ${detailsHtml(section)}
+              ${detailsHtml(section, seen)}
             </div>
           </details>
         `;
@@ -1740,6 +1830,25 @@
 
     renderSections();
     renderResources();
+
+    // Clicking an in-page anchor (a glossary abbreviation link or a rail link)
+    // expands the target and any collapsed parent sections so the content is visible.
+    document.addEventListener("click", (event) => {
+      const link = event.target.closest('a[href^="#"]');
+      if (!link) return;
+      const id = decodeURIComponent(link.getAttribute("href").slice(1));
+      if (!id) return;
+      let el = document.getElementById(id);
+      if (!el) return;
+      let opened = false;
+      for (let node = el; node; node = node.parentElement && node.parentElement.closest("details")) {
+        if (node.tagName === "DETAILS" && !node.open) {
+          node.open = true;
+          opened = true;
+        }
+      }
+      if (opened) window.setTimeout(publishEmbedHeight, 60);
+    });
 
     function publishEmbedHeight() {
       const height = Math.max(
