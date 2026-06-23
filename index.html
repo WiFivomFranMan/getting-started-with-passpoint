@@ -920,6 +920,118 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* Seamless-join phone (hero) */
+    .phone-stage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: radial-gradient(135% 100% at 50% -12%, var(--primary-soft) 0%, #ffffff 58%);
+      box-shadow: var(--shadow);
+      padding: 26px 18px;
+      min-width: 0;
+      overflow: hidden;
+    }
+    .phone {
+      position: relative;
+      width: 210px;
+      height: 428px;
+      flex: 0 0 auto;
+      border-radius: 36px;
+      background: #0d1117;
+      padding: 10px;
+      box-shadow: 0 24px 46px rgba(8,40,60,.30), inset 0 0 0 2px #262b33;
+    }
+    .phone .notch {
+      position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
+      width: 92px; height: 19px; background: #0d1117; border-radius: 0 0 13px 13px; z-index: 4;
+    }
+    .phone .home-ind {
+      position: absolute; left: 50%; bottom: 7px; transform: translateX(-50%);
+      width: 86px; height: 4px; border-radius: 3px; background: rgba(255,255,255,.5); z-index: 4;
+    }
+    .screen {
+      position: relative; width: 100%; height: 100%; border-radius: 27px; overflow: hidden;
+      background: linear-gradient(180deg, #e9f3fb 0%, #ffffff 60%);
+      display: flex; flex-direction: column;
+    }
+    .statusbar {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 9px 18px 2px; font-size: 11px; font-weight: 800; color: #0a3a52;
+    }
+    .sb-right { display: inline-flex; align-items: center; gap: 6px; }
+    .sb-wifi { display: inline-flex; color: #0a3a52; }
+    .sb-batt {
+      position: relative; width: 18px; height: 9px; border: 1.5px solid #0a3a52; border-radius: 2px;
+    }
+    .sb-batt:after { content: ""; position: absolute; left: 1px; top: 1px; bottom: 1px; width: 72%; background: #0a3a52; border-radius: 1px; }
+    .sb-batt:before { content: ""; position: absolute; right: -3px; top: 2.5px; bottom: 2.5px; width: 2px; background: #0a3a52; border-radius: 0 1px 1px 0; }
+    .scene {
+      flex: 1; position: relative; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; padding: 16px 16px 6px;
+    }
+    .radar {
+      position: absolute; top: 50%; left: 50%; width: 12px; height: 12px; margin: -6px 0 0 -6px;
+      border-radius: 50%; background: var(--primary); opacity: 0; z-index: 0;
+    }
+    .screen[data-state="searching"] .radar { opacity: .9; animation: radar 1.5s ease-out infinite; }
+    @keyframes radar {
+      0% { box-shadow: 0 0 0 0 rgba(11,116,177,.45); }
+      80%, 100% { box-shadow: 0 0 0 62px rgba(11,116,177,0); }
+    }
+    .netcard {
+      position: relative; z-index: 1; width: 100%; background: #fff; border: 1px solid var(--line);
+      border-radius: 14px; box-shadow: 0 10px 22px rgba(10,42,55,.10);
+      padding: 14px 12px; display: flex; flex-direction: column; align-items: center; gap: 9px; text-align: center;
+    }
+    .netrow { display: flex; align-items: center; gap: 7px; opacity: 0; transform: translateY(6px); transition: .45s; }
+    .screen[data-state="found"] .netrow,
+    .screen[data-state="connecting"] .netrow,
+    .screen[data-state="connected"] .netrow { opacity: 1; transform: none; }
+    .sig { display: inline-flex; align-items: flex-end; gap: 2px; height: 13px; }
+    .sig i { width: 3px; background: #c2ccd2; border-radius: 1px; transition: background .3s; }
+    .sig i:nth-child(1) { height: 5px; }
+    .sig i:nth-child(2) { height: 7px; }
+    .sig i:nth-child(3) { height: 10px; }
+    .sig i:nth-child(4) { height: 13px; }
+    .screen[data-state="connecting"] .sig i,
+    .screen[data-state="connected"] .sig i { background: var(--primary); }
+    .screen[data-state="connecting"] .sig i:nth-child(2) { transition-delay: .12s; }
+    .screen[data-state="connecting"] .sig i:nth-child(3) { transition-delay: .24s; }
+    .screen[data-state="connecting"] .sig i:nth-child(4) { transition-delay: .36s; }
+    .netname { font-weight: 800; color: var(--ink); font-size: 12px; }
+    .ppbadge {
+      font-size: 8.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em;
+      color: var(--primary); background: var(--primary-soft); border: 1px solid #cfe6f5; border-radius: 4px; padding: 2px 5px;
+    }
+    .statusline { position: relative; height: 15px; width: 100%; }
+    .statusline .t { position: absolute; inset: 0; font-size: 11px; opacity: 0; transition: .3s; color: var(--muted); }
+    .screen[data-state="searching"] .t-searching { opacity: 1; }
+    .screen[data-state="found"] .t-found { opacity: 1; }
+    .screen[data-state="connecting"] .t-connecting { opacity: 1; color: var(--primary); font-weight: 700; }
+    .screen[data-state="connected"] .t-connected { opacity: 1; color: var(--action-dark); font-weight: 800; }
+    .check { width: 42px; height: 42px; opacity: 0; transform: scale(.5); transition: .35s cubic-bezier(.2,1.3,.5,1); }
+    .screen[data-state="connected"] .check { opacity: 1; transform: scale(1); }
+    .check circle { fill: none; stroke: var(--action); stroke-width: 3; stroke-dasharray: 145; stroke-dashoffset: 145; }
+    .check path { fill: none; stroke: var(--action); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 42; stroke-dashoffset: 42; }
+    .screen[data-state="connected"] .check circle { animation: draw .5s ease forwards; }
+    .screen[data-state="connected"] .check path { animation: draw .35s .3s ease forwards; }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+    .toast {
+      position: absolute; top: 32px; left: 12px; right: 12px; z-index: 2;
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(13,17,23,.95); color: #fff; border-radius: 13px; padding: 9px 11px;
+      font-size: 10.5px; font-weight: 700; box-shadow: 0 12px 26px rgba(0,0,0,.28);
+      opacity: 0; transform: translateY(-16px); transition: .45s;
+    }
+    .screen[data-state="connected"] .toast { opacity: 1; transform: none; }
+    .toast .dot { width: 18px; height: 18px; border-radius: 5px; background: var(--action); display: inline-grid; place-items: center; color: #fff; font-size: 11px; flex: 0 0 auto; }
+    .seamless { text-align: center; font-size: 10px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: #0a3a52; opacity: .72; padding: 0 8px 14px; }
+    .stage-cap { color: var(--muted); font-size: 13px; text-align: center; max-width: 300px; line-height: 1.4; margin: 0; }
   </style>
 </head>
 <body>
@@ -931,13 +1043,6 @@
           <strong>Getting Started with Passpoint</strong>
           <span>A getting-started guide for Access Network Providers</span>
         </div>
-      </div>
-      <div class="pill-row" aria-label="guide scope">
-        <span class="pill draft-pill">Draft</span>
-        <span class="pill">Plain Language</span>
-        <span class="pill">Access Network Providers</span>
-        <span class="pill">Passpoint / Hotspot 2.0</span>
-        <span class="pill">OpenRoaming ready</span>
       </div>
     </div>
 
@@ -956,29 +1061,40 @@
           <button class="button secondary" id="collapseAll" type="button">Collapse All</button>
         </div>
       </div>
-      <aside class="map-panel" aria-label="Passpoint capability map">
-        <div class="map-title">
-          <span>ANP readiness map</span>
-          <span class="pill">Primer view</span>
+      <aside class="phone-stage" aria-label="Passpoint seamless join demo">
+        <div class="phone">
+          <span class="notch"></span>
+          <div class="screen" data-state="searching">
+            <div class="statusbar">
+              <span>9:41</span>
+              <span class="sb-right">
+                <span class="sb-wifi"><svg viewBox="0 0 20 15" width="17" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 5a11 11 0 0 1 16 0"/><path d="M5 8a6.5 6.5 0 0 1 10 0"/><circle cx="10" cy="11.4" r="1.3" fill="currentColor" stroke="none"/></svg></span>
+                <span class="sb-batt"></span>
+              </span>
+            </div>
+            <div class="scene">
+              <span class="radar"></span>
+              <div class="netcard">
+                <div class="netrow">
+                  <span class="sig"><i></i><i></i><i></i><i></i></span>
+                  <span class="netname">City Centre Wi&#8209;Fi</span>
+                  <span class="ppbadge">Passpoint</span>
+                </div>
+                <div class="statusline">
+                  <span class="t t-searching">Looking for trusted networks&hellip;</span>
+                  <span class="t t-found">Trusted network found</span>
+                  <span class="t t-connecting">Connecting securely&hellip;</span>
+                  <span class="t t-connected">Connected</span>
+                </div>
+                <svg class="check" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="23"/><path d="M15 27l8 8 14-16"/></svg>
+              </div>
+              <div class="toast"><span class="dot">&#10003;</span><span>Joined OpenRoaming automatically</span></div>
+            </div>
+            <div class="seamless">No password &middot; No portal &middot; Automatic</div>
+          </div>
+          <span class="home-ind"></span>
         </div>
-        <div class="signal-card">
-          <div class="signal-row">
-            <div class="signal-label">Discovery</div>
-            <div class="signal-track discovery"><span>Beacon + ANQP</span></div>
-          </div>
-          <div class="signal-row">
-            <div class="signal-label">Identity</div>
-            <div class="signal-track identity"><span>Domain, realm, RCOI, PLMN</span></div>
-          </div>
-          <div class="signal-row">
-            <div class="signal-label">Security</div>
-            <div class="signal-track security"><span>802.1X, EAP, WPA Enterprise</span></div>
-          </div>
-          <div class="signal-row">
-            <div class="signal-label">Ops</div>
-            <div class="signal-track operations"><span>RadSec, accounting, location</span></div>
-          </div>
-        </div>
+        <p class="stage-cap">A device with a Passpoint profile finds the network, matches it, and joins securely &mdash; no tapping, no password.</p>
       </aside>
     </section>
 
@@ -1426,6 +1542,14 @@
         url: "https://source.android.com/docs/core/connect/wifi-passpoint",
         text: "Android Passpoint implementation notes, profile behavior, and matching considerations."
       },
+      "iOS / iPadOS Passpoint": {
+        url: "https://support.apple.com/en-ie/guide/deployment/depea26c29b9/web",
+        text: "Apple device-management reference for configuring Passpoint / HotSpot 2.0 profiles, identifiers, roaming partners, and auto-join on iPhone and iPad."
+      },
+      "Windows Passpoint": {
+        url: "https://learn.microsoft.com/en-us/windows-hardware/drivers/mobilebroadband/passpoint",
+        text: "Microsoft documentation for configuring, provisioning, and supporting Passpoint on Windows."
+      },
       "ChromeOS Passpoint Profiles": {
         url: "https://support.google.com/chromebook/answer/13657835?hl=en-GB",
         text: "ChromeOS user help for Passpoint profiles, automatic connection, and subscription removal."
@@ -1469,9 +1593,10 @@
       ["Build for OpenRoaming", ["WBA OpenRoaming", "WBA OpenRoaming How It Works", "WBA OpenRoaming Intro Guide"]],
       ["Configure identifiers", ["IEEE OUI Search", "RFC 7542 NAI", "WBA OpenRoaming Config"]],
       ["Secure AAA", ["RFC 6614 RadSec", "RFC 7585 DPD", "RFC 5580 Location"]],
+      ["Configure devices", ["iOS / iPadOS Passpoint", "Android Passpoint", "Windows Passpoint"]],
       ["Answer FAQs", ["WBA OpenRoaming FAQ", "Apple Auto-Join Behavior", "Android Passpoint", "Microsoft Passpoint"]],
-      ["Provision profiles", ["WBA OpenRoaming Profile Sign Up", "WBA OpenRoaming Resources"]],
-      ["Keep current", ["WBA OpenRoaming Resources", "Wi-Fi Alliance Passpoint", "WBA OpenRoaming Config"]]
+      ["Provision profiles", ["WBA OpenRoaming Profile Sign Up"]],
+      ["Keep current", ["Wi-Fi Alliance Passpoint", "WBA OpenRoaming Config"]]
     ];
 
     const themeColor = {
@@ -1884,6 +2009,21 @@
     window.addEventListener("load", publishEmbedHeight);
     window.addEventListener("resize", publishEmbedHeight);
     window.setTimeout(publishEmbedHeight, 250);
+
+    // Seamless-join phone: loop searching -> found -> connecting -> connected.
+    (function(){
+      var screen = document.querySelector(".phone-stage .screen");
+      if (!screen) return;
+      var seq = [["searching",1500],["found",1300],["connecting",1800],["connected",2700]];
+      var i = 0;
+      function tick(){
+        screen.setAttribute("data-state", seq[i][0]);
+        var d = seq[i][1];
+        i = (i + 1) % seq.length;
+        window.setTimeout(tick, d);
+      }
+      tick();
+    })();
   </script>
 </body>
 </html>
