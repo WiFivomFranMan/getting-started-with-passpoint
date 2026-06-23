@@ -1,62 +1,40 @@
-# Passpoint Quick Start Figma Package
+# Getting Started with Passpoint
 
-This package converts `PQSG - Structure and flow 20260505.docx` into a polished learning-map concept for Access Network Providers.
+Published static site for **Getting Started with Passpoint** — a plain-language primer for Access
+Network Providers (ANPs), hosted on GitHub Pages.
+
+Live: `https://wifivomfranman.github.io/getting-started-with-passpoint/`
 
 ## Files
 
-- `passpoint-quick-start-prototype.html` - reviewable accordion prototype with expandable sections, modern infographics, and standards/resource links.
-- `figma-plugin/manifest.json` - local Figma development plugin manifest.
-- `figma-plugin/code.js` - generator that creates the desktop and mobile Figma frames.
-- Published site assets include four existing diagram SVGs under `assets/diagrams/`.
-- The top navigation uses the WBA logo extracted from `WBA_Whitepaper_Template_Latest_V1.0.0.docx` and bundled under `assets/logos/`.
-- `styles/` - review pages for alternate writing styles.
-- `tools/build_style_versions.js` - generator for the alternate writing-style review pages.
+- `index.html` - the guide. A single self-contained page: an accordion learning map with expandable
+  sections, inline infographics (SVG), an FAQ, a glossary, and a standards/resource shelf. All content
+  lives in the `sections` array near the bottom of the file and is rendered client-side.
+- `assets/diagrams/` - the four diagram SVGs (Evolution, Connection process, Identifier map, RADIUS/RadSec).
+- `assets/logos/` - WBA logo used in the top navigation.
+- `styles/plain-language/` - redirect stub kept so the previously shared review URL still resolves to the guide.
+- `wordpress/` - WordPress embed handoff kit (iframe snippets + optional shortcode plugin).
+- `.nojekyll` - serves the site as plain static files on GitHub Pages.
 
-## Writing Style Review Links
+## Editing the content
 
-Use these links to compare voice and tone while keeping the same structure, visual design, and reference links:
+Open `index.html` and edit the `sections` array:
 
-- `styles/plain-language/` - Plain-Language Learner
-- `styles/operator-playbook/` - Operator Playbook
-- `styles/wba-formal/` - Standards-Neutral WBA Formal
-- `styles/executive/` - Executive Summary
-- `styles/support-faq/` - Support and FAQ
-- `styles/comedic-plainspoken/` - Comedic Plainspoken review draft
+- Each section is `{ id, title, theme, visual, summary, meaning[], decisions[], note, links[] }`.
+- The FAQ section uses `faqItems[]` instead of `meaning[]`.
+- The Glossary section uses `glossary[]` (`{ abbr, term }`) instead of `meaning[]`.
+- Section headings in the detail panel: **Completed Thought**, **ANP Checklist**, **Go Deeper**.
+- The left rail and section numbering are generated automatically from the array order.
 
-## Figma Import
+## Content intent
 
-1. Open Figma.
-2. Go to `Plugins > Development > Import plugin from manifest`.
-3. Select `figma-plugin/manifest.json`.
-4. Run `Passpoint Quick Start Generator`.
+The guide is a primer, not a full standard or vendor configuration guide. It keeps the surface
+readable while sending technical readers to Wi-Fi Alliance, IEEE, IETF, WBA, OpenRoaming, and vendor
+documents for exact requirements and implementation detail.
 
-The plugin creates:
+## WBA-aligned visual rules
 
-- `01 Desktop - Passpoint Learning Map`
-- `02 Mobile - Accordion Review`
-
-Each guide section is written as a completed summary plus an expanded detail area with:
-
-- completed thought
-- ANP checkpoints
-- operator note
-- go-deeper links
-
-## Content Intent
-
-The artifact is a primer, not a full standard or vendor configuration guide. It keeps the surface readable while sending technical readers to Wi-Fi Alliance, IEEE, IETF, WBA, OpenRoaming, and vendor documents for exact requirements and implementation detail.
-
-## Source Material Used
-
-- `WBA Dallas/PQSG - Structure and flow 20260505.docx`
-- `Passpoint Quick Start Guide - WBA Format v1.5.docx`
-- `/Users/kevinfranman/Downloads/design-guidelines.md`
-- Existing diagram assets in `diagrams/`
-- Public standards/resource links embedded in the prototype and Figma generator
-
-## WBA-Aligned Visual Rules Applied
-
-- Primary blue `#0b74b1` for navigation, links, section accents, and secondary interactive elements.
-- Action green `#25d66c` only for the primary CTA.
-- Neutral page background `#f2f2f2`, white cards, subtle borders, and light shadows.
-- 4px button/badge radius, 8px card/panel radius, and restrained system typography.
+- Primary blue `#0b74b1` for navigation, links, and section accents.
+- Action green `#25d66c` only for the primary call to action.
+- Neutral background `#f2f2f2`, white cards, subtle borders, light shadows.
+- 4px button/badge radius, 8px card/panel radius, restrained system typography.

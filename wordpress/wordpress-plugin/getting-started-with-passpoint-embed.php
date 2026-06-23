@@ -1,7 +1,7 @@
 <?php
 /**
- * Plugin Name: Passpoint Quick Start Embed
- * Description: Adds a shortcode for embedding the Passpoint Quick Start Guide draft.
+ * Plugin Name: Getting Started with Passpoint Embed
+ * Description: Adds a shortcode for embedding the Getting Started with Passpoint guide draft.
  * Version: 1.0.0
  * Author: WBA
  */
@@ -10,14 +10,14 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-function pqsg_render_passpoint_quick_start($atts = array()) {
+function gswp_render_getting_started_with_passpoint($atts = array()) {
     $atts = shortcode_atts(
         array(
-            'src' => 'https://wifivomfranman.github.io/passpoint-quick-start-guide/',
+            'src' => 'https://wifivomfranman.github.io/getting-started-with-passpoint/',
             'height' => '1200',
         ),
         $atts,
-        'passpoint_quick_start'
+        'getting_started_with_passpoint'
     );
 
     $src = esc_url($atts['src']);
@@ -33,7 +33,7 @@ function pqsg_render_passpoint_quick_start($atts = array()) {
     <div class="passpoint-guide-embed" style="width:100%;max-width:1280px;margin:0 auto;">
         <iframe
             id="<?php echo esc_attr($id); ?>"
-            title="Passpoint Quick Start Guide Draft"
+            title="Getting Started with Passpoint (Draft)"
             src="<?php echo $src; ?>"
             loading="lazy"
             style="width:100%;height:<?php echo esc_attr($height); ?>px;border:0;display:block;background:#f2f2f2;"
@@ -59,4 +59,4 @@ function pqsg_render_passpoint_quick_start($atts = array()) {
     return ob_get_clean();
 }
 
-add_shortcode('passpoint_quick_start', 'pqsg_render_passpoint_quick_start');
+add_shortcode('getting_started_with_passpoint', 'gswp_render_getting_started_with_passpoint');
