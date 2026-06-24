@@ -1600,156 +1600,245 @@
       if (type === "timeline") {
         return `<svg viewBox="0 0 280 178" role="img" aria-label="WISPr to Passpoint timeline">
           <rect width="280" height="178" fill="${pale}"/>
-          <line x1="42" y1="92" x2="238" y2="92" stroke="${dark}" stroke-width="4" stroke-linecap="round"/>
-          <circle cx="52" cy="92" r="18" fill="#fff" stroke="${dark}" stroke-width="3"/>
-          <circle cx="140" cy="92" r="18" fill="#fff" stroke="${dark}" stroke-width="3"/>
-          <circle cx="228" cy="92" r="18" fill="#fff" stroke="${dark}" stroke-width="3"/>
-          <circle cy="92" r="6" fill="${dark}">
-            <animate attributeName="cx" values="52;52;140;140;228;228" keyTimes="0;0.12;0.42;0.54;0.84;1" dur="3.6s" repeatCount="indefinite"/>
-          </circle>
-          <circle cx="228" cy="92" r="18" fill="none" stroke="#1aad55" stroke-width="3" opacity="0">
-            <animate attributeName="opacity" values="0;0;0.95;0" keyTimes="0;0.8;0.88;1" dur="3.6s" repeatCount="indefinite"/>
-            <animate attributeName="r" values="18;18;24;30" keyTimes="0;0.8;0.9;1" dur="3.6s" repeatCount="indefinite"/>
-          </circle>
-          ${label(35, 57, "WISPr", 13)}
-          ${label(112, 57, "802.11u", 13)}
-          ${label(200, 57, "Passpoint", 13)}
-          ${label(25, 132, "Portal", 11, muted, 650)}
-          ${label(104, 132, "ANQP", 11, muted, 650)}
-          ${label(189, 132, "Auto join", 11, muted, 650)}
+          <ellipse cx="74" cy="142" rx="44" ry="6" fill="${ink}" opacity="0.06"/>
+          <ellipse cx="212" cy="142" rx="30" ry="6" fill="${ink}" opacity="0.06"/>
+          <rect x="22" y="44" width="104" height="86" rx="8" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
+          <path d="M22 59 h104" stroke="${dark}" stroke-width="2.5"/>
+          <circle cx="33" cy="51" r="2.4" fill="${dark}" opacity="0.5"/>
+          <circle cx="41" cy="51" r="2.4" fill="${dark}" opacity="0.5"/>
+          <circle cx="49" cy="51" r="2.4" fill="${dark}" opacity="0.5"/>
+          <rect x="36" y="70" width="76" height="9" rx="3" fill="${pale}" stroke="${dark}" stroke-width="1.5"/>
+          <rect x="36" y="85" width="76" height="9" rx="3" fill="${pale}" stroke="${dark}" stroke-width="1.5"/>
+          <rect x="62" y="102" width="50" height="15" rx="4" fill="${dark}"/>
+          <text x="87" y="113" font-size="8" font-weight="800" fill="#fff" text-anchor="middle" style="${common}">SIGN IN</text>
+          ${label(38, 141, "Captive portal", 10, muted, 700)}
+          <path d="M134 88 h18" stroke="${dark}" stroke-width="3" stroke-linecap="round"/>
+          <path d="M148 82 l8 6 -8 6" fill="none" stroke="${dark}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="184" y="46" width="56" height="84" rx="12" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
+          <rect x="191" y="58" width="42" height="60" rx="4" fill="${pale}"/>
+          <g transform="translate(212,82)">
+            <circle cx="0" cy="0" r="15" fill="#1aad55"><animate attributeName="opacity" values="0.8;1;0.8" dur="1.8s" repeatCount="indefinite"/></circle>
+            <path d="M-6 0 l4 4 8 -9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+          ${label(194, 141, "Passpoint", 10, muted, 700)}
         </svg>`;
       }
       if (type === "releases") {
         return `<svg viewBox="0 0 280 178" role="img" aria-label="Passpoint releases">
           <rect width="280" height="178" fill="${pale}"/>
-          <rect x="24" y="36" width="64" height="98" rx="8" fill="#fff" stroke="${dark}" stroke-width="2"/>
-          <rect x="108" y="22" width="64" height="112" rx="8" fill="#fff" stroke="${dark}" stroke-width="2"/>
-          <rect x="192" y="48" width="64" height="86" rx="8" fill="#fff" stroke="${dark}" stroke-width="2"/>
-          ${label(43, 68, "R1", 24, dark, 860)}
-          ${label(127, 56, "R2", 24, dark, 860)}
-          ${label(211, 80, "R3", 24, dark, 860)}
-          ${label(33, 104, "Core", 12, muted)}
-          ${label(118, 94, "OSU", 12, muted)}
-          ${label(203, 116, "Venue", 12, muted)}
+          <ellipse cx="140" cy="152" rx="112" ry="6" fill="${ink}" opacity="0.05"/>
+          <rect x="30" y="100" width="64" height="44" rx="8" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
+          <rect x="108" y="74" width="64" height="70" rx="8" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
+          <rect x="186" y="46" width="64" height="98" rx="8" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
+          ${label(51, 126, "R1", 19, dark, 860)}
+          ${label(129, 110, "R2", 19, dark, 860)}
+          ${label(207, 82, "R3", 19, dark, 860)}
+          ${label(46, 138, "Core", 9, muted, 700)}
+          ${label(120, 138, "Sign-up", 9, muted, 700)}
+          ${label(192, 138, "Venue + WPA3", 9, muted, 700)}
+          <rect x="30" y="100" width="64" height="44" rx="8" fill="none" stroke="#1aad55" stroke-width="3" opacity="0"><animate attributeName="opacity" values="0;1;0;0" keyTimes="0;0.12;0.3;1" dur="3.9s" repeatCount="indefinite"/></rect>
+          <rect x="108" y="74" width="64" height="70" rx="8" fill="none" stroke="#1aad55" stroke-width="3" opacity="0"><animate attributeName="opacity" values="0;0;1;0;0" keyTimes="0;0.33;0.45;0.63;1" dur="3.9s" repeatCount="indefinite"/></rect>
+          <rect x="186" y="46" width="64" height="98" rx="8" fill="none" stroke="#1aad55" stroke-width="3" opacity="0"><animate attributeName="opacity" values="0;0;1;0" keyTimes="0;0.66;0.8;1" dur="3.9s" repeatCount="indefinite"/></rect>
         </svg>`;
       }
       if (type === "flow") {
         return `<svg viewBox="0 0 280 178" role="img" aria-label="Passpoint connection flow">
           <rect width="280" height="178" fill="${pale}"/>
-          <rect x="18" y="55" width="66" height="60" rx="8" fill="#fff" stroke="${dark}" stroke-width="2"/>
-          <rect x="107" y="55" width="66" height="60" rx="8" fill="#fff" stroke="${dark}" stroke-width="2"/>
-          <rect x="196" y="55" width="66" height="60" rx="8" fill="#fff" stroke="${dark}" stroke-width="2"/>
-          <path d="M88 85h15M177 85h15" stroke="${dark}" stroke-width="3" stroke-linecap="round"/>
-          <path d="M99 78l8 7-8 7M188 78l8 7-8 7" fill="none" stroke="${dark}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-          <rect x="196" y="55" width="66" height="60" rx="8" fill="none" stroke="#1aad55" stroke-width="3" opacity="0">
-            <animate attributeName="opacity" values="0;0;1;0" keyTimes="0;0.74;0.85;1" dur="3.2s" repeatCount="indefinite"/>
-          </rect>
-          <circle cy="85" r="6" fill="${dark}">
-            <animate attributeName="cx" values="51;51;140;140;229;229" keyTimes="0;0.12;0.4;0.52;0.8;1" dur="3.2s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="0;1;1;1;1;0" keyTimes="0;0.08;0.4;0.8;0.94;1" dur="3.2s" repeatCount="indefinite"/>
-          </circle>
-          ${label(31, 82, "Beacon", 12)}
-          ${label(120, 82, "ANQP", 12)}
-          ${label(209, 82, "EAP", 12)}
-          ${label(28, 101, "hint", 11, muted)}
-          ${label(117, 101, "detail", 11, muted)}
-          ${label(205, 101, "secure", 11, muted)}
+          <ellipse cx="66" cy="140" rx="34" ry="5" fill="${ink}" opacity="0.06"/>
+          <ellipse cx="222" cy="128" rx="32" ry="5" fill="${ink}" opacity="0.06"/>
+          <circle cx="198" cy="94" r="6" fill="none" stroke="${dark}" stroke-width="2"><animate attributeName="r" values="6;44;6" dur="2.6s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.5;0;0.5" dur="2.6s" repeatCount="indefinite"/></circle>
+          <line x1="210" y1="78" x2="206" y2="60" stroke="${dark}" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="238" y1="78" x2="242" y2="60" stroke="${dark}" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="206" cy="58" r="2.4" fill="${dark}"/><circle cx="242" cy="58" r="2.4" fill="${dark}"/>
+          <rect x="196" y="78" width="52" height="32" rx="7" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
+          <circle cx="222" cy="94" r="3.2" fill="${dark}" opacity="0.4"/>
+          <rect x="42" y="48" width="48" height="84" rx="11" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
+          <rect x="48" y="59" width="36" height="58" rx="3" fill="${pale}"/>
+          <g opacity="0">
+            <rect x="-10" y="-8" width="20" height="16" rx="4" fill="${dark}"/>
+            <text x="0" y="4" font-size="11" font-weight="800" fill="#fff" text-anchor="middle" style="${common}">?</text>
+            <animateMotion dur="3.8s" calcMode="linear" keyPoints="0;0;1;1" keyTimes="0;0.16;0.34;1" repeatCount="indefinite" path="M94 86 L190 94"/>
+            <animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.17;0.33;0.35;1" dur="3.8s" repeatCount="indefinite"/>
+          </g>
+          <g opacity="0">
+            <rect x="-14" y="-8" width="28" height="16" rx="4" fill="#fff" stroke="${dark}" stroke-width="2"/>
+            <text x="0" y="4" font-size="8" font-weight="800" fill="${dark}" text-anchor="middle" style="${common}">DATA</text>
+            <animateMotion dur="3.8s" calcMode="linear" keyPoints="0;0;1;1" keyTimes="0;0.42;0.6;1" repeatCount="indefinite" path="M190 98 L94 92"/>
+            <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.42;0.44;0.58;0.6;1" dur="3.8s" repeatCount="indefinite"/>
+          </g>
+          <g transform="translate(66,88)" opacity="0">
+            <circle cx="0" cy="0" r="13" fill="#1aad55"/>
+            <rect x="-5" y="-1" width="10" height="8" rx="1.6" fill="#fff"/>
+            <path d="M-3 -1 v-2.6 a3 3 0 0 1 6 0 v2.6" fill="none" stroke="#fff" stroke-width="1.9"/>
+            <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.64;0.74;0.93;1" dur="3.8s" repeatCount="indefinite"/>
+          </g>
+          ${label(46, 150, "Device", 10, muted, 700)}
+          ${label(196, 150, "Access point", 10, muted, 700)}
         </svg>`;
       }
       if (type === "identifiers") {
         return `<svg viewBox="0 0 280 178" role="img" aria-label="Identifier matching map">
           <rect width="280" height="178" fill="${pale}"/>
-          <circle cx="140" cy="88" r="34" fill="#fff" stroke="${dark}" stroke-width="3"/>
-          ${label(119, 93, "ANQP", 15, dark, 860)}
-          <rect x="22" y="28" width="78" height="38" rx="8" fill="#fff" stroke="${dark}" stroke-width="2"/>
-          <rect x="180" y="28" width="78" height="38" rx="8" fill="#fff" stroke="${dark}" stroke-width="2"/>
-          <rect x="22" y="116" width="78" height="38" rx="8" fill="#fff" stroke="${dark}" stroke-width="2"/>
-          <rect x="180" y="116" width="78" height="38" rx="8" fill="#fff" stroke="${dark}" stroke-width="2"/>
-          <path d="M101 48l24 22M179 48l-24 22M101 136l24-25M179 136l-24-25" stroke="${dark}" stroke-width="2" stroke-linecap="round"/>
-          ${label(38, 52, "Domain", 12)}
-          ${label(201, 52, "Realm", 12)}
-          ${label(43, 140, "RCOI", 12)}
-          ${label(202, 140, "PLMN", 12)}
+          <ellipse cx="140" cy="160" rx="86" ry="6" fill="${ink}" opacity="0.05"/>
+          <rect x="64" y="24" width="152" height="128" rx="10" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
+          <path d="M64 50 h152" stroke="${dark}" stroke-width="2"/>
+          ${label(80, 42, "ANQP match", 12, dark, 820)}
+          <circle cx="198" cy="37" r="6" fill="${dark}" opacity="0.18"/>
+          ${label(82, 73, "Domain", 12)}
+          ${label(82, 97, "NAI Realm", 12)}
+          ${label(82, 121, "RCOI", 12)}
+          ${label(82, 145, "PLMN", 12)}
+          <circle cx="194" cy="69" r="8" fill="none" stroke="${dark}" stroke-width="1.5" opacity="0.25"/>
+          <circle cx="194" cy="93" r="8" fill="none" stroke="${dark}" stroke-width="1.5" opacity="0.25"/>
+          <circle cx="194" cy="117" r="8" fill="none" stroke="${dark}" stroke-width="1.5" opacity="0.25"/>
+          <circle cx="194" cy="141" r="8" fill="none" stroke="${dark}" stroke-width="1.5" opacity="0.25"/>
+          <g opacity="0"><circle cx="194" cy="69" r="8" fill="#1aad55"/><path d="M190 69 l3 3 5 -6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.18;0.28;1" dur="4s" repeatCount="indefinite"/></g>
+          <g opacity="0"><circle cx="194" cy="93" r="8" fill="#1aad55"/><path d="M190 93 l3 3 5 -6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.34;0.44;1" dur="4s" repeatCount="indefinite"/></g>
+          <g opacity="0"><circle cx="194" cy="117" r="8" fill="#1aad55"/><path d="M190 117 l3 3 5 -6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.6;1" dur="4s" repeatCount="indefinite"/></g>
+          <g opacity="0"><circle cx="194" cy="141" r="8" fill="#1aad55"/><path d="M190 141 l3 3 5 -6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.66;0.76;1" dur="4s" repeatCount="indefinite"/></g>
         </svg>`;
       }
       if (type === "profile") {
         return `<svg viewBox="0 0 280 178" role="img" aria-label="Profile provisioning pipeline">
           <rect width="280" height="178" fill="${pale}"/>
-          <rect x="24" y="37" width="68" height="104" rx="10" fill="#fff" stroke="${dark}" stroke-width="2"/>
-          <rect x="112" y="52" width="56" height="74" rx="8" fill="#fff" stroke="${dark}" stroke-width="2"/>
-          <rect x="188" y="37" width="68" height="104" rx="10" fill="#fff" stroke="${dark}" stroke-width="2"/>
-          <path d="M96 88h12M172 88h12" stroke="${dark}" stroke-width="3" stroke-linecap="round"/>
-          <path d="M104 82l7 6-7 6M180 82l7 6-7 6" fill="none" stroke="${dark}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-          ${label(36, 74, "App", 12)}
-          ${label(31, 94, "MDM", 12)}
-          ${label(124, 91, "Profile", 12)}
-          ${label(204, 80, "OS", 12)}
-          ${label(199, 101, "match", 12)}
+          <ellipse cx="194" cy="146" rx="40" ry="6" fill="${ink}" opacity="0.06"/>
+          ${label(20, 70, "Carrier", 9, muted, 700)}
+          ${label(20, 92, "MDM", 9, muted, 700)}
+          ${label(20, 114, "App", 9, muted, 700)}
+          <rect x="164" y="42" width="60" height="100" rx="13" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
+          <rect x="171" y="54" width="46" height="76" rx="4" fill="${pale}"/>
+          <g opacity="0">
+            <rect x="-24" y="-16" width="48" height="32" rx="5" fill="#fff" stroke="${dark}" stroke-width="2"/>
+            <circle cx="-13" cy="-4" r="5" fill="${dark}" opacity="0.45"/>
+            <rect x="-4" y="-7" width="20" height="3" rx="1.5" fill="${dark}" opacity="0.4"/>
+            <rect x="-4" y="-1" width="20" height="3" rx="1.5" fill="${dark}" opacity="0.4"/>
+            <rect x="-13" y="7" width="26" height="3" rx="1.5" fill="${dark}" opacity="0.4"/>
+            <animateMotion dur="3.6s" calcMode="linear" keyPoints="0;0;1;1;1" keyTimes="0;0.1;0.5;0.6;1" repeatCount="indefinite" path="M62 92 L194 90"/>
+            <animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.12;0.48;0.56;1" dur="3.6s" repeatCount="indefinite"/>
+          </g>
+          <g transform="translate(194,92)" opacity="0">
+            <circle cx="0" cy="0" r="14" fill="#1aad55"/>
+            <path d="M-6 0 l4 4 8 -9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.6;0.7;0.93;1" dur="3.6s" repeatCount="indefinite"/>
+          </g>
+          ${label(166, 152, "Profile installed", 10, muted, 700)}
         </svg>`;
       }
       if (type === "security") {
         return `<svg viewBox="0 0 280 178" role="img" aria-label="Security stack">
           <rect width="280" height="178" fill="${pale}"/>
-          <rect x="48" y="34" width="184" height="28" rx="8" fill="#fff" stroke="${dark}" stroke-width="2"/>
-          <rect x="48" y="74" width="184" height="28" rx="8" fill="#fff" stroke="${dark}" stroke-width="2"/>
-          <rect x="48" y="114" width="184" height="28" rx="8" fill="#fff" stroke="${dark}" stroke-width="2"/>
-          ${label(84, 53, "WPA Enterprise", 13)}
-          ${label(104, 93, "802.1X / EAP", 13)}
-          ${label(94, 133, "Dynamic keys", 13)}
-          <path d="M140 62v12M140 102v12" stroke="${dark}" stroke-width="3" stroke-linecap="round"/>
+          <ellipse cx="95" cy="152" rx="40" ry="6" fill="${ink}" opacity="0.05"/>
+          <path d="M95 36 L128 49 V90 C128 114 113 129 95 138 C77 129 62 114 62 90 V49 Z" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
+          <path d="M95 36 L128 49 V90 C128 114 113 129 95 138 C77 129 62 114 62 90 V49 Z" fill="#1aad55" opacity="0"><animate attributeName="opacity" values="0;0;0.14;0.14" keyTimes="0;0.66;0.82;1" dur="4s" repeatCount="indefinite"/></path>
+          <rect x="85" y="88" width="20" height="16" rx="3" fill="${dark}"/>
+          <path d="M89 88 v-5 a6 6 0 0 1 12 0 v5" fill="none" stroke="${dark}" stroke-width="3"/>
+          <circle cx="95" cy="95" r="2.4" fill="#fff"/>
+          ${label(66, 158, "Enterprise Wi-Fi", 9, muted, 700)}
+          <rect x="150" y="44" width="106" height="24" rx="6" fill="#fff" stroke="${dark}" stroke-width="2"/>
+          <rect x="150" y="78" width="106" height="24" rx="6" fill="#fff" stroke="${dark}" stroke-width="2"/>
+          <rect x="150" y="112" width="106" height="24" rx="6" fill="#fff" stroke="${dark}" stroke-width="2"/>
+          ${label(162, 60, "WPA-Enterprise", 11)}
+          ${label(162, 94, "802.1X / EAP", 11)}
+          ${label(162, 128, "Dynamic keys", 11)}
+          <rect x="150" y="44" width="106" height="24" rx="6" fill="none" stroke="#1aad55" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0;1;1;1" keyTimes="0;0.22;0.9;1" dur="4s" repeatCount="indefinite"/></rect>
+          <rect x="150" y="78" width="106" height="24" rx="6" fill="none" stroke="#1aad55" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0;0;1;1;1" keyTimes="0;0.22;0.42;0.9;1" dur="4s" repeatCount="indefinite"/></rect>
+          <rect x="150" y="112" width="106" height="24" rx="6" fill="none" stroke="#1aad55" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.42;0.62;1" dur="4s" repeatCount="indefinite"/></rect>
         </svg>`;
       }
       if (type === "aaa") {
         return `<svg viewBox="0 0 280 178" role="img" aria-label="AAA and RadSec routing">
           <rect width="280" height="178" fill="${pale}"/>
-          <circle cx="54" cy="88" r="28" fill="#fff" stroke="${dark}" stroke-width="2"/>
-          <circle cx="140" cy="88" r="28" fill="#fff" stroke="${dark}" stroke-width="2"/>
-          <circle cx="226" cy="88" r="28" fill="#fff" stroke="${dark}" stroke-width="2"/>
-          <path d="M82 88h29M168 88h29" stroke="${dark}" stroke-width="3" stroke-linecap="round"/>
-          <path d="M106 81l8 7-8 7M192 81l8 7-8 7" fill="none" stroke="${dark}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-          ${label(41, 92, "AP", 13)}
-          ${label(117, 92, "RadSec", 13)}
-          ${label(212, 92, "IdP", 13)}
-          ${label(78, 132, "TLS protected AAA path", 12, muted)}
+          <ellipse cx="46" cy="128" rx="26" ry="5" fill="${ink}" opacity="0.06"/>
+          <ellipse cx="234" cy="128" rx="26" ry="5" fill="${ink}" opacity="0.06"/>
+          <line x1="38" y1="72" x2="34" y2="56" stroke="${dark}" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="58" y1="72" x2="62" y2="56" stroke="${dark}" stroke-width="2.5" stroke-linecap="round"/>
+          <rect x="26" y="72" width="44" height="30" rx="6" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
+          <circle cx="48" cy="87" r="3" fill="${dark}" opacity="0.4"/>
+          ${label(38, 120, "AP", 11, muted, 700)}
+          <rect x="116" y="60" width="48" height="56" rx="7" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
+          <path d="M116 79 h48 M116 98 h48" stroke="${dark}" stroke-width="1.5" opacity="0.45"/>
+          <circle cx="126" cy="70" r="2.2" fill="#1aad55"/>
+          <circle cx="126" cy="89" r="2.2" fill="${dark}" opacity="0.4"/>
+          <circle cx="126" cy="107" r="2.2" fill="${dark}" opacity="0.4"/>
+          ${label(112, 132, "RadSec proxy", 10, muted, 700)}
+          <rect x="212" y="60" width="44" height="56" rx="7" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
+          <circle cx="234" cy="80" r="7" fill="${dark}" opacity="0.4"/>
+          <path d="M223 104 a11 9 0 0 1 22 0" fill="${dark}" opacity="0.4"/>
+          ${label(224, 132, "IdP", 11, muted, 700)}
+          <path d="M70 88 h44 M166 88 h44" stroke="${dark}" stroke-width="2.5" stroke-linecap="round"/>
+          <g transform="translate(188,88)">
+            <rect x="-7" y="-2" width="14" height="11" rx="2" fill="#1aad55"/>
+            <path d="M-4 -2 v-3 a4 4 0 0 1 8 0 v3" fill="none" stroke="#1aad55" stroke-width="2"/>
+          </g>
+          <circle cy="88" r="5" fill="${dark}">
+            <animate attributeName="cx" values="70;70;140;140;210;210" keyTimes="0;0.12;0.42;0.56;0.86;1" dur="3.4s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0;1;1;1;1;0" keyTimes="0;0.08;0.42;0.86;0.95;1" dur="3.4s" repeatCount="indefinite"/>
+          </circle>
         </svg>`;
       }
       if (type === "deployment") {
         return `<svg viewBox="0 0 280 178" role="img" aria-label="Deployment checklist">
           <rect width="280" height="178" fill="${pale}"/>
-          <rect x="37" y="28" width="206" height="122" rx="8" fill="#fff" stroke="${dark}" stroke-width="2"/>
-          <path d="M65 62l9 9 19-23M65 94l9 9 19-23M65 126l9 9 19-23" fill="none" stroke="${dark}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-          ${label(110, 65, "Use case", 13)}
-          ${label(110, 98, "ANQP + AAA", 13)}
-          ${label(110, 131, "Test + monitor", 13)}
+          <ellipse cx="140" cy="158" rx="78" ry="6" fill="${ink}" opacity="0.05"/>
+          <rect x="80" y="30" width="120" height="124" rx="10" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
+          <rect x="116" y="23" width="48" height="15" rx="5" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
+          ${label(92, 58, "Launch checklist", 11, dark, 820)}
+          <rect x="92" y="70" width="14" height="14" rx="3" fill="#fff" stroke="${dark}" stroke-width="1.8"/>
+          <rect x="92" y="94" width="14" height="14" rx="3" fill="#fff" stroke="${dark}" stroke-width="1.8"/>
+          <rect x="92" y="118" width="14" height="14" rx="3" fill="#fff" stroke="${dark}" stroke-width="1.8"/>
+          <rect x="92" y="142" width="14" height="14" rx="3" fill="#fff" stroke="${dark}" stroke-width="1.8"/>
+          <rect x="114" y="75" width="74" height="5" rx="2.5" fill="${dark}" opacity="0.16"/>
+          <rect x="114" y="99" width="62" height="5" rx="2.5" fill="${dark}" opacity="0.16"/>
+          <rect x="114" y="123" width="70" height="5" rx="2.5" fill="${dark}" opacity="0.16"/>
+          <rect x="114" y="147" width="56" height="5" rx="2.5" fill="${dark}" opacity="0.16"/>
+          <g opacity="0"><rect x="92" y="70" width="14" height="14" rx="3" fill="#1aad55"/><path d="M95 77 l3 3 5 -6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.14;0.24;1" dur="4.2s" repeatCount="indefinite"/></g>
+          <g opacity="0"><rect x="92" y="94" width="14" height="14" rx="3" fill="#1aad55"/><path d="M95 101 l3 3 5 -6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.3;0.4;1" dur="4.2s" repeatCount="indefinite"/></g>
+          <g opacity="0"><rect x="92" y="118" width="14" height="14" rx="3" fill="#1aad55"/><path d="M95 125 l3 3 5 -6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.46;0.56;1" dur="4.2s" repeatCount="indefinite"/></g>
+          <g opacity="0"><rect x="92" y="142" width="14" height="14" rx="3" fill="#1aad55"/><path d="M95 149 l3 3 5 -6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.62;0.72;1" dur="4.2s" repeatCount="indefinite"/></g>
         </svg>`;
       }
       if (type === "faq") {
         return `<svg viewBox="0 0 280 178" role="img" aria-label="Passpoint FAQ support flow">
           <rect width="280" height="178" fill="${pale}"/>
-          <rect x="28" y="34" width="96" height="54" rx="10" fill="#fff" stroke="${dark}" stroke-width="2"/>
-          <rect x="156" y="70" width="96" height="62" rx="10" fill="#fff" stroke="${dark}" stroke-width="2"/>
-          <path d="M58 88l-14 20 30-20M222 132l16 18-34-18" fill="#fff" stroke="${dark}" stroke-width="2" stroke-linejoin="round"/>
-          ${label(51, 58, "User", 13)}
-          ${label(47, 77, "question", 12, muted)}
-          ${label(183, 96, "ANP", 13)}
-          ${label(172, 115, "answer", 12, muted)}
-          <circle cx="140" cy="88" r="18" fill="#fff" stroke="${dark}" stroke-width="3"/>
-          ${label(134, 95, "?", 24, dark, 860)}
-          <path d="M124 74l-16-8M158 99l18 8" stroke="${dark}" stroke-width="3" stroke-linecap="round"/>
+          <ellipse cx="140" cy="152" rx="42" ry="6" fill="${ink}" opacity="0.06"/>
+          <rect x="92" y="24" width="96" height="126" rx="14" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
+          <rect x="99" y="38" width="82" height="98" rx="5" fill="${pale}"/>
+          <rect x="128" y="29" width="24" height="3.4" rx="1.7" fill="${dark}" opacity="0.4"/>
+          <g opacity="0">
+            <rect x="116" y="50" width="58" height="26" rx="9" fill="${dark}"/>
+            <rect x="124" y="59" width="42" height="3.5" rx="1.75" fill="#fff" opacity="0.85"/>
+            <rect x="124" y="67" width="30" height="3.5" rx="1.75" fill="#fff" opacity="0.85"/>
+            <animate attributeName="opacity" values="0;0;1;1;1" keyTimes="0;0.1;0.22;0.96;1" dur="3.8s" repeatCount="indefinite"/>
+          </g>
+          <g opacity="0">
+            <rect x="106" y="88" width="66" height="34" rx="9" fill="#fff" stroke="${dark}" stroke-width="2"/>
+            <rect x="114" y="97" width="40" height="3.5" rx="1.75" fill="${dark}" opacity="0.45"/>
+            <rect x="114" y="105" width="48" height="3.5" rx="1.75" fill="${dark}" opacity="0.45"/>
+            <circle cx="152" cy="113" r="6" fill="#1aad55"/>
+            <path d="M149 113 l2 2 4 -5" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.62;1" dur="3.8s" repeatCount="indefinite"/>
+          </g>
         </svg>`;
       }
       if (type === "resources") {
         return `<svg viewBox="0 0 280 178" role="img" aria-label="Resource shelf">
           <rect width="280" height="178" fill="${pale}"/>
-          <rect x="44" y="38" width="192" height="96" rx="8" fill="#fff" stroke="${dark}" stroke-width="2"/>
-          <line x1="70" y1="38" x2="70" y2="134" stroke="${dark}" stroke-width="2"/>
-          <line x1="112" y1="38" x2="112" y2="134" stroke="${dark}" stroke-width="2"/>
-          <line x1="154" y1="38" x2="154" y2="134" stroke="${dark}" stroke-width="2"/>
-          <line x1="196" y1="38" x2="196" y2="134" stroke="${dark}" stroke-width="2"/>
-          ${label(52, 155, "IEEE", 11, muted)}
-          ${label(100, 155, "WFA", 11, muted)}
-          ${label(142, 155, "IETF", 11, muted)}
-          ${label(185, 155, "WBA", 11, muted)}
+          <ellipse cx="140" cy="152" rx="78" ry="6" fill="${ink}" opacity="0.05"/>
+          <rect x="84" y="44" width="116" height="100" rx="8" fill="#fff" stroke="${dark}" stroke-width="2" transform="rotate(-6 142 94)" opacity="0.5"/>
+          <rect x="84" y="40" width="116" height="100" rx="8" fill="#fff" stroke="${dark}" stroke-width="2" transform="rotate(-2 142 92)" opacity="0.78"/>
+          <rect x="78" y="30" width="118" height="106" rx="8" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
+          ${label(92, 52, "Specs and standards", 11, dark, 820)}
+          <rect x="92" y="62" width="88" height="4" rx="2" fill="${dark}" opacity="0.16"/>
+          <rect x="92" y="72" width="72" height="4" rx="2" fill="${dark}" opacity="0.16"/>
+          <rect x="92" y="90" width="46" height="16" rx="4" fill="${pale}" stroke="${dark}" stroke-width="1.5"/>
+          <rect x="144" y="90" width="38" height="16" rx="4" fill="${pale}" stroke="${dark}" stroke-width="1.5"/>
+          <rect x="92" y="112" width="38" height="16" rx="4" fill="${pale}" stroke="${dark}" stroke-width="1.5"/>
+          <rect x="136" y="112" width="46" height="16" rx="4" fill="${pale}" stroke="${dark}" stroke-width="1.5"/>
+          ${label(98, 102, "Wi-Fi A.", 8, dark, 700)}
+          ${label(152, 102, "IEEE", 8, dark, 700)}
+          ${label(101, 124, "IETF", 8, dark, 700)}
+          ${label(146, 124, "WBA", 8, dark, 700)}
+          <rect x="78" y="30" width="118" height="106" rx="8" fill="none" stroke="#1aad55" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0;0.85;0;0" keyTimes="0;0.18;0.4;1" dur="4.6s" repeatCount="indefinite"/></rect>
         </svg>`;
       }
       return `<svg viewBox="0 0 280 178" role="img" aria-label="A phone joining a Passpoint network automatically and securely">
