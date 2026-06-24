@@ -1752,23 +1752,52 @@
           ${label(185, 155, "WBA", 11, muted)}
         </svg>`;
       }
-      return `<svg viewBox="0 0 280 178" role="img" aria-label="Passpoint value map">
+      return `<svg viewBox="0 0 280 178" role="img" aria-label="A phone joining a Passpoint network automatically and securely">
         <rect width="280" height="178" fill="${pale}"/>
-        <circle cx="140" cy="86" r="42" fill="none" stroke="${dark}" stroke-width="2" opacity="0.5">
-          <animate attributeName="r" values="42;70;42" dur="3.2s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" values="0.5;0;0.5" dur="3.2s" repeatCount="indefinite"/>
+        <ellipse cx="90" cy="148" rx="42" ry="6" fill="${ink}" opacity="0.06"/>
+        <ellipse cx="222" cy="124" rx="32" ry="5" fill="${ink}" opacity="0.06"/>
+
+        <circle cx="206" cy="90" r="6" fill="none" stroke="${dark}" stroke-width="2.2">
+          <animate attributeName="r" values="6;50;6" dur="2.6s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.5;0;0.5" dur="2.6s" repeatCount="indefinite"/>
         </circle>
-        <path d="M70 62l32 14M210 62l-32 14M70 117l32-16M210 117l-32-16" stroke="${dark}" stroke-width="2" stroke-linecap="round"/>
-        <circle cx="140" cy="86" r="42" fill="#fff" stroke="${dark}" stroke-width="3"/>
-        ${label(108, 90, "Passpoint", 15, dark, 860)}
-        <circle cx="52" cy="54" r="18" fill="#fff" stroke="${dark}" stroke-width="2"><animate attributeName="r" values="18;20.5;18" dur="2.4s" begin="0s" repeatCount="indefinite"/></circle>
-        <circle cx="228" cy="54" r="18" fill="#fff" stroke="${dark}" stroke-width="2"><animate attributeName="r" values="18;20.5;18" dur="2.4s" begin="0.6s" repeatCount="indefinite"/></circle>
-        <circle cx="52" cy="125" r="18" fill="#fff" stroke="${dark}" stroke-width="2"><animate attributeName="r" values="18;20.5;18" dur="2.4s" begin="1.2s" repeatCount="indefinite"/></circle>
-        <circle cx="228" cy="125" r="18" fill="#fff" stroke="${dark}" stroke-width="2"><animate attributeName="r" values="18;20.5;18" dur="2.4s" begin="1.8s" repeatCount="indefinite"/></circle>
-        ${label(28, 30, "Auto", 11, muted)}
-        ${label(202, 30, "Secure", 11, muted)}
-        ${label(24, 154, "Roam", 11, muted)}
-        ${label(202, 154, "Scale", 11, muted)}
+        <circle cx="206" cy="90" r="6" fill="none" stroke="${dark}" stroke-width="2.2">
+          <animate attributeName="r" values="6;50;6" dur="2.6s" begin="1.3s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.5;0;0.5" dur="2.6s" begin="1.3s" repeatCount="indefinite"/>
+        </circle>
+
+        <line x1="216" y1="74" x2="212" y2="56" stroke="${dark}" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="244" y1="74" x2="248" y2="56" stroke="${dark}" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="212" cy="54" r="2.6" fill="${dark}"/>
+        <circle cx="248" cy="54" r="2.6" fill="${dark}"/>
+        <rect x="202" y="74" width="54" height="34" rx="7" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
+        <circle cx="229" cy="91" r="3.4" fill="#1aad55"><animate attributeName="opacity" values="0.35;1;0.35" dur="1.4s" repeatCount="indefinite"/></circle>
+
+        <rect x="60" y="38" width="58" height="102" rx="13" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
+        <rect x="67" y="50" width="44" height="78" rx="4" fill="${pale}"/>
+        <rect x="80" y="43" width="18" height="3.4" rx="1.7" fill="${dark}" opacity="0.5"/>
+
+        <g transform="translate(74,80)">
+          <rect x="0" y="10" width="5" height="8" rx="1.2" fill="${dark}" opacity="0.16"/>
+          <rect x="10" y="5" width="5" height="13" rx="1.2" fill="${dark}" opacity="0.16"/>
+          <rect x="20" y="-1" width="5" height="19" rx="1.2" fill="${dark}" opacity="0.16"/>
+          <rect x="30" y="-7" width="5" height="25" rx="1.2" fill="${dark}" opacity="0.16"/>
+          <rect x="0" y="10" width="5" height="8" rx="1.2" fill="${dark}"><animate attributeName="opacity" values="0;1;1;1" keyTimes="0;0.2;0.9;1" dur="3.4s" repeatCount="indefinite"/></rect>
+          <rect x="10" y="5" width="5" height="13" rx="1.2" fill="${dark}"><animate attributeName="opacity" values="0;0;1;1;1" keyTimes="0;0.2;0.36;0.9;1" dur="3.4s" repeatCount="indefinite"/></rect>
+          <rect x="20" y="-1" width="5" height="19" rx="1.2" fill="${dark}"><animate attributeName="opacity" values="0;0;1;1;1" keyTimes="0;0.36;0.52;0.9;1" dur="3.4s" repeatCount="indefinite"/></rect>
+          <rect x="30" y="-7" width="5" height="25" rx="1.2" fill="${dark}"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.52;0.68;1" dur="3.4s" repeatCount="indefinite"/></rect>
+        </g>
+
+        <g transform="translate(89,113)" opacity="0">
+          <circle cx="0" cy="0" r="13" fill="#1aad55"/>
+          <rect x="-5" y="-1" width="10" height="8" rx="1.6" fill="#fff"/>
+          <path d="M-3 -1 v-2.6 a3 3 0 0 1 6 0 v2.6" fill="none" stroke="#fff" stroke-width="1.9"/>
+          <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.62;0.74;0.93;1" dur="3.4s" repeatCount="indefinite"/>
+        </g>
+
+        ${label(54, 164, "Automatic", 10, muted, 700)}
+        ${label(146, 164, "Seamless", 10, muted, 700)}
+        ${label(228, 164, "Secure", 10, muted, 700)}
       </svg>`;
     }
 
