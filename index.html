@@ -1353,7 +1353,7 @@
                 "id": "glossary",
                 "title": "Glossary: Acronyms and Abbreviations",
                 "theme": "violet",
-                "visual": "resources",
+                "visual": "glossary",
                 "summary": "Plain-language expansions of the acronyms used in this guide and in WBA OpenRoaming materials.",
                 "glossary": [
                       { "abbr": "802.11u", "term": "IEEE amendment for pre-association network discovery (interworking)", "desc": "The IEEE Wi-Fi feature that lets a device ask a network for details before joining. It is what makes Passpoint's pre-join discovery possible." },
@@ -1818,6 +1818,31 @@
             <path d="M149 113 l2 2 4 -5" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
             <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.62;1" dur="3.8s" repeatCount="indefinite"/>
           </g>
+        </svg>`;
+      }
+      if (type === "glossary") {
+        return `<svg viewBox="0 0 280 178" role="img" aria-label="Glossary of acronyms and their expansions">
+          <rect width="280" height="178" fill="${pale}"/>
+          <ellipse cx="142" cy="158" rx="84" ry="6" fill="${ink}" opacity="0.05"/>
+          <rect x="60" y="26" width="160" height="126" rx="10" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
+          <rect x="220" y="40" width="9" height="18" rx="3" fill="${dark}" opacity="0.16"/>
+          <rect x="220" y="64" width="9" height="18" rx="3" fill="${dark}" opacity="0.32"/>
+          <rect x="220" y="88" width="9" height="18" rx="3" fill="${dark}" opacity="0.16"/>
+          <rect x="220" y="112" width="9" height="18" rx="3" fill="${dark}" opacity="0.16"/>
+          ${label(76, 47, "Acronyms A–Z", 12, dark, 820)}
+          <path d="M76 53 h128" stroke="${dark}" stroke-width="1.5" opacity="0.3"/>
+          <rect x="76" y="64" width="42" height="18" rx="4" fill="${dark}"/>
+          <text x="97" y="77" font-size="9.5" font-weight="800" fill="#fff" text-anchor="middle" style="${common}">ANP</text>
+          <rect x="126" y="70" width="80" height="6" rx="3" fill="${dark}" opacity="0.14"/>
+          <rect x="126" y="70" width="0" height="6" rx="3" fill="${dark}" opacity="0.85"><animate attributeName="width" values="0;0;80;80" keyTimes="0;0.14;0.3;1" dur="4.2s" repeatCount="indefinite"/></rect>
+          <rect x="76" y="92" width="50" height="18" rx="4" fill="${dark}"/>
+          <text x="101" y="105" font-size="9.5" font-weight="800" fill="#fff" text-anchor="middle" style="${common}">RCOI</text>
+          <rect x="134" y="98" width="72" height="6" rx="3" fill="${dark}" opacity="0.14"/>
+          <rect x="134" y="98" width="0" height="6" rx="3" fill="${dark}" opacity="0.85"><animate attributeName="width" values="0;0;72;72" keyTimes="0;0.36;0.52;1" dur="4.2s" repeatCount="indefinite"/></rect>
+          <rect x="76" y="120" width="44" height="18" rx="4" fill="${dark}"/>
+          <text x="98" y="133" font-size="9.5" font-weight="800" fill="#fff" text-anchor="middle" style="${common}">EAP</text>
+          <rect x="128" y="126" width="78" height="6" rx="3" fill="${dark}" opacity="0.14"/>
+          <rect x="128" y="126" width="0" height="6" rx="3" fill="${dark}" opacity="0.85"><animate attributeName="width" values="0;0;78;78" keyTimes="0;0.58;0.74;1" dur="4.2s" repeatCount="indefinite"/></rect>
         </svg>`;
       }
       if (type === "resources") {
