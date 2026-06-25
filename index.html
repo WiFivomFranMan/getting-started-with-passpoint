@@ -600,12 +600,13 @@
     .visual {
       min-height: 178px;
       border-radius: var(--radius);
-      background: var(--primary-soft);
+      background: var(--soft, var(--primary-soft));
       border: 1px solid var(--line);
       overflow: hidden;
     }
 
-    .visual svg {
+    .visual svg,
+    .visual img.ill {
       display: block;
       width: 100%;
       height: 178px;
@@ -760,11 +761,65 @@
       justify-content: space-between;
       align-items: end;
       gap: 18px;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .resource-band[open] .resource-head {
       margin-bottom: 18px;
+    }
+
+    .resource-head::-webkit-details-marker {
+      display: none;
     }
 
     .resource-head h2 {
       margin: 0;
+    }
+
+    .resource-sub {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .resource-toggle {
+      flex: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    .resource-toggle::after {
+      content: "+";
+      display: grid;
+      place-items: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1px solid currentColor;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .resource-band[open] .resource-toggle::after {
+      content: "\2212";
+    }
+
+    .rt-b {
+      display: none;
+    }
+
+    .resource-band[open] .rt-a {
+      display: none;
+    }
+
+    .resource-band[open] .rt-b {
+      display: inline;
     }
 
     .resources {
@@ -782,38 +837,23 @@
     }
 
     .resource strong {
-      display: block;
-      margin-bottom: 8px;
-    }
-
-    .resource p {
-      margin: 0 0 8px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .diagram-strip {
-      margin-top: 28px;
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .diagram-link {
-      min-height: 92px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 12px;
-      background: #fff;
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      box-shadow: var(--shadow);
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
     }
 
-    .diagram-link span {
-      color: var(--muted);
+    .resource-num {
+      flex: none;
+      min-width: 22px;
+      height: 22px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 4px;
+      background: var(--primary-soft);
+      color: var(--primary);
       font-size: 12px;
+      font-weight: 800;
     }
 
     @media (max-width: 980px) {
@@ -822,8 +862,7 @@
       .guide-section summary,
       .details-grid,
       .faq-layout,
-      .resources,
-      .diagram-strip {
+      .resources {
         grid-template-columns: 1fr;
       }
 
@@ -1121,31 +1160,20 @@
       <section class="section-stack" id="sections"></section>
     </div>
 
-    <section class="resource-band" id="resources">
-      <div class="resource-head">
+    <details class="resource-band" id="resources">
+      <summary class="resource-head">
         <div>
           <div class="kicker">Standards and deep dives</div>
           <h2>Reference shelf</h2>
+          <p class="resource-sub">Every "Go Deeper" link from all 12 sections, gathered in one place.</p>
         </div>
-        <span class="pill">Use the current standard/spec for normative decisions</span>
-      </div>
+        <span class="resource-toggle">
+          <span class="rt-a">Show all references</span>
+          <span class="rt-b">Hide references</span>
+        </span>
+      </summary>
       <div class="resources" id="resourceCards"></div>
-    </section>
-
-    <section class="diagram-strip" aria-label="existing diagram assets">
-      <a class="diagram-link" href="assets/diagrams/Evolution_WISPr_to_Passpoint.drawio.svg">
-        <strong>Evolution visual</strong><span>Existing SVG diagram</span>
-      </a>
-      <a class="diagram-link" href="assets/diagrams/Passpoint_Connection_Process.drawio.svg">
-        <strong>Connection process</strong><span>Existing SVG diagram</span>
-      </a>
-      <a class="diagram-link" href="assets/diagrams/Network_Identifiers_Overview.drawio.svg">
-        <strong>Identifier map</strong><span>Existing SVG diagram</span>
-      </a>
-      <a class="diagram-link" href="assets/diagrams/Security_RADIUS_RADSEC.drawio.svg">
-        <strong>RADIUS and RadSec</strong><span>Existing SVG diagram</span>
-      </a>
-    </section>
+    </details>
   </main>
 
   <script>
@@ -1281,7 +1309,9 @@
                 "note": "A good network configuration cannot help a device that never received the right profile.",
                 "links": [
                       "WBA OpenRoaming Profile Sign Up",
-                      "WBA OpenRoaming Resources"
+                      "WBA OpenRoaming Resources",
+                      "iOS / iPadOS Passpoint",
+                      "Windows Passpoint"
                 ]
           },
           {
@@ -1607,16 +1637,12 @@
       }
     };
 
-    const resourceGroups = [
-      ["Learn Passpoint", ["Wi-Fi Alliance Passpoint", "Wi-Fi Alliance Passpoint R3", "IEEE 802.11u"]],
-      ["Build for OpenRoaming", ["WBA OpenRoaming", "WBA OpenRoaming How It Works", "WBA OpenRoaming Intro Guide"]],
-      ["Configure identifiers", ["IEEE OUI Search", "RFC 7542 NAI", "WBA OpenRoaming Config"]],
-      ["Secure AAA", ["RFC 6614 RadSec", "RFC 7585 DPD", "RFC 5580 Location"]],
-      ["Configure devices", ["iOS / iPadOS Passpoint", "Android Passpoint", "Windows Passpoint"]],
-      ["Answer FAQs", ["WBA OpenRoaming FAQ", "Apple Auto-Join Behavior", "Android Passpoint", "Microsoft Passpoint"]],
-      ["Provision profiles", ["WBA OpenRoaming Profile Sign Up"]],
-      ["Keep current", ["Wi-Fi Alliance Passpoint", "WBA OpenRoaming Config"]]
-    ];
+    // The reference shelf is a 1:1 mirror of every section's "Go Deeper" links,
+    // grouped by section number + title. Generated from `sections` so it can never
+    // drift out of sync with the guide. Numbered to match the section it came from.
+    const resourceGroups = sections
+      .map((section, index) => [index + 1, section.title, section.links])
+      .filter(([, , links]) => links && links.length);
 
     const themeColor = {
       teal: "#0b74b1",
@@ -1689,329 +1715,23 @@
       return `<a href="${link.url}" target="_blank" rel="noreferrer">${escapeHtml(name)}</a>`;
     }
 
-    function visualSvg(type, color) {
-      const dark = color;
-      const pale = themeSoftColor[Object.keys(themeColor).find(key => themeColor[key] === color)] || "#e8f4fb";
-      const ink = "#14211f";
-      const muted = "#60706d";
-      const common = `font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif; letter-spacing: 0;`;
-      const label = (x, y, text, size = 12, fill = ink, weight = 760) => `<text x="${x}" y="${y}" font-size="${size}" font-weight="${weight}" fill="${fill}" style="${common}">${text}</text>`;
-      if (type === "timeline") {
-        return `<svg viewBox="0 0 280 178" role="img" aria-label="WISPr to Passpoint timeline">
-          <rect width="280" height="178" fill="${pale}"/>
-          <ellipse cx="74" cy="142" rx="44" ry="6" fill="${ink}" opacity="0.06"/>
-          <ellipse cx="212" cy="142" rx="30" ry="6" fill="${ink}" opacity="0.06"/>
-          <rect x="22" y="44" width="104" height="86" rx="8" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
-          <path d="M22 59 h104" stroke="${dark}" stroke-width="2.5"/>
-          <circle cx="33" cy="51" r="2.4" fill="${dark}" opacity="0.5"/>
-          <circle cx="41" cy="51" r="2.4" fill="${dark}" opacity="0.5"/>
-          <circle cx="49" cy="51" r="2.4" fill="${dark}" opacity="0.5"/>
-          <rect x="36" y="70" width="76" height="9" rx="3" fill="${pale}" stroke="${dark}" stroke-width="1.5"/>
-          <rect x="36" y="85" width="76" height="9" rx="3" fill="${pale}" stroke="${dark}" stroke-width="1.5"/>
-          <rect x="62" y="102" width="50" height="15" rx="4" fill="${dark}"/>
-          <text x="87" y="113" font-size="8" font-weight="800" fill="#fff" text-anchor="middle" style="${common}">SIGN IN</text>
-          ${label(38, 141, "Captive portal", 10, muted, 700)}
-          <path d="M134 88 h18" stroke="${dark}" stroke-width="3" stroke-linecap="round"/>
-          <path d="M148 82 l8 6 -8 6" fill="none" stroke="${dark}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-          <rect x="184" y="46" width="56" height="84" rx="12" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
-          <rect x="191" y="58" width="42" height="60" rx="4" fill="${pale}"/>
-          <g transform="translate(212,82)">
-            <circle cx="0" cy="0" r="15" fill="#1aad55"><animate attributeName="opacity" values="0.8;1;0.8" dur="1.8s" repeatCount="indefinite"/></circle>
-            <path d="M-6 0 l4 4 8 -9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-          </g>
-          ${label(194, 141, "Passpoint", 10, muted, 700)}
-        </svg>`;
+    // --- Section illustrations -----------------------------------------------
+    // Artwork lives as standalone, hand-editable SVG files in
+    // assets/illustrations/<type>.svg (text- and Inkscape/draw.io-friendly, CSS
+    // animated, with textLength-clamped labels so nothing overflows). The small
+    // "teaser" in each section header is loaded as an <img>, which renders the SVG
+    // as its own isolated document: its <style> is scoped, the CSS animation runs,
+    // and the file's own theme colour applies (no cross-illustration style clashes).
+    // The larger interactive "detail" SVG is inlined on demand (it needs DOM access
+    // for its controls); see hydrateDetailIllustration / loadIllustration.
+    const _illCache = {};
+    function loadIllustration(url) {
+      if (!_illCache[url]) {
+        _illCache[url] = fetch(url)
+          .then(r => (r.ok ? r.text() : Promise.reject(r.status)))
+          .catch(() => null);
       }
-      if (type === "releases") {
-        return `<svg viewBox="0 0 280 178" role="img" aria-label="Passpoint releases">
-          <rect width="280" height="178" fill="${pale}"/>
-          <ellipse cx="140" cy="152" rx="112" ry="6" fill="${ink}" opacity="0.05"/>
-          <rect x="30" y="100" width="64" height="44" rx="8" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
-          <rect x="108" y="74" width="64" height="70" rx="8" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
-          <rect x="186" y="46" width="64" height="98" rx="8" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
-          ${label(51, 126, "R1", 19, dark, 860)}
-          ${label(129, 110, "R2", 19, dark, 860)}
-          ${label(207, 82, "R3", 19, dark, 860)}
-          ${label(46, 138, "Core", 9, muted, 700)}
-          ${label(120, 138, "Sign-up", 9, muted, 700)}
-          ${label(192, 138, "Venue + WPA3", 9, muted, 700)}
-          <rect x="30" y="100" width="64" height="44" rx="8" fill="none" stroke="#1aad55" stroke-width="3" opacity="0"><animate attributeName="opacity" values="0;1;0;0" keyTimes="0;0.12;0.3;1" dur="3.9s" repeatCount="indefinite"/></rect>
-          <rect x="108" y="74" width="64" height="70" rx="8" fill="none" stroke="#1aad55" stroke-width="3" opacity="0"><animate attributeName="opacity" values="0;0;1;0;0" keyTimes="0;0.33;0.45;0.63;1" dur="3.9s" repeatCount="indefinite"/></rect>
-          <rect x="186" y="46" width="64" height="98" rx="8" fill="none" stroke="#1aad55" stroke-width="3" opacity="0"><animate attributeName="opacity" values="0;0;1;0" keyTimes="0;0.66;0.8;1" dur="3.9s" repeatCount="indefinite"/></rect>
-        </svg>`;
-      }
-      if (type === "flow") {
-        return `<svg viewBox="0 0 280 178" role="img" aria-label="Passpoint connection flow">
-          <rect width="280" height="178" fill="${pale}"/>
-          <ellipse cx="66" cy="140" rx="34" ry="5" fill="${ink}" opacity="0.06"/>
-          <ellipse cx="222" cy="128" rx="32" ry="5" fill="${ink}" opacity="0.06"/>
-          <circle cx="198" cy="94" r="6" fill="none" stroke="${dark}" stroke-width="2"><animate attributeName="r" values="6;44;6" dur="2.6s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.5;0;0.5" dur="2.6s" repeatCount="indefinite"/></circle>
-          <line x1="210" y1="78" x2="206" y2="60" stroke="${dark}" stroke-width="2.5" stroke-linecap="round"/>
-          <line x1="238" y1="78" x2="242" y2="60" stroke="${dark}" stroke-width="2.5" stroke-linecap="round"/>
-          <circle cx="206" cy="58" r="2.4" fill="${dark}"/><circle cx="242" cy="58" r="2.4" fill="${dark}"/>
-          <rect x="196" y="78" width="52" height="32" rx="7" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
-          <circle cx="222" cy="94" r="3.2" fill="${dark}" opacity="0.4"/>
-          <rect x="42" y="48" width="48" height="84" rx="11" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
-          <rect x="48" y="59" width="36" height="58" rx="3" fill="${pale}"/>
-          <g opacity="0">
-            <rect x="-10" y="-8" width="20" height="16" rx="4" fill="${dark}"/>
-            <text x="0" y="4" font-size="11" font-weight="800" fill="#fff" text-anchor="middle" style="${common}">?</text>
-            <animateMotion dur="3.8s" calcMode="linear" keyPoints="0;0;1;1" keyTimes="0;0.16;0.34;1" repeatCount="indefinite" path="M94 86 L190 94"/>
-            <animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.17;0.33;0.35;1" dur="3.8s" repeatCount="indefinite"/>
-          </g>
-          <g opacity="0">
-            <rect x="-14" y="-8" width="28" height="16" rx="4" fill="#fff" stroke="${dark}" stroke-width="2"/>
-            <text x="0" y="4" font-size="8" font-weight="800" fill="${dark}" text-anchor="middle" style="${common}">DATA</text>
-            <animateMotion dur="3.8s" calcMode="linear" keyPoints="0;0;1;1" keyTimes="0;0.42;0.6;1" repeatCount="indefinite" path="M190 98 L94 92"/>
-            <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.42;0.44;0.58;0.6;1" dur="3.8s" repeatCount="indefinite"/>
-          </g>
-          <g transform="translate(66,88)" opacity="0">
-            <circle cx="0" cy="0" r="13" fill="#1aad55"/>
-            <rect x="-5" y="-1" width="10" height="8" rx="1.6" fill="#fff"/>
-            <path d="M-3 -1 v-2.6 a3 3 0 0 1 6 0 v2.6" fill="none" stroke="#fff" stroke-width="1.9"/>
-            <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.64;0.74;0.93;1" dur="3.8s" repeatCount="indefinite"/>
-          </g>
-          ${label(46, 150, "Device", 10, muted, 700)}
-          ${label(196, 150, "Access point", 10, muted, 700)}
-        </svg>`;
-      }
-      if (type === "identifiers") {
-        return `<svg viewBox="0 0 280 178" role="img" aria-label="Identifier matching map">
-          <rect width="280" height="178" fill="${pale}"/>
-          <ellipse cx="140" cy="160" rx="86" ry="6" fill="${ink}" opacity="0.05"/>
-          <rect x="64" y="24" width="152" height="128" rx="10" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
-          <path d="M64 50 h152" stroke="${dark}" stroke-width="2"/>
-          ${label(80, 42, "ANQP match", 12, dark, 820)}
-          <circle cx="198" cy="37" r="6" fill="${dark}" opacity="0.18"/>
-          ${label(82, 73, "Domain", 12)}
-          ${label(82, 97, "NAI Realm", 12)}
-          ${label(82, 121, "RCOI", 12)}
-          ${label(82, 145, "PLMN", 12)}
-          <circle cx="194" cy="69" r="8" fill="none" stroke="${dark}" stroke-width="1.5" opacity="0.25"/>
-          <circle cx="194" cy="93" r="8" fill="none" stroke="${dark}" stroke-width="1.5" opacity="0.25"/>
-          <circle cx="194" cy="117" r="8" fill="none" stroke="${dark}" stroke-width="1.5" opacity="0.25"/>
-          <circle cx="194" cy="141" r="8" fill="none" stroke="${dark}" stroke-width="1.5" opacity="0.25"/>
-          <g opacity="0"><circle cx="194" cy="69" r="8" fill="#1aad55"/><path d="M190 69 l3 3 5 -6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.18;0.28;1" dur="4s" repeatCount="indefinite"/></g>
-          <g opacity="0"><circle cx="194" cy="93" r="8" fill="#1aad55"/><path d="M190 93 l3 3 5 -6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.34;0.44;1" dur="4s" repeatCount="indefinite"/></g>
-          <g opacity="0"><circle cx="194" cy="117" r="8" fill="#1aad55"/><path d="M190 117 l3 3 5 -6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.6;1" dur="4s" repeatCount="indefinite"/></g>
-          <g opacity="0"><circle cx="194" cy="141" r="8" fill="#1aad55"/><path d="M190 141 l3 3 5 -6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.66;0.76;1" dur="4s" repeatCount="indefinite"/></g>
-        </svg>`;
-      }
-      if (type === "profile") {
-        return `<svg viewBox="0 0 280 178" role="img" aria-label="Profile provisioning pipeline">
-          <rect width="280" height="178" fill="${pale}"/>
-          <ellipse cx="194" cy="146" rx="40" ry="6" fill="${ink}" opacity="0.06"/>
-          ${label(20, 70, "Carrier", 9, muted, 700)}
-          ${label(20, 92, "MDM", 9, muted, 700)}
-          ${label(20, 114, "App", 9, muted, 700)}
-          <rect x="164" y="42" width="60" height="100" rx="13" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
-          <rect x="171" y="54" width="46" height="76" rx="4" fill="${pale}"/>
-          <g opacity="0">
-            <rect x="-24" y="-16" width="48" height="32" rx="5" fill="#fff" stroke="${dark}" stroke-width="2"/>
-            <circle cx="-13" cy="-4" r="5" fill="${dark}" opacity="0.45"/>
-            <rect x="-4" y="-7" width="20" height="3" rx="1.5" fill="${dark}" opacity="0.4"/>
-            <rect x="-4" y="-1" width="20" height="3" rx="1.5" fill="${dark}" opacity="0.4"/>
-            <rect x="-13" y="7" width="26" height="3" rx="1.5" fill="${dark}" opacity="0.4"/>
-            <animateMotion dur="3.6s" calcMode="linear" keyPoints="0;0;1;1;1" keyTimes="0;0.1;0.5;0.6;1" repeatCount="indefinite" path="M62 92 L194 90"/>
-            <animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.12;0.48;0.56;1" dur="3.6s" repeatCount="indefinite"/>
-          </g>
-          <g transform="translate(194,92)" opacity="0">
-            <circle cx="0" cy="0" r="14" fill="#1aad55"/>
-            <path d="M-6 0 l4 4 8 -9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-            <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.6;0.7;0.93;1" dur="3.6s" repeatCount="indefinite"/>
-          </g>
-          ${label(166, 152, "Profile installed", 10, muted, 700)}
-        </svg>`;
-      }
-      if (type === "security") {
-        return `<svg viewBox="0 0 280 178" role="img" aria-label="Security stack">
-          <rect width="280" height="178" fill="${pale}"/>
-          <ellipse cx="95" cy="152" rx="40" ry="6" fill="${ink}" opacity="0.05"/>
-          <path d="M95 36 L128 49 V90 C128 114 113 129 95 138 C77 129 62 114 62 90 V49 Z" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
-          <path d="M95 36 L128 49 V90 C128 114 113 129 95 138 C77 129 62 114 62 90 V49 Z" fill="#1aad55" opacity="0"><animate attributeName="opacity" values="0;0;0.14;0.14" keyTimes="0;0.66;0.82;1" dur="4s" repeatCount="indefinite"/></path>
-          <rect x="85" y="88" width="20" height="16" rx="3" fill="${dark}"/>
-          <path d="M89 88 v-5 a6 6 0 0 1 12 0 v5" fill="none" stroke="${dark}" stroke-width="3"/>
-          <circle cx="95" cy="95" r="2.4" fill="#fff"/>
-          ${label(66, 158, "Enterprise Wi-Fi", 9, muted, 700)}
-          <rect x="150" y="44" width="106" height="24" rx="6" fill="#fff" stroke="${dark}" stroke-width="2"/>
-          <rect x="150" y="78" width="106" height="24" rx="6" fill="#fff" stroke="${dark}" stroke-width="2"/>
-          <rect x="150" y="112" width="106" height="24" rx="6" fill="#fff" stroke="${dark}" stroke-width="2"/>
-          ${label(162, 60, "WPA-Enterprise", 11)}
-          ${label(162, 94, "802.1X / EAP", 11)}
-          ${label(162, 128, "Dynamic keys", 11)}
-          <rect x="150" y="44" width="106" height="24" rx="6" fill="none" stroke="#1aad55" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0;1;1;1" keyTimes="0;0.22;0.9;1" dur="4s" repeatCount="indefinite"/></rect>
-          <rect x="150" y="78" width="106" height="24" rx="6" fill="none" stroke="#1aad55" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0;0;1;1;1" keyTimes="0;0.22;0.42;0.9;1" dur="4s" repeatCount="indefinite"/></rect>
-          <rect x="150" y="112" width="106" height="24" rx="6" fill="none" stroke="#1aad55" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.42;0.62;1" dur="4s" repeatCount="indefinite"/></rect>
-        </svg>`;
-      }
-      if (type === "aaa") {
-        return `<svg viewBox="0 0 280 178" role="img" aria-label="AAA and RadSec routing">
-          <rect width="280" height="178" fill="${pale}"/>
-          <ellipse cx="46" cy="128" rx="26" ry="5" fill="${ink}" opacity="0.06"/>
-          <ellipse cx="234" cy="128" rx="26" ry="5" fill="${ink}" opacity="0.06"/>
-          <line x1="38" y1="72" x2="34" y2="56" stroke="${dark}" stroke-width="2.5" stroke-linecap="round"/>
-          <line x1="58" y1="72" x2="62" y2="56" stroke="${dark}" stroke-width="2.5" stroke-linecap="round"/>
-          <rect x="26" y="72" width="44" height="30" rx="6" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
-          <circle cx="48" cy="87" r="3" fill="${dark}" opacity="0.4"/>
-          ${label(38, 120, "AP", 11, muted, 700)}
-          <rect x="116" y="60" width="48" height="56" rx="7" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
-          <path d="M116 79 h48 M116 98 h48" stroke="${dark}" stroke-width="1.5" opacity="0.45"/>
-          <circle cx="126" cy="70" r="2.2" fill="#1aad55"/>
-          <circle cx="126" cy="89" r="2.2" fill="${dark}" opacity="0.4"/>
-          <circle cx="126" cy="107" r="2.2" fill="${dark}" opacity="0.4"/>
-          ${label(112, 132, "RadSec proxy", 10, muted, 700)}
-          <rect x="212" y="60" width="44" height="56" rx="7" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
-          <circle cx="234" cy="80" r="7" fill="${dark}" opacity="0.4"/>
-          <path d="M223 104 a11 9 0 0 1 22 0" fill="${dark}" opacity="0.4"/>
-          ${label(224, 132, "IdP", 11, muted, 700)}
-          <path d="M70 88 h44 M166 88 h44" stroke="${dark}" stroke-width="2.5" stroke-linecap="round"/>
-          <g transform="translate(188,88)">
-            <rect x="-7" y="-2" width="14" height="11" rx="2" fill="#1aad55"/>
-            <path d="M-4 -2 v-3 a4 4 0 0 1 8 0 v3" fill="none" stroke="#1aad55" stroke-width="2"/>
-          </g>
-          <circle cy="88" r="5" fill="${dark}">
-            <animate attributeName="cx" values="70;70;140;140;210;210" keyTimes="0;0.12;0.42;0.56;0.86;1" dur="3.4s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="0;1;1;1;1;0" keyTimes="0;0.08;0.42;0.86;0.95;1" dur="3.4s" repeatCount="indefinite"/>
-          </circle>
-        </svg>`;
-      }
-      if (type === "deployment") {
-        return `<svg viewBox="0 0 280 178" role="img" aria-label="Deployment checklist">
-          <rect width="280" height="178" fill="${pale}"/>
-          <ellipse cx="140" cy="158" rx="78" ry="6" fill="${ink}" opacity="0.05"/>
-          <rect x="80" y="30" width="120" height="124" rx="10" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
-          <rect x="116" y="23" width="48" height="15" rx="5" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
-          ${label(92, 58, "Launch checklist", 11, dark, 820)}
-          <rect x="92" y="70" width="14" height="14" rx="3" fill="#fff" stroke="${dark}" stroke-width="1.8"/>
-          <rect x="92" y="94" width="14" height="14" rx="3" fill="#fff" stroke="${dark}" stroke-width="1.8"/>
-          <rect x="92" y="118" width="14" height="14" rx="3" fill="#fff" stroke="${dark}" stroke-width="1.8"/>
-          <rect x="92" y="142" width="14" height="14" rx="3" fill="#fff" stroke="${dark}" stroke-width="1.8"/>
-          <rect x="114" y="75" width="74" height="5" rx="2.5" fill="${dark}" opacity="0.16"/>
-          <rect x="114" y="99" width="62" height="5" rx="2.5" fill="${dark}" opacity="0.16"/>
-          <rect x="114" y="123" width="70" height="5" rx="2.5" fill="${dark}" opacity="0.16"/>
-          <rect x="114" y="147" width="56" height="5" rx="2.5" fill="${dark}" opacity="0.16"/>
-          <g opacity="0"><rect x="92" y="70" width="14" height="14" rx="3" fill="#1aad55"/><path d="M95 77 l3 3 5 -6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.14;0.24;1" dur="4.2s" repeatCount="indefinite"/></g>
-          <g opacity="0"><rect x="92" y="94" width="14" height="14" rx="3" fill="#1aad55"/><path d="M95 101 l3 3 5 -6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.3;0.4;1" dur="4.2s" repeatCount="indefinite"/></g>
-          <g opacity="0"><rect x="92" y="118" width="14" height="14" rx="3" fill="#1aad55"/><path d="M95 125 l3 3 5 -6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.46;0.56;1" dur="4.2s" repeatCount="indefinite"/></g>
-          <g opacity="0"><rect x="92" y="142" width="14" height="14" rx="3" fill="#1aad55"/><path d="M95 149 l3 3 5 -6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.62;0.72;1" dur="4.2s" repeatCount="indefinite"/></g>
-        </svg>`;
-      }
-      if (type === "faq") {
-        return `<svg viewBox="0 0 280 178" role="img" aria-label="Passpoint FAQ support flow">
-          <rect width="280" height="178" fill="${pale}"/>
-          <ellipse cx="140" cy="152" rx="42" ry="6" fill="${ink}" opacity="0.06"/>
-          <rect x="92" y="24" width="96" height="126" rx="14" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
-          <rect x="99" y="38" width="82" height="98" rx="5" fill="${pale}"/>
-          <rect x="128" y="29" width="24" height="3.4" rx="1.7" fill="${dark}" opacity="0.4"/>
-          <g opacity="0">
-            <rect x="116" y="50" width="58" height="26" rx="9" fill="${dark}"/>
-            <rect x="124" y="59" width="42" height="3.5" rx="1.75" fill="#fff" opacity="0.85"/>
-            <rect x="124" y="67" width="30" height="3.5" rx="1.75" fill="#fff" opacity="0.85"/>
-            <animate attributeName="opacity" values="0;0;1;1;1" keyTimes="0;0.1;0.22;0.96;1" dur="3.8s" repeatCount="indefinite"/>
-          </g>
-          <g opacity="0">
-            <rect x="106" y="88" width="66" height="34" rx="9" fill="#fff" stroke="${dark}" stroke-width="2"/>
-            <rect x="114" y="97" width="40" height="3.5" rx="1.75" fill="${dark}" opacity="0.45"/>
-            <rect x="114" y="105" width="48" height="3.5" rx="1.75" fill="${dark}" opacity="0.45"/>
-            <circle cx="152" cy="113" r="6" fill="#1aad55"/>
-            <path d="M149 113 l2 2 4 -5" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-            <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.62;1" dur="3.8s" repeatCount="indefinite"/>
-          </g>
-        </svg>`;
-      }
-      if (type === "glossary") {
-        return `<svg viewBox="0 0 280 178" role="img" aria-label="Glossary of acronyms and their expansions">
-          <rect width="280" height="178" fill="${pale}"/>
-          <ellipse cx="142" cy="158" rx="84" ry="6" fill="${ink}" opacity="0.05"/>
-          <rect x="60" y="26" width="160" height="126" rx="10" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
-          <rect x="220" y="40" width="9" height="18" rx="3" fill="${dark}" opacity="0.16"/>
-          <rect x="220" y="64" width="9" height="18" rx="3" fill="${dark}" opacity="0.32"/>
-          <rect x="220" y="88" width="9" height="18" rx="3" fill="${dark}" opacity="0.16"/>
-          <rect x="220" y="112" width="9" height="18" rx="3" fill="${dark}" opacity="0.16"/>
-          ${label(76, 47, "Acronyms A–Z", 12, dark, 820)}
-          <path d="M76 53 h128" stroke="${dark}" stroke-width="1.5" opacity="0.3"/>
-          <rect x="76" y="64" width="42" height="18" rx="4" fill="${dark}"/>
-          <text x="97" y="77" font-size="9.5" font-weight="800" fill="#fff" text-anchor="middle" style="${common}">ANP</text>
-          <rect x="126" y="70" width="80" height="6" rx="3" fill="${dark}" opacity="0.14"/>
-          <rect x="126" y="70" width="0" height="6" rx="3" fill="${dark}" opacity="0.85"><animate attributeName="width" values="0;0;80;80" keyTimes="0;0.14;0.3;1" dur="4.2s" repeatCount="indefinite"/></rect>
-          <rect x="76" y="92" width="50" height="18" rx="4" fill="${dark}"/>
-          <text x="101" y="105" font-size="9.5" font-weight="800" fill="#fff" text-anchor="middle" style="${common}">RCOI</text>
-          <rect x="134" y="98" width="72" height="6" rx="3" fill="${dark}" opacity="0.14"/>
-          <rect x="134" y="98" width="0" height="6" rx="3" fill="${dark}" opacity="0.85"><animate attributeName="width" values="0;0;72;72" keyTimes="0;0.36;0.52;1" dur="4.2s" repeatCount="indefinite"/></rect>
-          <rect x="76" y="120" width="44" height="18" rx="4" fill="${dark}"/>
-          <text x="98" y="133" font-size="9.5" font-weight="800" fill="#fff" text-anchor="middle" style="${common}">EAP</text>
-          <rect x="128" y="126" width="78" height="6" rx="3" fill="${dark}" opacity="0.14"/>
-          <rect x="128" y="126" width="0" height="6" rx="3" fill="${dark}" opacity="0.85"><animate attributeName="width" values="0;0;78;78" keyTimes="0;0.58;0.74;1" dur="4.2s" repeatCount="indefinite"/></rect>
-        </svg>`;
-      }
-      if (type === "resources") {
-        return `<svg viewBox="0 0 280 178" role="img" aria-label="Resource shelf">
-          <rect width="280" height="178" fill="${pale}"/>
-          <ellipse cx="140" cy="152" rx="78" ry="6" fill="${ink}" opacity="0.05"/>
-          <rect x="84" y="44" width="116" height="100" rx="8" fill="#fff" stroke="${dark}" stroke-width="2" transform="rotate(-6 142 94)" opacity="0.5"/>
-          <rect x="84" y="40" width="116" height="100" rx="8" fill="#fff" stroke="${dark}" stroke-width="2" transform="rotate(-2 142 92)" opacity="0.78"/>
-          <rect x="78" y="30" width="118" height="106" rx="8" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
-          ${label(92, 52, "Specs and standards", 11, dark, 820)}
-          <rect x="92" y="62" width="88" height="4" rx="2" fill="${dark}" opacity="0.16"/>
-          <rect x="92" y="72" width="72" height="4" rx="2" fill="${dark}" opacity="0.16"/>
-          <rect x="92" y="90" width="46" height="16" rx="4" fill="${pale}" stroke="${dark}" stroke-width="1.5"/>
-          <rect x="144" y="90" width="38" height="16" rx="4" fill="${pale}" stroke="${dark}" stroke-width="1.5"/>
-          <rect x="92" y="112" width="38" height="16" rx="4" fill="${pale}" stroke="${dark}" stroke-width="1.5"/>
-          <rect x="136" y="112" width="46" height="16" rx="4" fill="${pale}" stroke="${dark}" stroke-width="1.5"/>
-          ${label(98, 102, "Wi-Fi A.", 8, dark, 700)}
-          ${label(152, 102, "IEEE", 8, dark, 700)}
-          ${label(101, 124, "IETF", 8, dark, 700)}
-          ${label(146, 124, "WBA", 8, dark, 700)}
-          <rect x="78" y="30" width="118" height="106" rx="8" fill="none" stroke="#1aad55" stroke-width="2.5" opacity="0"><animate attributeName="opacity" values="0;0.85;0;0" keyTimes="0;0.18;0.4;1" dur="4.6s" repeatCount="indefinite"/></rect>
-        </svg>`;
-      }
-      return `<svg viewBox="0 0 280 178" role="img" aria-label="A phone joining a Passpoint network automatically and securely">
-        <rect width="280" height="178" fill="${pale}"/>
-        <ellipse cx="90" cy="148" rx="42" ry="6" fill="${ink}" opacity="0.06"/>
-        <ellipse cx="222" cy="124" rx="32" ry="5" fill="${ink}" opacity="0.06"/>
-
-        <circle cx="206" cy="90" r="6" fill="none" stroke="${dark}" stroke-width="2.2">
-          <animate attributeName="r" values="6;50;6" dur="2.6s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" values="0.5;0;0.5" dur="2.6s" repeatCount="indefinite"/>
-        </circle>
-        <circle cx="206" cy="90" r="6" fill="none" stroke="${dark}" stroke-width="2.2">
-          <animate attributeName="r" values="6;50;6" dur="2.6s" begin="1.3s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" values="0.5;0;0.5" dur="2.6s" begin="1.3s" repeatCount="indefinite"/>
-        </circle>
-
-        <line x1="216" y1="74" x2="212" y2="56" stroke="${dark}" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="244" y1="74" x2="248" y2="56" stroke="${dark}" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="212" cy="54" r="2.6" fill="${dark}"/>
-        <circle cx="248" cy="54" r="2.6" fill="${dark}"/>
-        <rect x="202" y="74" width="54" height="34" rx="7" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
-        <circle cx="229" cy="91" r="3.4" fill="#1aad55"><animate attributeName="opacity" values="0.35;1;0.35" dur="1.4s" repeatCount="indefinite"/></circle>
-
-        <rect x="60" y="38" width="58" height="102" rx="13" fill="#fff" stroke="${dark}" stroke-width="2.5"/>
-        <rect x="67" y="50" width="44" height="78" rx="4" fill="${pale}"/>
-        <rect x="80" y="43" width="18" height="3.4" rx="1.7" fill="${dark}" opacity="0.5"/>
-
-        <g transform="translate(74,80)">
-          <rect x="0" y="10" width="5" height="8" rx="1.2" fill="${dark}" opacity="0.16"/>
-          <rect x="10" y="5" width="5" height="13" rx="1.2" fill="${dark}" opacity="0.16"/>
-          <rect x="20" y="-1" width="5" height="19" rx="1.2" fill="${dark}" opacity="0.16"/>
-          <rect x="30" y="-7" width="5" height="25" rx="1.2" fill="${dark}" opacity="0.16"/>
-          <rect x="0" y="10" width="5" height="8" rx="1.2" fill="${dark}"><animate attributeName="opacity" values="0;1;1;1" keyTimes="0;0.2;0.9;1" dur="3.4s" repeatCount="indefinite"/></rect>
-          <rect x="10" y="5" width="5" height="13" rx="1.2" fill="${dark}"><animate attributeName="opacity" values="0;0;1;1;1" keyTimes="0;0.2;0.36;0.9;1" dur="3.4s" repeatCount="indefinite"/></rect>
-          <rect x="20" y="-1" width="5" height="19" rx="1.2" fill="${dark}"><animate attributeName="opacity" values="0;0;1;1;1" keyTimes="0;0.36;0.52;0.9;1" dur="3.4s" repeatCount="indefinite"/></rect>
-          <rect x="30" y="-7" width="5" height="25" rx="1.2" fill="${dark}"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.52;0.68;1" dur="3.4s" repeatCount="indefinite"/></rect>
-        </g>
-
-        <g transform="translate(89,113)" opacity="0">
-          <circle cx="0" cy="0" r="13" fill="#1aad55"/>
-          <rect x="-5" y="-1" width="10" height="8" rx="1.6" fill="#fff"/>
-          <path d="M-3 -1 v-2.6 a3 3 0 0 1 6 0 v2.6" fill="none" stroke="#fff" stroke-width="1.9"/>
-          <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.62;0.74;0.93;1" dur="3.4s" repeatCount="indefinite"/>
-        </g>
-
-        ${label(54, 164, "Automatic", 10, muted, 700)}
-        ${label(146, 164, "Seamless", 10, muted, 700)}
-        ${label(228, 164, "Secure", 10, muted, 700)}
-      </svg>`;
+      return _illCache[url];
     }
 
     function detailsHtml(section, seen) {
@@ -2093,7 +1813,7 @@
       ).join("");
 
       stack.innerHTML = sections.map((section, index) => {
-        const color = themeColor[section.theme] || themeColor.teal;
+        const soft = themeSoftColor[section.theme] || themeSoftColor.teal;
         const seen = section.glossary ? null : new Set();
         return `
           <details class="guide-section" id="${section.id}" ${index < 2 ? "open" : ""}>
@@ -2104,7 +1824,7 @@
                 <p class="summary-text">${abbr(section.summary, seen)}</p>
                 <span class="chevron">Details</span>
               </div>
-              <div class="visual">${visualSvg(section.visual, color)}</div>
+              <div class="visual" style="--soft:${soft}"><img class="ill" src="assets/illustrations/${section.visual}.svg" alt="" loading="lazy"></div>
             </summary>
             <div class="details-panel">
               ${detailsHtml(section, seen)}
@@ -2129,13 +1849,14 @@
 
     function renderResources() {
       const cards = document.getElementById("resourceCards");
-      cards.innerHTML = resourceGroups.map(([title, names]) => `
+      cards.innerHTML = resourceGroups.map(([num, title, names]) => {
+        const known = names.filter(name => resourceLinks[name]);
+        return `
         <article class="resource">
-          <strong>${escapeHtml(title)}</strong>
-          <p>${names.map(name => escapeHtml(resourceLinks[name].text)).join(" ")}</p>
-          <div class="link-list">${names.map(linkHtml).join("")}</div>
-        </article>
-      `).join("");
+          <strong><span class="resource-num">${num}</span>${escapeHtml(title)}</strong>
+          <div class="link-list">${known.map(linkHtml).join("")}</div>
+        </article>`;
+      }).join("");
     }
 
     renderSections();
@@ -2183,7 +1904,7 @@
       window.setTimeout(publishEmbedHeight, 60);
     });
 
-    document.querySelectorAll(".guide-section, .faq-item").forEach(section => {
+    document.querySelectorAll(".guide-section, .faq-item, .resource-band").forEach(section => {
       section.addEventListener("toggle", () => {
         window.setTimeout(publishEmbedHeight, 60);
       });

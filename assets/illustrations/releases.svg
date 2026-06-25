@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 178" role="img"
+     aria-label="Passpoint releases R1, R2 and R3 building on each other">
+  <style>
+    svg { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+    .bg{fill:var(--soft,#ede9fe)} .sacc{fill:none;stroke:var(--acc,#5b21b6)}
+    .ink{fill:#14211f} text{font-weight:760}
+    .ta{fill:var(--acc,#5b21b6);font-weight:860} .tm{fill:#60706d;font-weight:700}
+    .hl{fill:none;stroke:#1aad55;stroke-width:3;opacity:0}
+    @keyframes hi1{0%{opacity:0}12%{opacity:1}30%,100%{opacity:0}}
+    @keyframes hi2{0%,33%{opacity:0}45%{opacity:1}63%,100%{opacity:0}}
+    @keyframes hi3{0%,66%{opacity:0}80%{opacity:1}100%{opacity:0}}
+    .c1{animation:hi1 3.9s ease-in-out infinite}
+    .c2{animation:hi2 3.9s ease-in-out infinite}
+    .c3{animation:hi3 3.9s ease-in-out infinite}
+    @media (prefers-reduced-motion: reduce){.hl{animation:none}}
+  </style>
+
+  <rect class="bg" width="280" height="178"/>
+  <ellipse class="ink" cx="140" cy="152" rx="112" ry="6" opacity="0.05"/>
+
+  <rect fill="#fff" class="sacc" x="30"  y="100" width="64" height="44" rx="8" stroke-width="2.5"/>
+  <rect fill="#fff" class="sacc" x="108" y="74"  width="64" height="70" rx="8" stroke-width="2.5"/>
+  <rect fill="#fff" class="sacc" x="186" y="46"  width="64" height="98" rx="8" stroke-width="2.5"/>
+
+  <text class="ta" x="51"  y="126" font-size="19">R1</text>
+  <text class="ta" x="129" y="110" font-size="19">R2</text>
+  <text class="ta" x="207" y="82"  font-size="19">R3</text>
+  <text class="tm" x="46"  y="138" font-size="9" textLength="32" lengthAdjust="spacingAndGlyphs">Core</text>
+  <text class="tm" x="120" y="138" font-size="9" textLength="44" lengthAdjust="spacingAndGlyphs">Sign-up</text>
+  <text class="tm" x="190" y="138" font-size="9" textLength="58" lengthAdjust="spacingAndGlyphs">Venue + WPA3</text>
+
+  <rect class="hl c1" x="30"  y="100" width="64" height="44" rx="8"/>
+  <rect class="hl c2" x="108" y="74"  width="64" height="70" rx="8"/>
+  <rect class="hl c3" x="186" y="46"  width="64" height="98" rx="8"/>
+</svg>

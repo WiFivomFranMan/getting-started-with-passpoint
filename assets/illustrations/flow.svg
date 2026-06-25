@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 178" role="img"
+     aria-label="Device and access point exchange a query then data, then the join is secured">
+  <style>
+    svg { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+    .bg{fill:var(--soft,#e8f4fb)} .acc{fill:var(--acc,#085d8e)}
+    .sacc{fill:none;stroke:var(--acc,#085d8e)} .soft{fill:var(--soft,#e8f4fb)}
+    .ok{fill:#1aad55} .ink{fill:#14211f}
+    text{font-weight:760} .tm{fill:#60706d;font-weight:700}
+    @keyframes ripple{0%{r:6px;opacity:.5}80%,100%{r:44px;opacity:0}}
+    @keyframes qmove{0%,16%{transform:translate(94px,86px);opacity:0}17%{opacity:1}
+      34%{transform:translate(190px,94px);opacity:1}35%,100%{transform:translate(190px,94px);opacity:0}}
+    @keyframes dmove{0%,42%{transform:translate(190px,98px);opacity:0}44%{opacity:1}
+      58%{transform:translate(94px,92px);opacity:1}60%,100%{transform:translate(94px,92px);opacity:0}}
+    @keyframes lockrev{0%,64%{opacity:0}74%,93%{opacity:1}100%{opacity:0}}
+    .rip{animation:ripple 2.6s ease-out infinite}
+    .qpkt{animation:qmove 3.8s linear infinite;opacity:0}
+    .dpkt{animation:dmove 3.8s linear infinite;opacity:0}
+    .lock{animation:lockrev 3.8s ease-in-out infinite;opacity:0}
+    @media (prefers-reduced-motion: reduce){.rip,.qpkt,.dpkt,.lock{animation:none}.lock{opacity:1}}
+  </style>
+
+  <rect class="bg" width="280" height="178"/>
+  <ellipse class="ink" cx="66" cy="140" rx="34" ry="5" opacity="0.06"/>
+  <ellipse class="ink" cx="222" cy="128" rx="32" ry="5" opacity="0.06"/>
+
+  <!-- access point + discovery ripple -->
+  <circle class="sacc rip" cx="198" cy="94" r="6" stroke-width="2"/>
+  <line class="sacc" x1="210" y1="78" x2="206" y2="60" stroke-width="2.5" stroke-linecap="round"/>
+  <line class="sacc" x1="238" y1="78" x2="242" y2="60" stroke-width="2.5" stroke-linecap="round"/>
+  <circle class="acc" cx="206" cy="58" r="2.4"/>
+  <circle class="acc" cx="242" cy="58" r="2.4"/>
+  <rect fill="#fff" class="sacc" x="196" y="78" width="52" height="32" rx="7" stroke-width="2.5"/>
+  <circle class="acc" cx="222" cy="94" r="3.2" opacity="0.4"/>
+
+  <!-- device -->
+  <rect fill="#fff" class="sacc" x="42" y="48" width="48" height="84" rx="11" stroke-width="2.5"/>
+  <rect class="soft" x="48" y="59" width="36" height="58" rx="3"/>
+
+  <!-- query packet device -> AP -->
+  <g class="qpkt">
+    <rect class="acc" x="-10" y="-8" width="20" height="16" rx="4"/>
+    <text x="0" y="4" font-size="11" font-weight="800" fill="#fff" text-anchor="middle">?</text>
+  </g>
+  <!-- data packet AP -> device -->
+  <g class="dpkt">
+    <rect fill="#fff" class="sacc" x="-14" y="-8" width="28" height="16" rx="4" stroke-width="2"/>
+    <text class="acc" x="0" y="4" font-size="8" font-weight="800" text-anchor="middle"
+          textLength="20" lengthAdjust="spacingAndGlyphs">DATA</text>
+  </g>
+  <!-- secured -->
+  <g class="lock" transform="translate(66,88)">
+    <circle class="ok" cx="0" cy="0" r="13"/>
+    <rect fill="#fff" x="-5" y="-1" width="10" height="8" rx="1.6"/>
+    <path d="M-3 -1 v-2.6 a3 3 0 0 1 6 0 v2.6" fill="none" stroke="#fff" stroke-width="1.9"/>
+  </g>
+
+  <text class="tm" x="46"  y="150" font-size="10" textLength="40" lengthAdjust="spacingAndGlyphs">Device</text>
+  <text class="tm" x="196" y="150" font-size="10" textLength="62" lengthAdjust="spacingAndGlyphs">Access point</text>
+</svg>

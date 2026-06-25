@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 178" role="img"
+     aria-label="A launch checklist completing item by item">
+  <style>
+    svg { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+    .bg{fill:var(--soft,#e8faf1)} .acc{fill:var(--acc,#1aad55)}
+    .sacc{fill:none;stroke:var(--acc,#1aad55)} .ink{fill:#14211f}
+    text{font-weight:760} .ta{fill:var(--acc,#1aad55);font-weight:820}
+    .tick{opacity:0}
+    @keyframes d1{0%,14%{opacity:0}24%,100%{opacity:1}}
+    @keyframes d2{0%,30%{opacity:0}40%,100%{opacity:1}}
+    @keyframes d3{0%,46%{opacity:0}56%,100%{opacity:1}}
+    @keyframes d4{0%,62%{opacity:0}72%,100%{opacity:1}}
+    .t1{animation:d1 4.2s ease-in-out infinite}
+    .t2{animation:d2 4.2s ease-in-out infinite}
+    .t3{animation:d3 4.2s ease-in-out infinite}
+    .t4{animation:d4 4.2s ease-in-out infinite}
+    @media (prefers-reduced-motion: reduce){.tick{animation:none;opacity:1}}
+  </style>
+
+  <rect class="bg" width="280" height="178"/>
+  <ellipse class="ink" cx="140" cy="158" rx="78" ry="6" opacity="0.05"/>
+  <rect fill="#fff" class="sacc" x="80" y="30" width="120" height="124" rx="10" stroke-width="2.5"/>
+  <rect fill="#fff" class="sacc" x="116" y="23" width="48" height="15" rx="5" stroke-width="2.5"/>
+  <text class="ta" x="92" y="58" font-size="11" textLength="96" lengthAdjust="spacingAndGlyphs">Launch checklist</text>
+
+  <rect fill="#fff" class="sacc" x="92" y="70"  width="14" height="14" rx="3" stroke-width="1.8"/>
+  <rect fill="#fff" class="sacc" x="92" y="94"  width="14" height="14" rx="3" stroke-width="1.8"/>
+  <rect fill="#fff" class="sacc" x="92" y="118" width="14" height="14" rx="3" stroke-width="1.8"/>
+  <rect fill="#fff" class="sacc" x="92" y="142" width="14" height="14" rx="3" stroke-width="1.8"/>
+  <rect class="acc" x="114" y="75"  width="74" height="5" rx="2.5" opacity="0.16"/>
+  <rect class="acc" x="114" y="99"  width="62" height="5" rx="2.5" opacity="0.16"/>
+  <rect class="acc" x="114" y="123" width="70" height="5" rx="2.5" opacity="0.16"/>
+  <rect class="acc" x="114" y="147" width="56" height="5" rx="2.5" opacity="0.16"/>
+
+  <g class="tick t1"><rect class="acc" x="92" y="70"  width="14" height="14" rx="3"/><path d="M95 77  l3 3 5 -6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g class="tick t2"><rect class="acc" x="92" y="94"  width="14" height="14" rx="3"/><path d="M95 101 l3 3 5 -6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g class="tick t3"><rect class="acc" x="92" y="118" width="14" height="14" rx="3"/><path d="M95 125 l3 3 5 -6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g class="tick t4"><rect class="acc" x="92" y="142" width="14" height="14" rx="3"/><path d="M95 149 l3 3 5 -6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg>

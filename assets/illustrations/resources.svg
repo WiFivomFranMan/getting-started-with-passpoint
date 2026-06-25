@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 178" role="img"
+     aria-label="A stack of specs and standards from Wi-Fi Alliance, IEEE, IETF and WBA">
+  <style>
+    svg { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+    .bg{fill:var(--soft,#ede9fe)} .acc{fill:var(--acc,#5b21b6)}
+    .sacc{fill:none;stroke:var(--acc,#5b21b6)} .soft{fill:var(--soft,#ede9fe)}
+    .ink{fill:#14211f} text{font-weight:760}
+    .ta{fill:var(--acc,#5b21b6);font-weight:820}
+    .glow{fill:none;stroke:#1aad55;stroke-width:2.5;opacity:0}
+    @keyframes glow{0%{opacity:0}18%{opacity:.85}40%,100%{opacity:0}}
+    .gl{animation:glow 4.6s ease-in-out infinite}
+    @media (prefers-reduced-motion: reduce){.glow{animation:none}}
+  </style>
+
+  <rect class="bg" width="280" height="178"/>
+  <ellipse class="ink" cx="140" cy="152" rx="78" ry="6" opacity="0.05"/>
+
+  <!-- stacked documents -->
+  <rect fill="#fff" class="sacc" x="84" y="44" width="116" height="100" rx="8" stroke-width="2" transform="rotate(-6 142 94)" opacity="0.5"/>
+  <rect fill="#fff" class="sacc" x="84" y="40" width="116" height="100" rx="8" stroke-width="2" transform="rotate(-2 142 92)" opacity="0.78"/>
+  <rect fill="#fff" class="sacc" x="78" y="30" width="118" height="106" rx="8" stroke-width="2.5"/>
+
+  <!-- title (clamped so it can never run past the card edge) -->
+  <text class="ta" x="92" y="52" font-size="11" textLength="100" lengthAdjust="spacingAndGlyphs">Specs and standards</text>
+  <rect class="acc" x="92" y="62" width="88" height="4" rx="2" opacity="0.16"/>
+  <rect class="acc" x="92" y="72" width="72" height="4" rx="2" opacity="0.16"/>
+
+  <!-- source chips -->
+  <rect class="soft sacc" x="92"  y="90"  width="46" height="16" rx="4" stroke-width="1.5"/>
+  <rect class="soft sacc" x="144" y="90"  width="38" height="16" rx="4" stroke-width="1.5"/>
+  <rect class="soft sacc" x="92"  y="112" width="38" height="16" rx="4" stroke-width="1.5"/>
+  <rect class="soft sacc" x="136" y="112" width="46" height="16" rx="4" stroke-width="1.5"/>
+  <text class="ta" x="98"  y="102" font-size="8" font-weight="700" textLength="34" lengthAdjust="spacingAndGlyphs">Wi-Fi A.</text>
+  <text class="ta" x="152" y="102" font-size="8" font-weight="700" textLength="24" lengthAdjust="spacingAndGlyphs">IEEE</text>
+  <text class="ta" x="101" y="124" font-size="8" font-weight="700" textLength="22" lengthAdjust="spacingAndGlyphs">IETF</text>
+  <text class="ta" x="146" y="124" font-size="8" font-weight="700" textLength="26" lengthAdjust="spacingAndGlyphs">WBA</text>
+
+  <rect class="glow gl" x="78" y="30" width="118" height="106" rx="8"/>
+</svg>
