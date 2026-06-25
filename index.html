@@ -694,6 +694,154 @@
       min-height: 21px;
     }
 
+    /* Section picture acts as a button that opens the walkthrough popup */
+    .visual {
+      position: relative;
+      cursor: pointer;
+      padding: 0;
+      text-align: left;
+    }
+
+    .visual:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+
+    .visual-hint {
+      position: absolute;
+      left: 50%;
+      bottom: 10px;
+      transform: translateX(-50%) translateY(4px);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .02em;
+      white-space: nowrap;
+      box-shadow: var(--shadow-sm);
+      opacity: 0;
+      transition: opacity .15s, transform .15s;
+      pointer-events: none;
+    }
+
+    .visual-hint::before {
+      content: "\25B6";
+      font-size: 9px;
+    }
+
+    .visual:hover .visual-hint,
+    .visual:focus-visible .visual-hint {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Walkthrough popup */
+    .ill-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+    }
+
+    .ill-modal[hidden] {
+      display: none;
+    }
+
+    .ill-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(11, 22, 28, .55);
+    }
+
+    .ill-modal-card {
+      position: relative;
+      width: min(680px, 100%);
+      max-height: calc(100vh - 40px);
+      overflow: auto;
+      background: var(--panel);
+      border-radius: 12px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, .3);
+    }
+
+    .ill-modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .ill-modal-title {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .ill-modal-close {
+      flex: none;
+      appearance: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .ill-modal-close:hover {
+      background: var(--paper);
+    }
+
+    .ill-modal-body {
+      padding: 18px;
+    }
+
+    .ill-modal-body .detail-illustration {
+      margin: 0;
+    }
+
+    /* Bigger, readable acronym tooltip on hover/focus */
+    .gloss::after {
+      content: attr(data-tip);
+      position: absolute;
+      left: 50%;
+      bottom: 100%;
+      transform: translate(-50%, -7px);
+      width: max-content;
+      max-width: 280px;
+      padding: 9px 12px;
+      border-radius: 8px;
+      background: var(--ink);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.4;
+      white-space: normal;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .12s ease;
+      pointer-events: none;
+      z-index: 60;
+    }
+
+    .gloss:hover::after,
+    .gloss:focus-visible::after {
+      opacity: 1;
+      visibility: visible;
+    }
+
     .details-grid {
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 240px;
@@ -1124,6 +1272,7 @@
     }
 
     .gloss {
+      position: relative;
       color: inherit;
       text-decoration: none;
       border-bottom: 1px dotted var(--primary);
@@ -1252,6 +1401,17 @@
       <div class="resources" id="resourceCards"></div>
     </details>
   </main>
+
+  <div class="ill-modal" id="illModal" role="dialog" aria-modal="true" aria-labelledby="illModalTitle" hidden>
+    <div class="ill-modal-backdrop" data-close></div>
+    <div class="ill-modal-card" role="document">
+      <div class="ill-modal-head">
+        <h3 class="ill-modal-title" id="illModalTitle"></h3>
+        <button type="button" class="ill-modal-close" data-close aria-label="Close walkthrough">&times;</button>
+      </div>
+      <div class="ill-modal-body"></div>
+    </div>
+  </div>
 
   <script>
     const sections = [
@@ -1782,7 +1942,7 @@
         const entry = _glossMap[key];
         if (!entry || seen.has(key)) return m;
         seen.add(key);
-        return `${pre}<a class="gloss" href="#${entry.id}" title="${escapeHtml(entry.term)}">${key}${suf || ""}</a>`;
+        return `${pre}<a class="gloss" href="#${entry.id}" data-tip="${escapeHtml(entry.term)}" aria-label="${escapeHtml(key)}: ${escapeHtml(entry.term)}">${key}${suf || ""}</a>`;
       });
     }
 
@@ -1799,8 +1959,8 @@
     // "teaser" in each section header is loaded as an <img>, which renders the SVG
     // as its own isolated document: its <style> is scoped, the CSS animation runs,
     // and the file's own theme colour applies (no cross-illustration style clashes).
-    // The larger interactive "detail" SVG is inlined on demand (it needs DOM access
-    // for its controls); see hydrateDetailIllustration / loadIllustration.
+    // Clicking a teaser opens the larger interactive "detail" SVG in a popup, where
+    // it is inlined (it needs DOM access for its controls); see openWalkthrough.
     const _illCache = {};
     function loadIllustration(url) {
       if (!_illCache[url]) {
@@ -1827,22 +1987,40 @@
         </figure>`;
     }
 
-    // Lazily inline a section's detail SVG the first time the section is opened.
-    function hydrateDetailIllustration(box) {
-      if (!box || box.hasAttribute("data-loaded")) return;
-      box.setAttribute("data-loaded", "");
-      const type = box.getAttribute("data-illustration-detail");
+    // Clicking a section's picture opens its walkthrough in a popup (it does not
+    // expand the section). The detail SVG is fetched on demand; a section without
+    // one yet shows its illustration enlarged.
+    let _walkthroughReturnFocus = null;
+    function openWalkthrough(type, title) {
+      const modal = document.getElementById("illModal");
+      if (!modal) return;
+      _walkthroughReturnFocus = document.activeElement;
+      modal.querySelector(".ill-modal-title").textContent = title || "Walkthrough";
+      const body = modal.querySelector(".ill-modal-body");
+      body.innerHTML = detailIllustrationHtml(type);
+      const figure = body.querySelector(".detail-illustration");
+      const stage = figure.querySelector(".di-stage");
       loadIllustration("assets/illustrations/" + type + ".detail.svg").then(svg => {
-        if (!svg) { box.remove(); return; }
-        box.querySelector(".di-stage").innerHTML = svg;
-        attachIllustrationControls(box);
-        if (typeof publishEmbedHeight === "function") window.setTimeout(publishEmbedHeight, 60);
+        if (svg) {
+          stage.innerHTML = svg;
+          attachIllustrationControls(figure);
+        } else {
+          stage.innerHTML = '<img class="ill" src="assets/illustrations/' + type + '.svg" alt="">';
+          const cap = figure.querySelector(".di-caption");
+          if (cap) cap.textContent = "An interactive walkthrough for this section is coming soon.";
+        }
       });
+      modal.hidden = false;
+      document.documentElement.style.overflow = "hidden";
+      modal.querySelector(".ill-modal-close").focus();
     }
-    function hydrateOpenDetails(root) {
-      (root || document)
-        .querySelectorAll(".guide-section[open] .detail-illustration:not([data-loaded])")
-        .forEach(hydrateDetailIllustration);
+    function closeWalkthrough() {
+      const modal = document.getElementById("illModal");
+      if (!modal || modal.hidden) return;
+      modal.hidden = true;
+      modal.querySelector(".ill-modal-body").innerHTML = "";
+      document.documentElement.style.overflow = "";
+      if (_walkthroughReturnFocus && _walkthroughReturnFocus.focus) _walkthroughReturnFocus.focus();
     }
 
     // Shared, human-tweakable interaction model for detail illustrations:
@@ -1950,7 +2128,6 @@
       }
 
       return `
-        ${detailIllustrationHtml(section.visual)}
         <div class="details-grid">
           <div>
             <h3>Completed Thought</h3>
@@ -1988,7 +2165,7 @@
                 <p class="summary-text">${abbr(section.summary, seen)}</p>
                 <span class="chevron">Details</span>
               </div>
-              <div class="visual" style="--soft:${soft}"><img class="ill" src="assets/illustrations/${section.visual}.svg" alt="" loading="lazy"></div>
+              <div class="visual" role="button" tabindex="0" data-walkthrough="${section.visual}" style="--soft:${soft}" aria-label="Open the ${escapeHtml(section.title)} walkthrough"><img class="ill" src="assets/illustrations/${section.visual}.svg" alt=""><span class="visual-hint" aria-hidden="true">View walkthrough</span></div>
             </summary>
             <div class="details-panel">
               ${detailsHtml(section, seen)}
@@ -1996,6 +2173,20 @@
           </details>
         `;
       }).join("");
+
+      // Clicking a section picture opens its walkthrough popup instead of toggling
+      // the section open (preventDefault stops the <details> from expanding).
+      function triggerWalkthrough(e) {
+        const pic = e.target.closest(".visual[data-walkthrough]");
+        if (!pic || !stack.contains(pic)) return;
+        if (e.type === "keydown" && e.key !== "Enter" && e.key !== " ") return;
+        e.preventDefault();
+        const section = pic.closest(".guide-section");
+        const title = section ? section.querySelector("h2").textContent : "";
+        openWalkthrough(pic.getAttribute("data-walkthrough"), title);
+      }
+      stack.addEventListener("click", triggerWalkthrough);
+      stack.addEventListener("keydown", triggerWalkthrough);
 
       const railLinks = Array.from(nav.querySelectorAll("a"));
       const sectionEls = sections.map(s => document.getElementById(s.id));
@@ -2025,7 +2216,6 @@
 
     renderSections();
     renderResources();
-    hydrateOpenDetails();
 
     // Clicking an in-page anchor (a glossary abbreviation link or a rail link)
     // expands the target and any collapsed parent sections so the content is visible.
@@ -2071,12 +2261,17 @@
 
     document.querySelectorAll(".guide-section, .faq-item, .resource-band").forEach(section => {
       section.addEventListener("toggle", () => {
-        if (section.open) {
-          section.querySelectorAll(".detail-illustration:not([data-loaded])").forEach(hydrateDetailIllustration);
-        }
         window.setTimeout(publishEmbedHeight, 60);
       });
     });
+
+    // Walkthrough popup: close on the ×, the backdrop, or Escape.
+    (function () {
+      const modal = document.getElementById("illModal");
+      if (!modal) return;
+      modal.addEventListener("click", e => { if (e.target.closest("[data-close]")) closeWalkthrough(); });
+      document.addEventListener("keydown", e => { if (e.key === "Escape") closeWalkthrough(); });
+    })();
 
     window.addEventListener("load", publishEmbedHeight);
     window.addEventListener("resize", publishEmbedHeight);
