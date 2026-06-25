@@ -338,6 +338,110 @@
     .signal-track.security span { width: 84%; background: var(--primary-dark); }
     .signal-track.operations span { width: 66%; background: var(--warning); }
 
+    /* ANP readiness self-check (interactive hero panel) */
+    .ready-panel { justify-content: flex-start; gap: 0; }
+    .ready-panel .map-title { margin-bottom: 10px; }
+    .ready-score { background: var(--action-soft); color: var(--action-dark); }
+    .ready-overall {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 4px;
+    }
+    .ready-big {
+      font-size: 30px;
+      font-weight: 850;
+      color: var(--primary);
+      font-variant-numeric: tabular-nums;
+      min-width: 60px;
+    }
+    .ready-bar {
+      flex: 1;
+      height: 10px;
+      border-radius: 6px;
+      background: #edf3f3;
+      border: 1px solid var(--line);
+      overflow: hidden;
+    }
+    .ready-bar > i {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: var(--action);
+      transition: width .3s;
+    }
+    .ready-pillars { margin-top: 6px; }
+    .pillar { border-top: 1px solid var(--line); }
+    .pillar > summary {
+      list-style: none;
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: 16px 84px minmax(0, 1fr) 42px;
+      gap: 10px;
+      align-items: center;
+      padding: 11px 2px;
+    }
+    .pillar > summary::-webkit-details-marker { display: none; }
+    .pillar .arrow {
+      width: 14px;
+      height: 14px;
+      color: var(--muted);
+      transition: transform .2s ease;
+    }
+    .pillar[open] .arrow {
+      transform: rotate(90deg);
+      color: var(--primary);
+    }
+    .pillar .pl {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--muted);
+    }
+    .pillar .track {
+      height: 18px;
+      border-radius: 6px;
+      background: #edf3f3;
+      border: 1px solid var(--line);
+      overflow: hidden;
+    }
+    .pillar .track > i {
+      display: block;
+      height: 100%;
+      width: 0;
+      transition: width .3s;
+    }
+    .pillar .cnt {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--muted);
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+    .checks {
+      padding: 2px 2px 12px 26px;
+      display: grid;
+      gap: 8px;
+    }
+    .checks label {
+      display: flex;
+      gap: 9px;
+      align-items: flex-start;
+      font-size: 13px;
+      color: var(--ink);
+      cursor: pointer;
+    }
+    .checks input {
+      margin-top: 2px;
+      accent-color: var(--primary);
+    }
+    .ready-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
     .layout {
       display: grid;
       grid-template-columns: 250px minmax(0, 1fr);
@@ -988,35 +1092,26 @@
     <section class="hero" id="overview">
       <div class="hero-copy">
         <div class="kicker">Getting started for Access Network Providers</div>
-        <h1>Passpoint in plain English.</h1>
+        <h1>Passpoint, explained for ANPs.</h1>
         <p class="lead">A simple starting point for ANPs: what Passpoint does, why devices join automatically, which network details matter, and where to go when the team needs the exact standard or configuration detail.</p>
         <div class="hero-actions">
           <button class="button" id="expandAll" type="button">Expand All</button>
           <button class="button secondary" id="collapseAll" type="button">Collapse All</button>
         </div>
       </div>
-      <aside class="map-panel" aria-label="Passpoint capability map">
+      <aside class="map-panel ready-panel" aria-label="ANP readiness self-check">
         <div class="map-title">
-          <span>ANP readiness map</span>
-          <span class="pill">Primer view</span>
+          <span>ANP readiness check</span>
+          <span class="pill ready-score" id="readyScore">0% ready</span>
         </div>
-        <div class="signal-card">
-          <div class="signal-row">
-            <div class="signal-label">Discovery</div>
-            <div class="signal-track discovery"><span>Beacon + ANQP</span></div>
-          </div>
-          <div class="signal-row">
-            <div class="signal-label">Identity</div>
-            <div class="signal-track identity"><span>Domain, realm, RCOI, PLMN</span></div>
-          </div>
-          <div class="signal-row">
-            <div class="signal-label">Security</div>
-            <div class="signal-track security"><span>802.1X, EAP, WPA Enterprise</span></div>
-          </div>
-          <div class="signal-row">
-            <div class="signal-label">Ops</div>
-            <div class="signal-track operations"><span>RadSec, accounting, location</span></div>
-          </div>
+        <div class="ready-overall">
+          <span class="ready-big" id="readyBig">0%</span>
+          <div class="ready-bar"><i id="readyOverallFill"></i></div>
+        </div>
+        <div class="ready-pillars" id="readyPillars"></div>
+        <div class="ready-actions">
+          <button class="button" id="readyPrint" type="button">Print / share</button>
+          <button class="button secondary" id="readyReset" type="button">Reset</button>
         </div>
       </aside>
     </section>
@@ -1354,7 +1449,7 @@
                 "title": "Glossary: Acronyms and Abbreviations",
                 "theme": "violet",
                 "visual": "glossary",
-                "summary": "Plain-language expansions of the acronyms used in this guide and in WBA OpenRoaming materials.",
+                "summary": "Clear expansions of the acronyms and abbreviations used in this guide and in WBA OpenRoaming materials.",
                 "glossary": [
                       { "abbr": "802.11u", "term": "IEEE amendment for pre-association network discovery (interworking)", "desc": "The IEEE Wi-Fi feature that lets a device ask a network for details before joining. It is what makes Passpoint's pre-join discovery possible." },
                       { "abbr": "802.1X", "term": "IEEE standard for port-based network access control (used by WPA-Enterprise)", "desc": "The rule that a device must log in before it is allowed onto the network. This is the enterprise Wi-Fi login model Passpoint uses instead of a shared password." },
@@ -1388,7 +1483,7 @@
                       { "abbr": "NAI", "term": "Network Access Identifier (NAI Realm)", "desc": "The user@realm format that tells the network which identity provider should handle a login." },
                       { "abbr": "NAS", "term": "Network Access Server", "desc": "The network device (often the AP or controller) that passes login requests to the AAA system." },
                       { "abbr": "OEM", "term": "Original Equipment Manufacturer", "desc": "The manufacturer that builds the device or hardware." },
-                      { "abbr": "OR", "term": "WBA OpenRoaming", "desc": "WBA OpenRoaming, a federation that lets devices roam onto partner Wi-Fi automatically and securely, built on Passpoint." },
+                      { "abbr": "OR", "alias": "OpenRoaming", "term": "WBA OpenRoaming", "desc": "WBA OpenRoaming, a federation that lets devices roam onto partner Wi-Fi automatically and securely, built on Passpoint." },
                       { "abbr": "OSU", "term": "Online Sign-Up", "desc": "An older Passpoint flow for signing up and getting a profile through the device on the spot. Many deployments now use simpler profile delivery instead." },
                       { "abbr": "OUI", "term": "Organizationally Unique Identifier", "desc": "The IEEE-assigned prefix that identifies an organization. It appears inside identifiers such as RCOIs." },
                       { "abbr": "Passpoint Profile", "term": "The installed configuration that lets a device join Passpoint networks automatically", "desc": "A small configuration installed on the device (by a carrier, MDM, app, or downloaded file) that holds the matching rules (domains, realms, RCOIs, PLMN) plus the credential and EAP settings. Because of the profile, the device discovers, matches, and joins on its own across any venue that fits, and it can roam. This is different from manually joining a WPA-Enterprise network: even if a user taps a Passpoint-capable network and types in a username, password, and EAP type by hand, that is still just a one-off connection to that one SSID. It does not use Passpoint's pre-association discovery or matching, it will not automatically recognize other venues, and it does not roam through the federation. The profile is what makes Passpoint automatic and portable instead of a manual, per-network login." },
@@ -1399,6 +1494,7 @@
                       { "abbr": "PSK", "term": "Pre-Shared Key", "desc": "A single shared Wi-Fi password (the home or guest model). Passpoint replaces this with per-user logins." },
                       { "abbr": "QoE", "term": "Quality of Experience", "desc": "How good the connection actually feels to the user." },
                       { "abbr": "QoS", "term": "Quality of Service", "desc": "Network controls that prioritize traffic to keep performance acceptable." },
+                      { "abbr": "R1 / R2 / R3", "term": "Passpoint Release 1, 2, and 3", "desc": "The Wi-Fi Alliance Passpoint feature releases. R1 added the core pre-association discovery and WPA-Enterprise login; R2 added online sign-up and operator/venue information; R3 added richer venue info, terms and conditions, and updated security expectations. Each release builds on the earlier ones, and devices and networks may support different levels." },
                       { "abbr": "RADIUS", "term": "Remote Authentication Dial-In User Service", "desc": "The long-standing protocol that carries authentication and accounting between the network and the AAA system." },
                       { "abbr": "RadSec", "term": "RADIUS over TLS (secure RADIUS transport)", "desc": "RADIUS wrapped in TLS encryption so it is safe to send across the internet, which is how roaming traffic is protected." },
                       { "abbr": "RCOI", "term": "Roaming Consortium Organization Identifier", "desc": "An identifier a network advertises to say which roaming federation it belongs to, such as OpenRoaming." },
@@ -1556,7 +1652,10 @@
       const sec = sections.find(s => s.glossary);
       if (sec) {
         sec.glossary.forEach((item, i) => {
-          item.abbr.split(/[\/,]/).forEach(tok => {
+          // Tokenize the abbreviation plus any spelled-out aliases (e.g. "OpenRoaming"
+          // for OR) so the words people actually write in prose link to the entry too.
+          const tokens = item.abbr + (item.alias ? "," + item.alias : "");
+          tokens.split(/[\/,]/).forEach(tok => {
             tok = tok.trim();
             if (tok) _glossMap[tok] = { term: item.term, id: "gloss-" + i };
           });
@@ -2093,6 +2192,89 @@
     window.addEventListener("load", publishEmbedHeight);
     window.addEventListener("resize", publishEmbedHeight);
     window.setTimeout(publishEmbedHeight, 250);
+
+    // ANP readiness self-check: tick what's true and watch the score climb.
+    // Progress persists in the browser; Reset clears it AND collapses the pillars.
+    (function () {
+      const host = document.getElementById("readyPillars");
+      if (!host) return;
+      const PILLARS = [
+        { key: "discovery", label: "Discovery", color: "var(--primary)", items: [
+          "AP beacon advertises Hotspot 2.0 / Passpoint",
+          "ANQP returns domains, realms, RCOIs, and venue info",
+          "ANQP responses validated with a real test client" ] },
+        { key: "identity", label: "Identity", color: "var(--action-dark)", items: [
+          "Home identifiers (domain / realm) published",
+          "Roaming identifiers (RCOI / PLMN) published where needed",
+          "Each realm lists the correct EAP method" ] },
+        { key: "security", label: "Security", color: "var(--primary-dark)", items: [
+          "WPA2/WPA3-Enterprise with 802.1X/EAP enforced",
+          "Protected Management Frames enabled where required",
+          "Bad-credential throttling / client protection in place" ] },
+        { key: "ops", label: "Ops", color: "var(--warning)", items: [
+          "RadSec (or protected tunnel) for RADIUS off-network",
+          "Accounting and session attributes standardized",
+          "NAS-ID / Called-Station-ID / location formatted consistently" ] },
+      ];
+      const KEY = "gswp-readiness-v1";
+      let state = {};
+      try { state = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { state = {}; }
+      const arrow = '<svg class="arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 4l5 4-5 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      host.innerHTML = PILLARS.map(p => `
+        <details class="pillar">
+          <summary>
+            ${arrow}
+            <span class="pl">${p.label}</span>
+            <span class="track"><i data-fill="${p.key}" style="background:${p.color}"></i></span>
+            <span class="cnt" data-cnt="${p.key}">0/${p.items.length}</span>
+          </summary>
+          <div class="checks">
+            ${p.items.map((it, ii) => `<label><input type="checkbox" data-k="${p.key}" data-i="${ii}"> <span>${it}</span></label>`).join("")}
+          </div>
+        </details>`).join("");
+
+      const total = PILLARS.reduce((n, p) => n + p.items.length, 0);
+      function render() {
+        let done = 0;
+        PILLARS.forEach(p => {
+          const checked = p.items.filter((_, ii) => state[p.key + "-" + ii]).length;
+          done += checked;
+          host.querySelector(`[data-fill="${p.key}"]`).style.width = (checked / p.items.length * 100) + "%";
+          host.querySelector(`[data-cnt="${p.key}"]`).textContent = checked + "/" + p.items.length;
+        });
+        const pct = Math.round(done / total * 100);
+        document.getElementById("readyOverallFill").style.width = pct + "%";
+        document.getElementById("readyBig").textContent = pct + "%";
+        document.getElementById("readyScore").textContent = pct + "% ready";
+      }
+
+      host.querySelectorAll('input[type=checkbox]').forEach(cb => {
+        const id = cb.dataset.k + "-" + cb.dataset.i;
+        cb.checked = !!state[id];
+        cb.addEventListener("change", () => {
+          state[id] = cb.checked;
+          localStorage.setItem(KEY, JSON.stringify(state));
+          render();
+        });
+      });
+      host.querySelectorAll("details.pillar").forEach(d => {
+        d.addEventListener("toggle", () => window.setTimeout(publishEmbedHeight, 60));
+      });
+
+      const resetBtn = document.getElementById("readyReset");
+      if (resetBtn) resetBtn.addEventListener("click", () => {
+        state = {};
+        localStorage.removeItem(KEY);
+        host.querySelectorAll('input[type=checkbox]').forEach(cb => cb.checked = false);
+        host.querySelectorAll("details.pillar").forEach(d => d.open = false);
+        render();
+        window.setTimeout(publishEmbedHeight, 60);
+      });
+      const printBtn = document.getElementById("readyPrint");
+      if (printBtn) printBtn.addEventListener("click", () => window.print());
+
+      render();
+    })();
 
     // Seamless-join header animation: loop searching -> connecting -> connected.
     (function(){
