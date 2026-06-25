@@ -810,14 +810,11 @@
       margin: 0;
     }
 
-    /* Bigger, readable acronym tooltip on hover/focus */
-    .gloss::after {
-      content: attr(data-tip);
-      position: absolute;
-      left: 50%;
-      bottom: 100%;
-      transform: translate(-50%, -7px);
-      width: max-content;
+    /* Bigger, readable acronym tooltip. Rendered to <body> by JS (see gloss-tip
+       handler) so it is never clipped by a section card's rounded/overflow bounds. */
+    .gloss-tip {
+      position: fixed;
+      z-index: 200;
       max-width: 280px;
       padding: 9px 12px;
       border-radius: 8px;
@@ -826,20 +823,15 @@
       font-size: 14px;
       font-weight: 600;
       line-height: 1.4;
-      white-space: normal;
       text-align: center;
       box-shadow: var(--shadow-sm);
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity .12s ease;
       pointer-events: none;
-      z-index: 60;
+      opacity: 0;
+      transition: opacity .12s ease;
     }
 
-    .gloss:hover::after,
-    .gloss:focus-visible::after {
+    .gloss-tip.on {
       opacity: 1;
-      visibility: visible;
     }
 
     .details-grid {
@@ -2271,6 +2263,40 @@
       if (!modal) return;
       modal.addEventListener("click", e => { if (e.target.closest("[data-close]")) closeWalkthrough(); });
       document.addEventListener("keydown", e => { if (e.key === "Escape") closeWalkthrough(); });
+    })();
+
+    // Acronym tooltip rendered to <body> so a section card can never clip it; the
+    // position is clamped to the viewport and flips below the word if there's no room.
+    (function () {
+      let tip = null;
+      function show(el) {
+        const text = el.getAttribute("data-tip");
+        if (!text) return;
+        if (!tip) {
+          tip = document.createElement("div");
+          tip.className = "gloss-tip";
+          tip.setAttribute("role", "tooltip");
+          document.body.appendChild(tip);
+        }
+        tip.textContent = text;
+        tip.style.opacity = "0";
+        tip.classList.add("on");
+        const r = el.getBoundingClientRect();
+        const t = tip.getBoundingClientRect();
+        let left = r.left + r.width / 2 - t.width / 2;
+        left = Math.max(8, Math.min(left, window.innerWidth - t.width - 8));
+        let top = r.top - t.height - 8;
+        if (top < 8) top = r.bottom + 8;
+        tip.style.left = left + "px";
+        tip.style.top = top + "px";
+        tip.style.opacity = "";
+      }
+      function hide() { if (tip) tip.classList.remove("on"); }
+      document.addEventListener("mouseover", e => { const g = e.target.closest(".gloss"); if (g) show(g); });
+      document.addEventListener("mouseout", e => { if (e.target.closest(".gloss")) hide(); });
+      document.addEventListener("focusin", e => { const g = e.target.closest(".gloss"); if (g) show(g); });
+      document.addEventListener("focusout", e => { if (e.target.closest(".gloss")) hide(); });
+      window.addEventListener("scroll", hide, true);
     })();
 
     window.addEventListener("load", publishEmbedHeight);
