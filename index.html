@@ -2206,6 +2206,52 @@
       }).join("");
     }
 
+    // Public demo mode (URL has ?demo): replace the section prose with placeholder
+    // Lorem Ipsum so reviewers focus on layout, illustrations and interaction. Titles,
+    // acronyms (sprinkled in so the tooltips still demo), links, the glossary and the
+    // walkthroughs all stay real. Deterministic so the page looks the same each load.
+    const DEMO = new URLSearchParams(location.search).has("demo");
+    const _LW = ("lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor " +
+      "incididunt ut labore et dolore magna aliqua enim ad minim veniam quis nostrud exercitation " +
+      "ullamco laboris nisi aliquip ex ea commodo consequat duis aute irure voluptate velit esse").split(" ");
+    const _LA = ["ANP", "RCOI", "EAP", "RadSec", "ANQP", "IDP", "OpenRoaming", "PMF", "AAA", "SSID"];
+    let _lw = 0, _la = 0, _ls = 0;
+    function _loremSentence(n) {
+      const w = [];
+      for (let i = 0; i < n; i++) w.push(_LW[_lw++ % _LW.length]);
+      if (_ls++ % 2 === 0) w.splice(2, 0, _LA[_la++ % _LA.length]);
+      const s = w.join(" ");
+      return s.charAt(0).toUpperCase() + s.slice(1);
+    }
+    function _lorem(sentences) {
+      const out = [];
+      for (let i = 0; i < sentences; i++) out.push(_loremSentence(7 + (i % 4)) + ".");
+      return out.join(" ");
+    }
+    function demoize(list) {
+      list.forEach(s => {
+        if (s.glossary) return;                       // keep the glossary real
+        if (s.summary) s.summary = _lorem(2);
+        if (Array.isArray(s.meaning)) s.meaning = s.meaning.map(() => _lorem(1));
+        if (Array.isArray(s.decisions)) s.decisions = s.decisions.map(() => _lorem(1));
+        if (s.note) s.note = _lorem(1);
+        if (Array.isArray(s.faqItems)) s.faqItems = s.faqItems.map(() => ({
+          question: _loremSentence(5) + "?",
+          answer: _lorem(2)
+        }));
+        // id, title, theme, visual and links are left untouched
+      });
+    }
+    if (DEMO) {
+      demoize(sections);
+      document.documentElement.classList.add("demo-mode");
+      const banner = document.querySelector(".draft-banner");
+      if (banner) banner.innerHTML = '<strong>Public demo</strong><span>Section text is placeholder ' +
+        '(Lorem Ipsum) so feedback can focus on the layout, illustrations and interaction. Acronyms, ' +
+        'links and the glossary are real.</span>';
+      document.title = "Demo · " + document.title;
+    }
+
     renderSections();
     renderResources();
 
