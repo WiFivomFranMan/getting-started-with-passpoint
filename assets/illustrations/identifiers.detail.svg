@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 300" role="img"
+     class="id-detail" data-steps="4" data-step="1"
+     aria-label="The four Passpoint identifiers: domain, NAI realm, RCOI and PLMN"
+     data-cap-1="Domain (FQDN): names the home operator. The device uses it to recognise its own provider's network."
+     data-cap-2="NAI realm: the @realm part of the login. It routes the authentication to the correct identity provider."
+     data-cap-3="RCOI: a roaming-consortium identifier the network advertises to say which federation (such as OpenRoaming) it belongs to."
+     data-cap-4="PLMN: identifies a mobile carrier's network - used for SIM-based, cellular-style Wi-Fi offload.">
+  <style>
+    .id-detail text { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+    .id-detail .bg{fill:var(--soft,#e8faf1)} .id-detail .acc{fill:var(--acc,#1aad55)}
+    .id-detail .sacc{fill:none;stroke:var(--acc,#1aad55)} .id-detail .ink{fill:#14211f}
+    .id-detail .tl{fill:var(--acc,#1aad55);font-weight:820} .id-detail .tm{fill:#60706d;font-weight:700}
+    .id-detail .mono{fill:#60706d;font-weight:600}
+    .id-detail .step{opacity:0;transition:opacity .35s ease} .id-detail .title{opacity:0}
+    .id-detail .row{opacity:.5;transition:opacity .35s}
+    .id-detail[data-step="1"] .s1, .id-detail[data-step="1"] .t1, .id-detail[data-step="1"] .r1,
+    .id-detail[data-step="2"] .s2, .id-detail[data-step="2"] .t2, .id-detail[data-step="2"] .r2,
+    .id-detail[data-step="3"] .s3, .id-detail[data-step="3"] .t3, .id-detail[data-step="3"] .r3,
+    .id-detail[data-step="4"] .s4, .id-detail[data-step="4"] .t4, .id-detail[data-step="4"] .r4 { opacity: 1; }
+  </style>
+
+  <rect class="bg" width="520" height="300"/>
+  <text class="tl title t1" x="28" y="40" font-size="17" textLength="150" lengthAdjust="spacingAndGlyphs">1 · Domain</text>
+  <text class="tl title t2" x="28" y="40" font-size="17" textLength="180" lengthAdjust="spacingAndGlyphs">2 · NAI realm</text>
+  <text class="tl title t3" x="28" y="40" font-size="17" textLength="120" lengthAdjust="spacingAndGlyphs">3 · RCOI</text>
+  <text class="tl title t4" x="28" y="40" font-size="17" textLength="130" lengthAdjust="spacingAndGlyphs">4 · PLMN</text>
+
+  <!-- device asking -->
+  <rect fill="#fff" class="sacc" x="40" y="96" width="64" height="128" rx="15" stroke-width="2.5"/>
+  <rect class="bg" x="48" y="110" width="48" height="100" rx="4"/>
+  <text class="tm" x="46" y="244" font-size="12" textLength="52" lengthAdjust="spacingAndGlyphs">Device</text>
+
+  <!-- ANQP card -->
+  <rect fill="#fff" class="sacc" x="150" y="52" width="332" height="196" rx="10" stroke-width="2.5"/>
+  <text class="tl" x="166" y="78" font-size="12" textLength="200" lengthAdjust="spacingAndGlyphs">ANQP — what the network advertises</text>
+  <path class="sacc" d="M166 86 h300" stroke-width="1.5" opacity="0.3"/>
+
+  <!-- rows: label + example value -->
+  <g class="row r1">
+    <text class="ink" x="166" y="116" font-size="13" font-weight="760" textLength="74" lengthAdjust="spacingAndGlyphs">Domain</text>
+    <text class="mono" x="300" y="116" font-size="12" textLength="160" lengthAdjust="spacingAndGlyphs">wba.example.com</text>
+  </g>
+  <g class="row r2">
+    <text class="ink" x="166" y="152" font-size="13" font-weight="760" textLength="86" lengthAdjust="spacingAndGlyphs">NAI realm</text>
+    <text class="mono" x="300" y="152" font-size="12" textLength="120" lengthAdjust="spacingAndGlyphs">user@isp.example</text>
+  </g>
+  <g class="row r3">
+    <text class="ink" x="166" y="188" font-size="13" font-weight="760" textLength="44" lengthAdjust="spacingAndGlyphs">RCOI</text>
+    <text class="mono" x="300" y="188" font-size="12" textLength="170" lengthAdjust="spacingAndGlyphs">5A 03 BA · OpenRoaming</text>
+  </g>
+  <g class="row r4">
+    <text class="ink" x="166" y="224" font-size="13" font-weight="760" textLength="50" lengthAdjust="spacingAndGlyphs">PLMN</text>
+    <text class="mono" x="300" y="224" font-size="12" textLength="92" lengthAdjust="spacingAndGlyphs">310 / 410</text>
+  </g>
+
+  <!-- per-step highlight + check -->
+  <g class="step s1"><rect class="sacc" x="158" y="100" width="316" height="30" rx="6" stroke-width="2.5"/><circle class="acc" cx="464" cy="115" r="9"/><path d="M460 115 l3 3 5 -6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g class="step s2"><rect class="sacc" x="158" y="136" width="316" height="30" rx="6" stroke-width="2.5"/><circle class="acc" cx="464" cy="151" r="9"/><path d="M460 151 l3 3 5 -6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g class="step s3"><rect class="sacc" x="158" y="172" width="316" height="30" rx="6" stroke-width="2.5"/><circle class="acc" cx="464" cy="187" r="9"/><path d="M460 187 l3 3 5 -6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g class="step s4"><rect class="sacc" x="158" y="208" width="316" height="30" rx="6" stroke-width="2.5"/><circle class="acc" cx="464" cy="223" r="9"/><path d="M460 223 l3 3 5 -6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg>

@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 300" role="img"
+     class="sec-detail" data-steps="4" data-step="1"
+     aria-label="Passpoint security layers: WPA-Enterprise, 802.1X/EAP, dynamic keys and PMF"
+     data-cap-1="WPA-Enterprise: every user gets their own login instead of a shared Wi-Fi password, so access can be issued and revoked per user."
+     data-cap-2="802.1X / EAP: the device and network mutually authenticate; the EAP method (TLS, TTLS, PEAP, AKA) decides how the credential is proven."
+     data-cap-3="Dynamic keys: each session derives its own encryption keys, so one user can never read another user's traffic."
+     data-cap-4="Protected Management Frames (PMF): protects Wi-Fi management messages from spoofing and tampering. Required on newer bands such as 6 GHz.">
+  <style>
+    .sec-detail text { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+    .sec-detail .bg{fill:var(--soft,#fff5f5)} .sec-detail .acc{fill:var(--acc,#e53e3e)}
+    .sec-detail .sacc{fill:none;stroke:var(--acc,#e53e3e)} .sec-detail .ink{fill:#14211f}
+    .sec-detail .ok{fill:#1aad55} .sec-detail .tl{fill:var(--acc,#e53e3e);font-weight:820}
+    .sec-detail .tm{fill:#60706d;font-weight:700}
+    .sec-detail .step{opacity:0;transition:opacity .35s ease} .sec-detail .title{opacity:0}
+    .sec-detail .row{opacity:.5;transition:opacity .35s}
+    .sec-detail[data-step="1"] .s1, .sec-detail[data-step="1"] .t1, .sec-detail[data-step="1"] .r1,
+    .sec-detail[data-step="2"] .s2, .sec-detail[data-step="2"] .t2, .sec-detail[data-step="2"] .r2,
+    .sec-detail[data-step="3"] .s3, .sec-detail[data-step="3"] .t3, .sec-detail[data-step="3"] .r3,
+    .sec-detail[data-step="4"] .s4, .sec-detail[data-step="4"] .t4, .sec-detail[data-step="4"] .r4 { opacity: 1; }
+  </style>
+
+  <rect class="bg" width="520" height="300"/>
+  <text class="tl title t1" x="28" y="40" font-size="17" textLength="230" lengthAdjust="spacingAndGlyphs">1 · WPA-Enterprise</text>
+  <text class="tl title t2" x="28" y="40" font-size="17" textLength="190" lengthAdjust="spacingAndGlyphs">2 · 802.1X / EAP</text>
+  <text class="tl title t3" x="28" y="40" font-size="17" textLength="190" lengthAdjust="spacingAndGlyphs">3 · Dynamic keys</text>
+  <text class="tl title t4" x="28" y="40" font-size="17" textLength="100" lengthAdjust="spacingAndGlyphs">4 · PMF</text>
+
+  <!-- shield + padlock -->
+  <path fill="#fff" class="sacc" d="M96 70 L150 92 V150 C150 188 126 212 96 226 C66 212 42 188 42 150 V92 Z" stroke-width="2.5"/>
+  <rect class="acc" x="80" y="148" width="32" height="26" rx="4"/>
+  <path class="sacc" d="M86 148 v-9 a10 10 0 0 1 20 0 v9" stroke-width="3.5"/>
+  <circle fill="#fff" cx="96" cy="160" r="3.6"/>
+  <text class="tm" x="56" y="246" font-size="12" textLength="80" lengthAdjust="spacingAndGlyphs">Enterprise Wi-Fi</text>
+
+  <!-- layer cards -->
+  <g class="row r1"><rect fill="#fff" class="sacc" x="200" y="68" width="288" height="40" rx="8" stroke-width="1.6"/>
+    <text class="ink" x="216" y="86" font-size="13" font-weight="800" textLength="120" lengthAdjust="spacingAndGlyphs">WPA-Enterprise</text>
+    <text class="tm" x="216" y="100" font-size="11" textLength="100" lengthAdjust="spacingAndGlyphs">per-user login</text></g>
+  <g class="row r2"><rect fill="#fff" class="sacc" x="200" y="116" width="288" height="40" rx="8" stroke-width="1.6"/>
+    <text class="ink" x="216" y="134" font-size="13" font-weight="800" textLength="98" lengthAdjust="spacingAndGlyphs">802.1X / EAP</text>
+    <text class="tm" x="216" y="148" font-size="11" textLength="150" lengthAdjust="spacingAndGlyphs">mutual authentication</text></g>
+  <g class="row r3"><rect fill="#fff" class="sacc" x="200" y="164" width="288" height="40" rx="8" stroke-width="1.6"/>
+    <text class="ink" x="216" y="182" font-size="13" font-weight="800" textLength="100" lengthAdjust="spacingAndGlyphs">Dynamic keys</text>
+    <text class="tm" x="216" y="196" font-size="11" textLength="128" lengthAdjust="spacingAndGlyphs">unique per session</text></g>
+  <g class="row r4"><rect fill="#fff" class="sacc" x="200" y="212" width="288" height="40" rx="8" stroke-width="1.6"/>
+    <text class="ink" x="216" y="230" font-size="13" font-weight="800" textLength="240" lengthAdjust="spacingAndGlyphs">Protected Management Frames</text>
+    <text class="tm" x="216" y="244" font-size="11" textLength="120" lengthAdjust="spacingAndGlyphs">required on 6 GHz</text></g>
+
+  <!-- per-step highlight + check -->
+  <g class="step s1"><rect class="sacc" x="200" y="68" width="288" height="40" rx="8" stroke-width="2.8"/><circle class="ok" cx="470" cy="88" r="9"/><path d="M466 88 l3 3 5 -6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g class="step s2"><rect class="sacc" x="200" y="116" width="288" height="40" rx="8" stroke-width="2.8"/><circle class="ok" cx="470" cy="136" r="9"/><path d="M466 136 l3 3 5 -6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g class="step s3"><rect class="sacc" x="200" y="164" width="288" height="40" rx="8" stroke-width="2.8"/><circle class="ok" cx="470" cy="184" r="9"/><path d="M466 184 l3 3 5 -6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g class="step s4"><rect class="sacc" x="200" y="212" width="288" height="40" rx="8" stroke-width="2.8"/><circle class="ok" cx="470" cy="232" r="9"/><path d="M466 232 l3 3 5 -6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg>

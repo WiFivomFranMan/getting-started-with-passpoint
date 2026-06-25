@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 300" role="img"
+     class="aaa-detail" data-steps="3" data-step="1"
+     aria-label="The three A's of AAA: authentication, authorization and accounting"
+     data-cap-1="Authentication: the AAA server checks the user's credential with the home identity provider before access is granted. RadSec (RADIUS over TLS) protects it across the internet."
+     data-cap-2="Authorization: once the user is known, the AAA server returns the session policy - which network, VLAN and quality of service the user is allowed."
+     data-cap-3="Accounting: the AAA server records the session (start, interim updates, stop) for support, billing, and roaming settlement.">
+  <style>
+    .aaa-detail text { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+    .aaa-detail .bg{fill:var(--soft,#e8f4fb)} .aaa-detail .acc{fill:var(--acc,#085d8e)}
+    .aaa-detail .sacc{fill:none;stroke:var(--acc,#085d8e)} .aaa-detail .ok{fill:#1aad55}
+    .aaa-detail .oks{fill:none;stroke:#1aad55} .aaa-detail .ink{fill:#14211f}
+    .aaa-detail .tl{fill:var(--acc,#085d8e);font-weight:820} .aaa-detail .tm{fill:#60706d;font-weight:700}
+    .aaa-detail .tw{fill:#fff;font-weight:800} .aaa-detail .wire{stroke:#c4d3da;stroke-width:3;stroke-linecap:round}
+    .aaa-detail .step{opacity:0;transition:opacity .4s ease} .aaa-detail .title{opacity:0}
+    .aaa-detail[data-step="1"] .s1, .aaa-detail[data-step="1"] .t1,
+    .aaa-detail[data-step="2"] .s2, .aaa-detail[data-step="2"] .t2,
+    .aaa-detail[data-step="3"] .s3, .aaa-detail[data-step="3"] .t3 { opacity: 1; }
+    @keyframes aaad-dash { to { stroke-dashoffset: -24; } }
+    .aaa-detail .flowline{stroke-dasharray:6 7;animation:aaad-dash 1s linear infinite}
+    @media (prefers-reduced-motion: reduce){ .aaa-detail .flowline{animation:none} }
+  </style>
+
+  <rect class="bg" width="520" height="300"/>
+  <text class="tl title t1" x="28" y="40" font-size="17" textLength="210" lengthAdjust="spacingAndGlyphs">1 · Authentication</text>
+  <text class="tl title t2" x="28" y="40" font-size="17" textLength="200" lengthAdjust="spacingAndGlyphs">2 · Authorization</text>
+  <text class="tl title t3" x="28" y="40" font-size="17" textLength="180" lengthAdjust="spacingAndGlyphs">3 · Accounting</text>
+
+  <line class="wire" x1="112" y1="170" x2="190" y2="170"/>
+  <line class="wire" x1="270" y1="170" x2="356" y2="170"/>
+
+  <!-- device -->
+  <rect fill="#fff" class="sacc" x="44" y="108" width="68" height="124" rx="15" stroke-width="2.5"/>
+  <rect class="bg" x="52" y="122" width="52" height="96" rx="4"/>
+  <text class="tm" x="50" y="252" font-size="12" textLength="60" lengthAdjust="spacingAndGlyphs">Device</text>
+
+  <!-- access point / NAS -->
+  <line class="sacc" x1="212" y1="120" x2="206" y2="98" stroke-width="2.5" stroke-linecap="round"/>
+  <line class="sacc" x1="248" y1="120" x2="254" y2="98" stroke-width="2.5" stroke-linecap="round"/>
+  <rect fill="#fff" class="sacc" x="190" y="120" width="80" height="46" rx="8" stroke-width="2.5"/>
+  <circle class="acc" cx="230" cy="143" r="3.4" opacity="0.4"/>
+  <text class="tm" x="190" y="252" font-size="12" textLength="98" lengthAdjust="spacingAndGlyphs">Access point (NAS)</text>
+
+  <!-- AAA + IdP server -->
+  <rect fill="#fff" class="sacc" x="356" y="110" width="84" height="100" rx="8" stroke-width="2.5"/>
+  <path class="sacc" d="M356 140 h84 M356 170 h84" stroke-width="1.5" opacity="0.4"/>
+  <circle class="acc" cx="370" cy="125" r="2.8"/>
+  <circle class="acc" cx="370" cy="155" r="2.8" opacity="0.4"/>
+  <circle class="acc" cx="370" cy="185" r="2.8" opacity="0.4"/>
+  <text class="tm" x="360" y="252" font-size="12" textLength="92" lengthAdjust="spacingAndGlyphs">AAA + IdP server</text>
+
+  <!-- RadSec lock on the off-network wire -->
+  <g transform="translate(313,170)">
+    <rect class="ok" x="-9" y="-2" width="18" height="14" rx="2.5"/>
+    <path class="oks" d="M-5 -2 v-4 a5 5 0 0 1 10 0 v4" stroke-width="2"/>
+  </g>
+  <text class="tm" x="290" y="200" font-size="11" textLength="46" lengthAdjust="spacingAndGlyphs">RadSec</text>
+
+  <!-- STEP 1: authentication -->
+  <g class="step s1">
+    <line class="sacc flowline" x1="112" y1="170" x2="190" y2="170" stroke-width="3"/>
+    <line class="sacc flowline" x1="270" y1="170" x2="356" y2="170" stroke-width="3"/>
+    <rect class="acc" x="120" y="120" width="62" height="22" rx="11"/>
+    <text class="tw" x="151" y="135" font-size="11" text-anchor="middle" textLength="48" lengthAdjust="spacingAndGlyphs">EAP login</text>
+    <g transform="translate(420,128)"><circle class="ok" cx="0" cy="0" r="11"/><path d="M-5 0 l4 4 7 -8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></g>
+  </g>
+
+  <!-- STEP 2: authorization -->
+  <g class="step s2">
+    <line class="sacc flowline" x1="356" y1="178" x2="112" y2="178" stroke-width="3"/>
+    <rect fill="#fff" class="sacc" x="150" y="70" width="170" height="64" rx="8" stroke-width="2"/>
+    <text class="tl" x="162" y="90" font-size="11" textLength="86" lengthAdjust="spacingAndGlyphs">Session policy</text>
+    <circle class="ok" cx="166" cy="105" r="3"/><text class="ink" x="176" y="109" font-size="11" textLength="92" lengthAdjust="spacingAndGlyphs">Network + VLAN</text>
+    <circle class="ok" cx="166" cy="121" r="3"/><text class="ink" x="176" y="125" font-size="11" textLength="104" lengthAdjust="spacingAndGlyphs">Quality of service</text>
+  </g>
+
+  <!-- STEP 3: accounting -->
+  <g class="step s3">
+    <rect fill="#fff" class="sacc" x="318" y="64" width="150" height="74" rx="8" stroke-width="2"/>
+    <text class="tl" x="330" y="83" font-size="11" textLength="104" lengthAdjust="spacingAndGlyphs">Session records</text>
+    <circle class="ok" cx="334" cy="99" r="3"/><text class="ink" x="344" y="103" font-size="11" textLength="40" lengthAdjust="spacingAndGlyphs">Start</text>
+    <circle class="ok" cx="334" cy="115" r="3"/><text class="ink" x="344" y="119" font-size="11" textLength="54" lengthAdjust="spacingAndGlyphs">Interim</text>
+    <circle class="ok" cx="334" cy="131" r="3"/><text class="ink" x="344" y="135" font-size="11" textLength="38" lengthAdjust="spacingAndGlyphs">Stop</text>
+  </g>
+</svg>
