@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 300" role="img"
+     class="val-detail" data-steps="3" data-step="1"
+     aria-label="What Passpoint gives users: automatic, seamless and secure joining"
+     data-cap-1="Automatic: with its profile, the device finds and joins trusted Wi-Fi on its own - no hunting for the right SSID."
+     data-cap-2="Seamless: no captive-portal web page, and no shared Wi-Fi password to look up or type."
+     data-cap-3="Secure: enterprise-grade, per-user authentication and encryption - not an open or shared-key network.">
+  <style>
+    .val-detail text { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+    .val-detail .bg{fill:var(--soft,#e8f4fb)} .val-detail .acc{fill:var(--acc,#0b74b1)}
+    .val-detail .sacc{fill:none;stroke:var(--acc,#0b74b1)} .val-detail .soft{fill:var(--soft,#e8f4fb)}
+    .val-detail .ink{fill:#14211f} .val-detail .ok{fill:#1aad55} .val-detail .red{stroke:#e53e3e}
+    .val-detail .tl{fill:var(--acc,#0b74b1);font-weight:820} .val-detail .tm{fill:#60706d;font-weight:700}
+    .val-detail .step{opacity:0;transition:opacity .35s ease} .val-detail .title{opacity:0}
+    .val-detail .card{opacity:.45;transition:opacity .35s}
+    .val-detail[data-step="1"] .s1, .val-detail[data-step="1"] .t1, .val-detail[data-step="1"] .c1,
+    .val-detail[data-step="2"] .s2, .val-detail[data-step="2"] .t2, .val-detail[data-step="2"] .c2,
+    .val-detail[data-step="3"] .s3, .val-detail[data-step="3"] .t3, .val-detail[data-step="3"] .c3 { opacity: 1; }
+  </style>
+
+  <rect class="bg" width="520" height="300"/>
+  <text class="tl title t1" x="28" y="38" font-size="17" textLength="180" lengthAdjust="spacingAndGlyphs">1 · Automatic</text>
+  <text class="tl title t2" x="28" y="38" font-size="17" textLength="180" lengthAdjust="spacingAndGlyphs">2 · Seamless</text>
+  <text class="tl title t3" x="28" y="38" font-size="17" textLength="150" lengthAdjust="spacingAndGlyphs">3 · Secure</text>
+
+  <!-- phone joins access point -->
+  <rect fill="#fff" class="sacc" x="132" y="58" width="58" height="100" rx="13" stroke-width="2.5"/>
+  <rect class="soft" x="139" y="70" width="44" height="76" rx="4"/>
+  <line class="sacc" x1="346" y1="74" x2="342" y2="58" stroke-width="2.5" stroke-linecap="round"/>
+  <line class="sacc" x1="374" y1="74" x2="378" y2="58" stroke-width="2.5" stroke-linecap="round"/>
+  <circle class="acc" cx="342" cy="56" r="2.6"/><circle class="acc" cx="378" cy="56" r="2.6"/>
+  <rect fill="#fff" class="sacc" x="332" y="74" width="56" height="34" rx="7" stroke-width="2.5"/>
+  <circle class="ok" cx="360" cy="91" r="3.4"/>
+  <path class="sacc" d="M198 108 h126" stroke-width="2" stroke-dasharray="5 6" opacity="0.7"/>
+
+  <!-- three value cards -->
+  <g class="card c1"><rect fill="#fff" class="sacc" x="40" y="180" width="138" height="92" rx="10" stroke-width="2"/>
+    <g transform="translate(70,212)"><rect class="acc" x="0" y="14" width="6" height="10" rx="1.5"/><rect class="acc" x="11" y="7" width="6" height="17" rx="1.5"/><rect class="acc" x="22" y="-2" width="6" height="26" rx="1.5"/></g>
+    <text class="ink" x="56" y="258" font-size="13" font-weight="800" text-anchor="middle" textLength="80" lengthAdjust="spacingAndGlyphs">Automatic</text></g>
+
+  <g class="card c2"><rect fill="#fff" class="sacc" x="192" y="180" width="138" height="92" rx="10" stroke-width="2"/>
+    <g transform="translate(243,200)"><rect fill="#fff" class="sacc" x="0" y="0" width="48" height="34" rx="4" stroke-width="2"/><path class="sacc" d="M0 10 h48" stroke-width="1.6"/><line class="red" x1="4" y1="36" x2="44" y2="-2" stroke-width="2.6" stroke-linecap="round"/></g>
+    <text class="ink" x="261" y="258" font-size="13" font-weight="800" text-anchor="middle" textLength="76" lengthAdjust="spacingAndGlyphs">Seamless</text></g>
+
+  <g class="card c3"><rect fill="#fff" class="sacc" x="344" y="180" width="138" height="92" rx="10" stroke-width="2"/>
+    <g transform="translate(399,202)"><rect class="acc" x="0" y="12" width="26" height="20" rx="3"/><path class="sacc" d="M4 12 v-6 a9 9 0 0 1 18 0 v6" stroke-width="3"/><circle fill="#fff" cx="13" cy="22" r="3"/></g>
+    <text class="ink" x="413" y="258" font-size="13" font-weight="800" text-anchor="middle" textLength="62" lengthAdjust="spacingAndGlyphs">Secure</text></g>
+
+  <!-- per-step highlight rings -->
+  <g class="step s1"><rect class="sacc" x="40" y="180" width="138" height="92" rx="10" stroke-width="3"/></g>
+  <g class="step s2"><rect class="sacc" x="192" y="180" width="138" height="92" rx="10" stroke-width="3"/></g>
+  <g class="step s3"><rect class="sacc" x="344" y="180" width="138" height="92" rx="10" stroke-width="3"/></g>
+</svg>

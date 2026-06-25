@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 300" role="img"
+     class="dep-detail" data-steps="3" data-step="1"
+     aria-label="Deployment: pick the use case, choose the feature set, then launch and operate"
+     data-cap-1="Start with a clear use case - enterprise onboarding, carrier offload, venue roaming, or OpenRoaming - because it drives every later choice."
+     data-cap-2="Choose the smallest complete set of features that delivers automatic, secure, supportable service for that use case - nothing more."
+     data-cap-3="Launch and operate it: standardised accounting and session attributes, monitoring, and a clear owner for profile updates and support.">
+  <style>
+    .dep-detail text { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+    .dep-detail .bg{fill:var(--soft,#e8faf1)} .dep-detail .acc{fill:var(--acc,#1aad55)}
+    .dep-detail .sacc{fill:none;stroke:var(--acc,#1aad55)} .dep-detail .ink{fill:#14211f}
+    .dep-detail .tl{fill:var(--acc,#1aad55);font-weight:820} .dep-detail .tm{fill:#60706d;font-weight:700}
+    .dep-detail .step{opacity:0;transition:opacity .35s ease} .dep-detail .title{opacity:0}
+    .dep-detail .stage{opacity:.45;transition:opacity .35s}
+    .dep-detail[data-step="1"] .s1, .dep-detail[data-step="1"] .t1, .dep-detail[data-step="1"] .g1,
+    .dep-detail[data-step="2"] .s2, .dep-detail[data-step="2"] .t2, .dep-detail[data-step="2"] .g2,
+    .dep-detail[data-step="3"] .s3, .dep-detail[data-step="3"] .t3, .dep-detail[data-step="3"] .g3 { opacity: 1; }
+  </style>
+
+  <rect class="bg" width="520" height="300"/>
+  <text class="tl title t1" x="28" y="40" font-size="17" textLength="220" lengthAdjust="spacingAndGlyphs">1 · Pick the use case</text>
+  <text class="tl title t2" x="28" y="40" font-size="17" textLength="210" lengthAdjust="spacingAndGlyphs">2 · Choose features</text>
+  <text class="tl title t3" x="28" y="40" font-size="17" textLength="220" lengthAdjust="spacingAndGlyphs">3 · Launch &amp; operate</text>
+
+  <path class="sacc" d="M178 160 h12 M186 155 l6 5 -6 5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path class="sacc" d="M330 160 h12 M338 155 l6 5 -6 5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- stage 1: use case (target) -->
+  <g class="stage g1">
+    <rect fill="#fff" class="sacc" x="42" y="96" width="134" height="128" rx="10" stroke-width="2.2"/>
+    <circle class="sacc" cx="109" cy="150" r="26" stroke-width="2.5"/>
+    <circle class="sacc" cx="109" cy="150" r="15" stroke-width="2.5"/>
+    <circle class="acc" cx="109" cy="150" r="5"/>
+    <text class="ink" x="60" y="206" font-size="12" font-weight="800" textLength="92" lengthAdjust="spacingAndGlyphs">Use case</text>
+  </g>
+  <!-- stage 2: features (checklist) -->
+  <g class="stage g2">
+    <rect fill="#fff" class="sacc" x="194" y="96" width="134" height="128" rx="10" stroke-width="2.2"/>
+    <rect class="acc" x="222" y="128" width="13" height="13" rx="3"/><path d="M225 134 l2 2 4 -5" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect class="acc" x="222" y="150" width="13" height="13" rx="3"/><path d="M225 156 l2 2 4 -5" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect fill="none" class="sacc" x="222" y="172" width="13" height="13" rx="3" stroke-width="1.6"/>
+    <rect class="acc" x="244" y="132" width="62" height="5" rx="2.5" opacity="0.18"/>
+    <rect class="acc" x="244" y="154" width="54" height="5" rx="2.5" opacity="0.18"/>
+    <rect class="acc" x="244" y="176" width="58" height="5" rx="2.5" opacity="0.18"/>
+    <text class="ink" x="212" y="206" font-size="12" font-weight="800" textLength="100" lengthAdjust="spacingAndGlyphs">Feature set</text>
+  </g>
+  <!-- stage 3: launch & operate (gauge) -->
+  <g class="stage g3">
+    <rect fill="#fff" class="sacc" x="346" y="96" width="134" height="128" rx="10" stroke-width="2.2"/>
+    <path class="sacc" d="M388 168 a25 25 0 0 1 50 0" stroke-width="2.5"/>
+    <line class="acc" x1="413" y1="168" x2="428" y2="150" stroke="var(--acc,#1aad55)" stroke-width="3" stroke-linecap="round"/>
+    <circle class="acc" cx="413" cy="168" r="4"/>
+    <text class="ink" x="366" y="206" font-size="12" font-weight="800" textLength="96" lengthAdjust="spacingAndGlyphs">Launch + run</text>
+  </g>
+
+  <g class="step s1"><rect class="sacc" x="42" y="96" width="134" height="128" rx="10" stroke-width="3"/></g>
+  <g class="step s2"><rect class="sacc" x="194" y="96" width="134" height="128" rx="10" stroke-width="3"/></g>
+  <g class="step s3"><rect class="sacc" x="346" y="96" width="134" height="128" rx="10" stroke-width="3"/></g>
+</svg>

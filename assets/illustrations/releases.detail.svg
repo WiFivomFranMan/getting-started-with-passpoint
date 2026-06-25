@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 300" role="img"
+     class="rel-detail" data-steps="3" data-step="1"
+     aria-label="What each Passpoint release adds: R1, R2 and R3"
+     data-cap-1="Release 1 is the foundation: pre-association discovery, network selection, and WPA2-Enterprise (802.1X/EAP) authentication."
+     data-cap-2="Release 2 adds Online Sign-Up (OSU) and the ability to provision or update a subscription profile on the device."
+     data-cap-3="Release 3 adds richer venue and operator information, terms and conditions, and stronger WPA3-Enterprise / PMF security.">
+  <style>
+    .rel-detail text { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+    .rel-detail .bg{fill:var(--soft,#ede9fe)} .rel-detail .acc{fill:var(--acc,#5b21b6)}
+    .rel-detail .sacc{fill:none;stroke:var(--acc,#5b21b6)} .rel-detail .ink{fill:#14211f}
+    .rel-detail .tl{fill:var(--acc,#5b21b6);font-weight:820} .rel-detail .tm{fill:#60706d;font-weight:700}
+    .rel-detail .ta{fill:var(--acc,#5b21b6);font-weight:860}
+    .rel-detail .step{opacity:0;transition:opacity .35s ease} .rel-detail .title{opacity:0}
+    .rel-detail .card{opacity:.45;transition:opacity .35s}
+    .rel-detail[data-step="1"] .s1, .rel-detail[data-step="1"] .t1, .rel-detail[data-step="1"] .c1,
+    .rel-detail[data-step="2"] .s2, .rel-detail[data-step="2"] .t2, .rel-detail[data-step="2"] .c2,
+    .rel-detail[data-step="3"] .s3, .rel-detail[data-step="3"] .t3, .rel-detail[data-step="3"] .c3 { opacity: 1; }
+  </style>
+
+  <rect class="bg" width="520" height="300"/>
+  <text class="tl title t1" x="28" y="40" font-size="17" textLength="170" lengthAdjust="spacingAndGlyphs">1 · R1 Core</text>
+  <text class="tl title t2" x="28" y="40" font-size="17" textLength="200" lengthAdjust="spacingAndGlyphs">2 · R2 Sign-up</text>
+  <text class="tl title t3" x="28" y="40" font-size="17" textLength="230" lengthAdjust="spacingAndGlyphs">3 · R3 Venue + WPA3</text>
+
+  <!-- rising release cards -->
+  <g class="card c1"><rect fill="#fff" class="sacc" x="40" y="170" width="92" height="70" rx="8" stroke-width="2.5"/><text class="ta" x="70" y="212" font-size="22">R1</text></g>
+  <g class="card c2"><rect fill="#fff" class="sacc" x="140" y="130" width="92" height="110" rx="8" stroke-width="2.5"/><text class="ta" x="170" y="190" font-size="22">R2</text></g>
+  <g class="card c3"><rect fill="#fff" class="sacc" x="240" y="86" width="92" height="154" rx="8" stroke-width="2.5"/><text class="ta" x="270" y="150" font-size="22">R3</text></g>
+
+  <!-- description panel -->
+  <rect fill="#fff" class="sacc" x="350" y="86" width="142" height="154" rx="10" stroke-width="2"/>
+
+  <!-- R1 description -->
+  <g class="step s1">
+    <text class="tl" x="364" y="112" font-size="12" textLength="84" lengthAdjust="spacingAndGlyphs">R1 · Core join</text>
+    <circle class="acc" cx="368" cy="132" r="3"/><text class="ink" x="378" y="136" font-size="11" textLength="100" lengthAdjust="spacingAndGlyphs">Discovery (ANQP)</text>
+    <circle class="acc" cx="368" cy="152" r="3"/><text class="ink" x="378" y="156" font-size="11" textLength="100" lengthAdjust="spacingAndGlyphs">Network selection</text>
+    <circle class="acc" cx="368" cy="172" r="3"/><text class="ink" x="378" y="176" font-size="11" textLength="104" lengthAdjust="spacingAndGlyphs">WPA2-Enterprise</text>
+  </g>
+  <!-- R2 description -->
+  <g class="step s2">
+    <text class="tl" x="364" y="112" font-size="12" textLength="92" lengthAdjust="spacingAndGlyphs">R2 · Sign-up</text>
+    <circle class="acc" cx="368" cy="132" r="3"/><text class="ink" x="378" y="136" font-size="11" textLength="108" lengthAdjust="spacingAndGlyphs">Online Sign-Up</text>
+    <circle class="acc" cx="368" cy="152" r="3"/><text class="ink" x="378" y="156" font-size="11" textLength="108" lengthAdjust="spacingAndGlyphs">Profile provision</text>
+    <circle class="acc" cx="368" cy="172" r="3"/><text class="ink" x="378" y="176" font-size="11" textLength="100" lengthAdjust="spacingAndGlyphs">Subscription update</text>
+  </g>
+  <!-- R3 description -->
+  <g class="step s3">
+    <text class="tl" x="364" y="112" font-size="12" textLength="116" lengthAdjust="spacingAndGlyphs">R3 · Venue + WPA3</text>
+    <circle class="acc" cx="368" cy="132" r="3"/><text class="ink" x="378" y="136" font-size="11" textLength="92" lengthAdjust="spacingAndGlyphs">Venue / operator</text>
+    <circle class="acc" cx="368" cy="152" r="3"/><text class="ink" x="378" y="156" font-size="11" textLength="108" lengthAdjust="spacingAndGlyphs">Terms &amp; conditions</text>
+    <circle class="acc" cx="368" cy="172" r="3"/><text class="ink" x="378" y="176" font-size="11" textLength="96" lengthAdjust="spacingAndGlyphs">WPA3 / PMF</text>
+  </g>
+</svg>

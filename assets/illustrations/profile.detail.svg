@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 300" role="img"
+     class="prof-detail" data-steps="3" data-step="1"
+     aria-label="A Passpoint profile: where it comes from, what it holds, and why it makes joining automatic"
+     data-cap-1="A device gets a Passpoint profile from a carrier, an MDM, an app, or a downloaded file."
+     data-cap-2="The installed profile holds the matching rules (domains, realms, RCOIs, PLMN) plus the credential and EAP settings."
+     data-cap-3="Because of the profile the device discovers, matches and joins on its own across any matching venue - and it roams. A manual SSID login is just a one-off to that one network.">
+  <style>
+    .prof-detail text { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+    .prof-detail .bg{fill:var(--soft,#e8f4fb)} .prof-detail .acc{fill:var(--acc,#0b74b1)}
+    .prof-detail .sacc{fill:none;stroke:var(--acc,#0b74b1)} .prof-detail .soft{fill:var(--soft,#e8f4fb)}
+    .prof-detail .ink{fill:#14211f} .prof-detail .ok{fill:#1aad55}
+    .prof-detail .tl{fill:var(--acc,#0b74b1);font-weight:820} .prof-detail .tm{fill:#60706d;font-weight:700}
+    .prof-detail .step{opacity:0;transition:opacity .35s ease} .prof-detail .title{opacity:0}
+    .prof-detail[data-step="1"] .s1, .prof-detail[data-step="1"] .t1,
+    .prof-detail[data-step="2"] .s2, .prof-detail[data-step="2"] .t2,
+    .prof-detail[data-step="3"] .s3, .prof-detail[data-step="3"] .t3 { opacity: 1; }
+  </style>
+
+  <rect class="bg" width="520" height="300"/>
+  <text class="tl title t1" x="28" y="40" font-size="17" textLength="200" lengthAdjust="spacingAndGlyphs">1 · Get a profile</text>
+  <text class="tl title t2" x="28" y="40" font-size="17" textLength="220" lengthAdjust="spacingAndGlyphs">2 · Profile installed</text>
+  <text class="tl title t3" x="28" y="40" font-size="17" textLength="260" lengthAdjust="spacingAndGlyphs">3 · Automatic &amp; portable</text>
+
+  <!-- persistent device -->
+  <rect fill="#fff" class="sacc" x="225" y="86" width="70" height="132" rx="15" stroke-width="2.5"/>
+  <rect class="soft" x="233" y="100" width="54" height="104" rx="4"/>
+  <text class="tm" x="232" y="238" font-size="12" textLength="56" lengthAdjust="spacingAndGlyphs">Device</text>
+
+  <!-- STEP 1: sources -> device -->
+  <g class="step s1">
+    <rect fill="#fff" class="sacc" x="28" y="100" width="120" height="116" rx="9" stroke-width="2"/>
+    <text class="tl" x="40" y="122" font-size="11" textLength="92" lengthAdjust="spacingAndGlyphs">Profile sources</text>
+    <circle class="acc" cx="44" cy="142" r="3"/><text class="ink" x="54" y="146" font-size="11" textLength="50" lengthAdjust="spacingAndGlyphs">Carrier</text>
+    <circle class="acc" cx="44" cy="164" r="3"/><text class="ink" x="54" y="168" font-size="11" textLength="36" lengthAdjust="spacingAndGlyphs">MDM</text>
+    <circle class="acc" cx="44" cy="186" r="3"/><text class="ink" x="54" y="190" font-size="11" textLength="28" lengthAdjust="spacingAndGlyphs">App</text>
+    <circle class="acc" cx="44" cy="208" r="3"/><text class="ink" x="54" y="212" font-size="11" textLength="78" lengthAdjust="spacingAndGlyphs">Downloaded file</text>
+    <path class="sacc" d="M152 152 h60 M204 147 l6 5 -6 5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- STEP 2: what the profile holds -->
+  <g class="step s2">
+    <rect fill="#fff" class="sacc" x="318" y="100" width="176" height="116" rx="9" stroke-width="2"/>
+    <text class="tl" x="332" y="122" font-size="11" textLength="92" lengthAdjust="spacingAndGlyphs">Profile holds</text>
+    <circle class="acc" cx="336" cy="142" r="3"/><text class="ink" x="346" y="146" font-size="11" textLength="120" lengthAdjust="spacingAndGlyphs">Matching rules</text>
+    <circle class="acc" cx="336" cy="164" r="3"/><text class="ink" x="346" y="168" font-size="11" textLength="80" lengthAdjust="spacingAndGlyphs">Credential</text>
+    <circle class="acc" cx="336" cy="186" r="3"/><text class="ink" x="346" y="190" font-size="11" textLength="92" lengthAdjust="spacingAndGlyphs">EAP settings</text>
+    <path class="sacc" d="M300 152 h12" stroke-width="2.5" stroke-linecap="round"/>
+    <g transform="translate(260,118)"><circle class="ok" cx="0" cy="0" r="11"/><path d="M-5 0 l4 4 7 -8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></g>
+  </g>
+
+  <!-- STEP 3: automatic across venues + roams -->
+  <g class="step s3">
+    <g transform="translate(110,150)">
+      <rect fill="#fff" class="sacc" x="-26" y="-16" width="52" height="32" rx="6" stroke-width="2"/>
+      <circle class="ok" cx="16" cy="-12" r="7"/><path d="M13 -12 l2 2 4 -5" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text class="tm" x="-26" y="34" font-size="10" textLength="52" lengthAdjust="spacingAndGlyphs">Venue A</text>
+    </g>
+    <g transform="translate(395,116)">
+      <rect fill="#fff" class="sacc" x="-26" y="-16" width="52" height="32" rx="6" stroke-width="2"/>
+      <circle class="ok" cx="16" cy="-12" r="7"/><path d="M13 -12 l2 2 4 -5" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text class="tm" x="-26" y="34" font-size="10" textLength="52" lengthAdjust="spacingAndGlyphs">Venue B</text>
+    </g>
+    <g transform="translate(420,196)">
+      <rect fill="#fff" class="sacc" x="-26" y="-16" width="52" height="32" rx="6" stroke-width="2"/>
+      <circle class="ok" cx="16" cy="-12" r="7"/><path d="M13 -12 l2 2 4 -5" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text class="tm" x="-26" y="34" font-size="10" textLength="52" lengthAdjust="spacingAndGlyphs">Venue C</text>
+    </g>
+    <path class="sacc" d="M150 150 h60" stroke-width="2" stroke-dasharray="4 5" opacity="0.7"/>
+    <path class="sacc" d="M300 140 q40 -16 70 -22" stroke-width="2" stroke-dasharray="4 5" opacity="0.7"/>
+    <path class="sacc" d="M300 165 q50 16 92 28" stroke-width="2" stroke-dasharray="4 5" opacity="0.7"/>
+  </g>
+</svg>
