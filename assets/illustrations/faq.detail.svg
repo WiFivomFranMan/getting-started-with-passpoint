@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 300" role="img"
+     class="faq-detail" data-steps="2" data-step="1"
+     aria-label="The common Passpoint misunderstanding and how it actually works"
+     data-cap-1="Most support tickets come from the same idea: the user expects to tap a network and sign in, the way old Wi-Fi worked."
+     data-cap-2="But Passpoint is meant to be automatic: with the right profile installed, the device recognises and joins on its own. So the first question to ask is - is the profile installed?">
+  <style>
+    .faq-detail text { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+    .faq-detail .bg{fill:var(--soft,#e8f4fb)} .faq-detail .acc{fill:var(--acc,#085d8e)}
+    .faq-detail .sacc{fill:none;stroke:var(--acc,#085d8e)} .faq-detail .soft{fill:var(--soft,#e8f4fb)}
+    .faq-detail .ink{fill:#14211f} .faq-detail .ok{fill:#1aad55}
+    .faq-detail .tl{fill:var(--acc,#085d8e);font-weight:820} .faq-detail .tm{fill:#60706d;font-weight:700}
+    .faq-detail .tw{fill:#fff;font-weight:700}
+    .faq-detail .step{opacity:0;transition:opacity .35s ease} .faq-detail .title{opacity:0}
+    .faq-detail[data-step="1"] .s1, .faq-detail[data-step="1"] .t1,
+    .faq-detail[data-step="2"] .s2, .faq-detail[data-step="2"] .t2 { opacity: 1; }
+  </style>
+
+  <rect class="bg" width="520" height="300"/>
+  <text class="tl title t1" x="28" y="40" font-size="17" textLength="210" lengthAdjust="spacingAndGlyphs">1 · The expectation</text>
+  <text class="tl title t2" x="28" y="40" font-size="17" textLength="260" lengthAdjust="spacingAndGlyphs">2 · How it really works</text>
+
+  <!-- support phone -->
+  <rect fill="#fff" class="sacc" x="60" y="86" width="86" height="150" rx="16" stroke-width="2.5"/>
+  <rect class="soft" x="70" y="102" width="66" height="118" rx="4"/>
+
+  <!-- STEP 1: the misunderstanding -->
+  <g class="step s1">
+    <!-- a wi-fi list on the screen -->
+    <rect fill="#fff" class="sacc" x="78" y="112" width="50" height="12" rx="3" stroke-width="1.4"/>
+    <rect fill="#fff" class="sacc" x="78" y="130" width="50" height="12" rx="3" stroke-width="1.4"/>
+    <rect fill="#fff" class="sacc" x="78" y="148" width="50" height="12" rx="3" stroke-width="1.4"/>
+    <circle class="acc" cx="120" cy="172" r="9" opacity="0.25"/><circle class="acc" cx="120" cy="172" r="4"/>
+    <rect class="acc" x="180" y="120" width="300" height="58" rx="12"/>
+    <text class="tw" x="198" y="144" font-size="14" textLength="264" lengthAdjust="spacingAndGlyphs">"I tapped the Wi-Fi network -</text>
+    <text class="tw" x="198" y="164" font-size="14" textLength="250" lengthAdjust="spacingAndGlyphs">do I pick it and sign in?"</text>
+  </g>
+
+  <!-- STEP 2: how it works -->
+  <g class="step s2">
+    <g transform="translate(132,108)"><circle class="ok" cx="0" cy="0" r="13"/><path d="M-6 0 l4 4 8 -9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <rect fill="#fff" class="sacc" x="180" y="116" width="312" height="66" rx="12" stroke-width="2"/>
+    <text class="ink" x="198" y="140" font-size="14" font-weight="600" textLength="276" lengthAdjust="spacingAndGlyphs">With the right profile it joins on its</text>
+    <text class="ink" x="198" y="160" font-size="14" font-weight="600" textLength="200" lengthAdjust="spacingAndGlyphs">own - no tapping needed.</text>
+    <rect class="acc" x="180" y="194" width="248" height="24" rx="12"/>
+    <text class="tw" x="194" y="210" font-size="12" font-weight="800" textLength="220" lengthAdjust="spacingAndGlyphs">First check: is the profile installed?</text>
+  </g>
+</svg>

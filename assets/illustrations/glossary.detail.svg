@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 300" role="img"
+     class="gl-detail" data-steps="3" data-step="1"
+     aria-label="How the in-guide acronym links and glossary work"
+     data-cap-1="Every acronym in the guide - like ANP or RCOI - is a dotted link, so you are never stuck on a term you do not know."
+     data-cap-2="Hover or focus it for a quick, plain-language definition without leaving the page."
+     data-cap-3="Click it to jump to this glossary, where the full entry expands with more detail.">
+  <style>
+    .gl-detail text { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+    .gl-detail .bg{fill:var(--soft,#ede9fe)} .gl-detail .acc{fill:var(--acc,#5b21b6)}
+    .gl-detail .sacc{fill:none;stroke:var(--acc,#5b21b6)} .gl-detail .ink{fill:#14211f}
+    .gl-detail .tl{fill:var(--acc,#5b21b6);font-weight:820} .gl-detail .tm{fill:#60706d;font-weight:700}
+    .gl-detail .tw{fill:#fff;font-weight:700} .gl-detail .link{fill:var(--acc,#5b21b6);font-weight:760}
+    .gl-detail .dot{stroke:var(--acc,#5b21b6);stroke-width:1.5;stroke-dasharray:1.5 1.5}
+    .gl-detail .step{opacity:0;transition:opacity .35s ease} .gl-detail .title{opacity:0}
+    .gl-detail[data-step="1"] .s1, .gl-detail[data-step="1"] .t1,
+    .gl-detail[data-step="2"] .s2, .gl-detail[data-step="2"] .t2,
+    .gl-detail[data-step="3"] .s3, .gl-detail[data-step="3"] .t3 { opacity: 1; }
+  </style>
+
+  <rect class="bg" width="520" height="300"/>
+  <text class="tl title t1" x="28" y="40" font-size="17" textLength="220" lengthAdjust="spacingAndGlyphs">1 · Spot an acronym</text>
+  <text class="tl title t2" x="28" y="40" font-size="17" textLength="250" lengthAdjust="spacingAndGlyphs">2 · Hover for a definition</text>
+  <text class="tl title t3" x="28" y="40" font-size="17" textLength="240" lengthAdjust="spacingAndGlyphs">3 · Click to jump here</text>
+
+  <!-- a snippet of guide text with an acronym link -->
+  <rect fill="#fff" class="sacc" x="40" y="84" width="440" height="64" rx="8" stroke-width="2"/>
+  <text class="ink" x="58" y="114" font-size="14" textLength="300" lengthAdjust="spacingAndGlyphs">The network advertises its</text>
+  <text class="link" x="364" y="114" font-size="14" font-weight="800">RCOI</text>
+  <text class="ink" x="408" y="114" font-size="14" textLength="56" lengthAdjust="spacingAndGlyphs">to say</text>
+  <text class="ink" x="58" y="136" font-size="14" textLength="220" lengthAdjust="spacingAndGlyphs">which federation it joins.</text>
+  <line class="dot" x1="364" y1="119" x2="406" y2="119"/>
+
+  <!-- STEP 1: spotlight the acronym -->
+  <g class="step s1">
+    <circle class="sacc" cx="384" cy="110" r="22" stroke-width="2.5" opacity="0.7"/>
+    <path class="sacc" d="M384 150 v18 M378 162 l6 6 6 -6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+  </g>
+
+  <!-- STEP 2: tooltip -->
+  <g class="step s2">
+    <rect class="ink" x="300" y="158" width="180" height="44" rx="8"/>
+    <text class="tw" x="312" y="176" font-size="11" textLength="156" lengthAdjust="spacingAndGlyphs">Roaming Consortium</text>
+    <text class="tw" x="312" y="192" font-size="11" textLength="150" lengthAdjust="spacingAndGlyphs">Organization Identifier</text>
+    <path d="M378 158 l8 -8 8 8 z" fill="#14211f"/>
+  </g>
+
+  <!-- STEP 3: the glossary entry expands -->
+  <g class="step s3">
+    <rect fill="#fff" class="sacc" x="40" y="170" width="440" height="92" rx="8" stroke-width="2"/>
+    <rect class="acc" x="58" y="186" width="54" height="22" rx="4"/>
+    <text class="tw" x="85" y="201" font-size="12" font-weight="800" text-anchor="middle" textLength="38" lengthAdjust="spacingAndGlyphs">RCOI</text>
+    <text class="ink" x="124" y="201" font-size="13" font-weight="760" textLength="284" lengthAdjust="spacingAndGlyphs">Roaming Consortium Organization Identifier</text>
+    <text class="tm" x="58" y="228" font-size="12" textLength="412" lengthAdjust="spacingAndGlyphs">An identifier a network advertises to say which roaming federation</text>
+    <text class="tm" x="58" y="246" font-size="12" textLength="220" lengthAdjust="spacingAndGlyphs">it belongs to, such as OpenRoaming.</text>
+  </g>
+</svg>

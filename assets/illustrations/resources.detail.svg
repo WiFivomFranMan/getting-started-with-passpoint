@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 300" role="img"
+     class="res-detail" data-steps="3" data-step="1"
+     aria-label="Which reference to use: Wi-Fi Alliance, IEEE and IETF, or WBA and OpenRoaming"
+     data-cap-1="Use Wi-Fi Alliance resources for what Passpoint is, its positioning, and certification context."
+     data-cap-2="Use IEEE (802.11u) and IETF (RFCs) documents for the exact protocol behaviour and implementation detail."
+     data-cap-3="Use WBA and OpenRoaming resources for federation, onboarding, PKI, and day-to-day operations.">
+  <style>
+    .res-detail text { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+    .res-detail .bg{fill:var(--soft,#ede9fe)} .res-detail .acc{fill:var(--acc,#5b21b6)}
+    .res-detail .sacc{fill:none;stroke:var(--acc,#5b21b6)} .res-detail .ink{fill:#14211f}
+    .res-detail .tl{fill:var(--acc,#5b21b6);font-weight:820} .res-detail .tm{fill:#60706d;font-weight:700}
+    .res-detail .step{opacity:0;transition:opacity .35s ease} .res-detail .title{opacity:0}
+    .res-detail .card{opacity:.45;transition:opacity .35s}
+    .res-detail[data-step="1"] .s1, .res-detail[data-step="1"] .t1, .res-detail[data-step="1"] .c1,
+    .res-detail[data-step="2"] .s2, .res-detail[data-step="2"] .t2, .res-detail[data-step="2"] .c2,
+    .res-detail[data-step="3"] .s3, .res-detail[data-step="3"] .t3, .res-detail[data-step="3"] .c3 { opacity: 1; }
+  </style>
+
+  <rect class="bg" width="520" height="300"/>
+  <text class="tl title t1" x="28" y="40" font-size="17" textLength="200" lengthAdjust="spacingAndGlyphs">1 · Positioning</text>
+  <text class="tl title t2" x="28" y="40" font-size="17" textLength="210" lengthAdjust="spacingAndGlyphs">2 · Protocol detail</text>
+  <text class="tl title t3" x="28" y="40" font-size="17" textLength="230" lengthAdjust="spacingAndGlyphs">3 · Federation &amp; ops</text>
+
+  <!-- three reference cards, each a small document -->
+  <g class="card c1"><rect fill="#fff" class="sacc" x="42" y="92" width="134" height="150" rx="10" stroke-width="2.2"/>
+    <rect fill="#fff" class="sacc" x="74" y="112" width="70" height="58" rx="4" stroke-width="1.8"/>
+    <path class="sacc" d="M84 126 h50 M84 138 h50 M84 150 h36" stroke-width="1.6" opacity="0.5"/>
+    <text class="ink" x="60" y="198" font-size="12.5" font-weight="800" textLength="100" lengthAdjust="spacingAndGlyphs">Wi-Fi Alliance</text>
+    <text class="tm" x="60" y="216" font-size="10.5" textLength="108" lengthAdjust="spacingAndGlyphs">what &amp; certification</text></g>
+
+  <g class="card c2"><rect fill="#fff" class="sacc" x="192" y="92" width="134" height="150" rx="10" stroke-width="2.2"/>
+    <rect fill="#fff" class="sacc" x="224" y="112" width="70" height="58" rx="4" stroke-width="1.8"/>
+    <path class="sacc" d="M234 126 h50 M234 138 h50 M234 150 h36" stroke-width="1.6" opacity="0.5"/>
+    <text class="ink" x="210" y="198" font-size="12.5" font-weight="800" textLength="90" lengthAdjust="spacingAndGlyphs">IEEE · IETF</text>
+    <text class="tm" x="210" y="216" font-size="10.5" textLength="100" lengthAdjust="spacingAndGlyphs">802.11u · RFCs</text></g>
+
+  <g class="card c3"><rect fill="#fff" class="sacc" x="342" y="92" width="138" height="150" rx="10" stroke-width="2.2"/>
+    <rect fill="#fff" class="sacc" x="376" y="112" width="70" height="58" rx="4" stroke-width="1.8"/>
+    <path class="sacc" d="M386 126 h50 M386 138 h50 M386 150 h36" stroke-width="1.6" opacity="0.5"/>
+    <text class="ink" x="360" y="198" font-size="12.5" font-weight="800" textLength="116" lengthAdjust="spacingAndGlyphs">WBA · OpenRoaming</text>
+    <text class="tm" x="360" y="216" font-size="10.5" textLength="96" lengthAdjust="spacingAndGlyphs">federation · ops</text></g>
+
+  <g class="step s1"><rect class="sacc" x="42" y="92" width="134" height="150" rx="10" stroke-width="3"/></g>
+  <g class="step s2"><rect class="sacc" x="192" y="92" width="134" height="150" rx="10" stroke-width="3"/></g>
+  <g class="step s3"><rect class="sacc" x="342" y="92" width="138" height="150" rx="10" stroke-width="3"/></g>
+</svg>
